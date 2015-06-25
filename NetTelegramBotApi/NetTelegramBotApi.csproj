@@ -39,6 +39,23 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TelegramBotBase.cs" />
+    <Compile Include="Types\ChatBase.cs" />
+    <Compile Include="Types\Contact.cs" />
+    <Compile Include="Types\ForceReply.cs" />
+    <Compile Include="Types\Message.cs" />
+    <Compile Include="Types\ReplyKeyboardHide.cs" />
+    <Compile Include="Types\ReplyKeyboardMarkup.cs" />
+    <Compile Include="Types\Update.cs" />
+    <Compile Include="Types\UserProfilePhotos.cs" />
+    <Compile Include="Types\Location.cs" />
+    <Compile Include="Types\Video.cs" />
+    <Compile Include="Types\Sticker.cs" />
+    <Compile Include="Types\Document.cs" />
+    <Compile Include="Types\Audio.cs" />
+    <Compile Include="Types\PhotoSize.cs" />
+    <Compile Include="Types\GroupChat.cs" />
+    <Compile Include="Util\ChatBaseConverter.cs" />
     <Compile Include="Util\JsonLowerCaseUnderscoreContractResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TelegramBot.cs" />

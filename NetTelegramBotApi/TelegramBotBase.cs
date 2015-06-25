@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using NetTelegramBotApi.Util;
 using Newtonsoft.Json;
 
 namespace NetTelegramBotApi
@@ -16,6 +17,11 @@ namespace NetTelegramBotApi
 
         private string accessToken;
 
+        static TelegramBotBase()
+        {
+            JsonSettings.Converters.Add(new ChatBaseConverter());
+        }
+
         public TelegramBotBase(string accessToken)
         {
             if (string.IsNullOrWhiteSpace(accessToken))
@@ -26,9 +32,9 @@ namespace NetTelegramBotApi
             this.accessToken = accessToken;
         }
 
-        protected T MakeRequest<T>(string methodName)
+        protected T MakeRequest<T>(string methodName, string parameters = null)
         {
-            var webRequest = WebRequest.CreateHttp("https://api.telegram.org/bot" + accessToken + "/" + methodName);
+            var webRequest = WebRequest.CreateHttp("https://api.telegram.org/bot" + accessToken + "/" + methodName + "?" + parameters);
             using (var webResponse = webRequest.GetResponse())
             {
                 using (var responseStream = webResponse.GetResponseStream())
@@ -51,9 +57,9 @@ namespace NetTelegramBotApi
             }
         }
 
-        protected async Task<T> MakeRequestAsync<T>(string methodName)
+        protected async Task<T> MakeRequestAsync<T>(string methodName, string parameters = null)
         {
-            var webRequest = WebRequest.CreateHttp("https://api.telegram.org/bot" + accessToken + "/" + methodName);
+            var webRequest = WebRequest.CreateHttp("https://api.telegram.org/bot" + accessToken + "/" + methodName + "?" + parameters);
             using (var webResponse = webRequest.GetResponse())
             {
                 using (var responseStream = webResponse.GetResponseStream())
