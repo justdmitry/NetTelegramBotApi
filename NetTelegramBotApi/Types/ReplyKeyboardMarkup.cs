@@ -5,7 +5,7 @@ namespace NetTelegramBotApi.Types
     /// <summary>
     /// This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).
     /// </summary>
-    public class ReplyKeyboardMarkup
+    public class ReplyKeyboardMarkup : ReplyMarkupBase
     {
         /// <summary>
         /// Array of button rows, each represented by an Array of Strings

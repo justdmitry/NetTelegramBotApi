@@ -8,7 +8,7 @@ namespace NetTelegramBotApi.Types
     /// An exception is made for one-time keyboards that are hidden immediately after the user presses a button 
     /// (see ReplyKeyboardMarkup).
     /// </summary>
-    public class ReplyKeyboardHide
+    public class ReplyKeyboardHide : ReplyMarkupBase
     {
         /// <summary>
         /// Requests clients to hide the custom keyboard

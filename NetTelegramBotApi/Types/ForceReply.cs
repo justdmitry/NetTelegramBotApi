@@ -9,7 +9,7 @@ namespace NetTelegramBotApi.Types
     /// This can be extremely useful if you want to create user-friendly step-by-step interfaces 
     /// without having to sacrifice privacy mode.
     /// </summary>
-    public class ForceReply
+    public class ForceReply : ReplyMarkupBase
     {
         /// <summary>
         /// Shows reply interface to the user, as if they manually selected the bot‘s message and tapped ’Reply'

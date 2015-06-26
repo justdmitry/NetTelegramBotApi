@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Threading.Tasks;
 using NetTelegramBotApi;
+using NetTelegramBotApi.Requests;
 
 namespace TelegramBotDemo
 {
@@ -26,7 +27,7 @@ namespace TelegramBotDemo
         {
             var bot = new TelegramBot(accessToken);
 
-            var me = bot.GetMe();
+            var me = bot.MakeRequest(new GetMe());
             if (me == null)
             {
                 Console.WriteLine("GetMe() FAILED. Do you forget to add your AccessToken to App.config?");
@@ -42,7 +43,7 @@ namespace TelegramBotDemo
             long offset = 0;
             while (!stopMe)
             {
-                var updates = bot.GetUpdates(offset);
+                var updates = bot.MakeRequest(new GetUpdates() { Offset = offset });
                 if (updates != null)
                 {
                     foreach (var update in updates)
@@ -50,12 +51,20 @@ namespace TelegramBotDemo
                         offset = update.UpdateId + 1;
                         if (update.Message != null)
                         {
-                            Console.WriteLine("Msg from {0} {1} ({2}): {3}",
+                            Console.WriteLine(
+                                "Msg from {0} {1} ({2}): {3}",
                                 update.Message.From.FirstName,
                                 update.Message.From.LastName,
                                 update.Message.From.Username,
-                                update.Message.Text
-                                );
+                                update.Message.Text);
+                            if (update.Message.Text.Length % 2 == 0)
+                            {
+                                bot.MakeRequest(new SendMessage(update.Message.Chat.Id, "You wrote " + update.Message.Text.Length + " characters"));
+                            }
+                            else
+                            {
+                                bot.MakeRequest(new ForwardMessage(update.Message.Chat.Id, update.Message.Chat.Id, update.Message.MessageId));
+                            }
                         }
                     }
                 }
