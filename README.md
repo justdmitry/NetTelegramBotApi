@@ -14,6 +14,14 @@ Contains strongly-types request and response classes, and transport class for se
 
 See `TelegramBotDemo` project for more samples.
 
+## Installation
+
+Install as [nuget package](https://www.nuget.org/packages/NetTelegramBotApi):
+
+    Install-Package NetTelegramBotApi
+
+Dependencies: `System.Web`, [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json/)
+
 ## Version history
 
 ### 2.0.50626 - Requests hierarchy

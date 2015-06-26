@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramBotDemo", "Telegram
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABC2A4CB-9443-434E-B2EA-E739D288F330}"
 	ProjectSection(SolutionItems) = preProject
+		create-package.cmd = create-package.cmd
 		README.md = README.md
 	EndProjectSection
 EndProject
