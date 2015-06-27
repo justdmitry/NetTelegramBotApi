@@ -49,14 +49,18 @@ namespace TelegramBotDemo
                     foreach (var update in updates)
                     {
                         offset = update.UpdateId + 1;
-                        if (update.Message != null)
+                        if (update.Message == null)
                         {
-                            Console.WriteLine(
-                                "Msg from {0} {1} ({2}): {3}",
-                                update.Message.From.FirstName,
-                                update.Message.From.LastName,
-                                update.Message.From.Username,
-                                update.Message.Text);
+                            continue;
+                        }
+                        Console.WriteLine(
+                            "Msg from {0} {1} ({2}): {3}",
+                            update.Message.From.FirstName,
+                            update.Message.From.LastName,
+                            update.Message.From.Username,
+                            update.Message.Text);
+                        if (!string.IsNullOrEmpty(update.Message.Text))
+                        {
                             if (update.Message.Text.Length % 2 == 0)
                             {
                                 bot.MakeRequest(new SendMessage(update.Message.Chat.Id, "You wrote " + update.Message.Text.Length + " characters"));
