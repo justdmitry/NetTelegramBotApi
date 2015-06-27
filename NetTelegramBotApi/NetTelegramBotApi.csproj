@@ -50,6 +50,7 @@
     <Compile Include="Requests\SendMessage.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Requests\SendPhoto.cs" />
     <Compile Include="Types\ChatBase.cs" />
     <Compile Include="Types\Contact.cs" />
     <Compile Include="Types\ForceReply.cs" />

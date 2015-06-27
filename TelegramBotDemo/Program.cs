@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
@@ -40,6 +42,7 @@ namespace TelegramBotDemo
             Console.WriteLine("(Press ENTER to stop listening and quit)");
             Console.WriteLine();
 
+            string uploadedPhotoId = null;
             long offset = 0;
             while (!stopMe)
             {
@@ -53,22 +56,53 @@ namespace TelegramBotDemo
                         {
                             continue;
                         }
+                        var from = update.Message.From;
+                        var text = update.Message.Text;
                         Console.WriteLine(
                             "Msg from {0} {1} ({2}): {3}",
-                            update.Message.From.FirstName,
-                            update.Message.From.LastName,
-                            update.Message.From.Username,
-                            update.Message.Text);
-                        if (!string.IsNullOrEmpty(update.Message.Text))
+                            from.FirstName,
+                            from.LastName,
+                            from.Username,
+                            text);
+
+                        if (string.IsNullOrEmpty(text))
                         {
-                            if (update.Message.Text.Length % 2 == 0)
+                            continue;
+                        }
+                        if (text == "/photo")
+                        {
+                            if (uploadedPhotoId == null)
                             {
-                                bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "You wrote " + update.Message.Text.Length + " characters")).Wait();
+                                var reqAction = new SendChatAction(update.Message.Chat.Id, "upload_photo");
+                                bot.MakeRequestAsync(reqAction).Wait();
+                                System.Threading.Thread.Sleep(500);
+                                using (var photoData = Assembly.GetExecutingAssembly().GetManifestResourceStream("TelegramBotDemo.t_logo.png"))
+                                {
+                                    var req = new SendPhoto(update.Message.Chat.Id, photoData, "Telegram_logo.png")
+                                    {
+                                        Caption = "Telegram_logo.png"
+                                    };
+                                    var msg = bot.MakeRequestAsync(req).Result;
+                                    uploadedPhotoId = msg.Photo.Last().FileId;
+                                }
                             }
                             else
                             {
-                                bot.MakeRequestAsync(new ForwardMessage(update.Message.Chat.Id, update.Message.Chat.Id, update.Message.MessageId)).Wait();
+                                var req = new SendPhoto(update.Message.Chat.Id, uploadedPhotoId)
+                                {
+                                    Caption = "Resending photo id=" + uploadedPhotoId
+                                };
+                                bot.MakeRequestAsync(req).Wait();
                             }
+                            continue;
+                        }
+                        if (update.Message.Text.Length % 2 == 0)
+                        {
+                            bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "You wrote " + update.Message.Text.Length + " characters")).Wait();
+                        }
+                        else
+                        {
+                            bot.MakeRequestAsync(new ForwardMessage(update.Message.Chat.Id, update.Message.Chat.Id, update.Message.MessageId)).Wait();
                         }
                     }
                 }

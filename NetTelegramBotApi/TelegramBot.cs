@@ -68,6 +68,12 @@ namespace NetTelegramBotApi
             {
                 return null;
             }
+            var content = request.CreateHttpContent();
+            if (content != null)
+            {
+                return content;
+            }
+
             var requestParams = request.GetParameters();
             if (requestParams == null || requestParams.Count == 0)
             {
