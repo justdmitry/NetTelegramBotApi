@@ -1,9 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Util;
 using Newtonsoft.Json;
@@ -17,7 +14,7 @@ namespace NetTelegramBotApi
             ContractResolver = new Util.JsonLowerCaseUnderscoreContractResolver()
         };
 
-        private string accessToken;
+        private Uri baseAddress;
 
         static TelegramBot()
         {
@@ -31,82 +28,41 @@ namespace NetTelegramBotApi
                 throw new ArgumentNullException("accessToken");
             }
 
-            this.accessToken = accessToken;
-        }
-
-        public T MakeRequest<T>(RequestBase<T> request)
-        {
-            var webRequest = WebRequest.CreateHttp("https://api.telegram.org/bot" + accessToken + "/" + request.MethodName);
-            var postBytes = BuildRequestBody(request);
-            if (postBytes != null && postBytes.Length != 0)
-            {
-                webRequest.Method = "POST";
-                webRequest.ContentLength = postBytes.Length;
-                webRequest.ContentType = "application/x-www-form-urlencoded";
-                using (var requestStream = webRequest.GetRequestStream())
-                {
-                    requestStream.Write(postBytes, 0, postBytes.Length);
-                }
-            }
-            using (var webResponse = webRequest.GetResponse())
-            {
-                using (var responseStream = webResponse.GetResponseStream())
-                {
-                    using (var responseReader = new StreamReader(responseStream, Encoding.UTF8))
-                    {
-                        var responseText = responseReader.ReadToEnd();
-                        var result = JsonConvert.DeserializeObject<BotResponse<T>>(responseText, JsonSettings);
-
-                        if (result.Ok)
-                        {
-                            return result.Result;
-                        }
-                        else
-                        {
-                            return default(T);
-                        }
-                    }
-                }
-            }
+            this.baseAddress = new Uri("https://api.telegram.org/bot" + accessToken + "/");
         }
 
         public async Task<T> MakeRequestAsync<T>(RequestBase<T> request)
         {
-            var webRequest = WebRequest.CreateHttp("https://api.telegram.org/bot" + accessToken + "/" + request.MethodName);
-            var postBytes = BuildRequestBody(request);
-            if (postBytes != null && postBytes.Length != 0)
+            using (var client = new HttpClient())
             {
-                webRequest.Method = "POST";
-                webRequest.ContentLength = postBytes.Length;
-                webRequest.ContentType = "application/x-www-form-urlencoded";
-                using (var requestStream = await webRequest.GetRequestStreamAsync())
+                client.BaseAddress = baseAddress;
+                using (var httpMessage = new HttpRequestMessage(HttpMethod.Get, request.MethodName))
                 {
-                    await requestStream.WriteAsync(postBytes, 0, postBytes.Length);
-                }
-            } 
-            using (var webResponse = webRequest.GetResponse())
-            {
-                using (var responseStream = webResponse.GetResponseStream())
-                {
-                    using (var responseReader = new StreamReader(responseStream, Encoding.UTF8))
+                    var postContent = BuildRequestBody(request);
+                    if (postContent != null)
                     {
-                        var responseText = await responseReader.ReadToEndAsync();
-                        var result = JsonConvert.DeserializeObject<BotResponse<T>>(responseText, JsonSettings);
+                        httpMessage.Method = HttpMethod.Post;
+                        httpMessage.Content = postContent;
+                    }
 
-                        if (result.Ok)
+                    using (var response = await client.SendAsync(httpMessage).ConfigureAwait(false))
+                    {
+                        if (response.IsSuccessStatusCode)
                         {
-                            return result.Result;
+                            var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = JsonConvert.DeserializeObject<BotResponse<T>>(responseText, JsonSettings);
+                            if (result.Ok)
+                            {
+                                return result.Result;
+                            }
                         }
-                        else
-                        {
-                            return default(T);
-                        }
+                        return default(T);
                     }
                 }
             }
         }
 
-        protected byte[] BuildRequestBody<T>(RequestBase<T> request)
+        protected HttpContent BuildRequestBody<T>(RequestBase<T> request)
         {
             if (request == null)
             {
@@ -117,23 +73,7 @@ namespace NetTelegramBotApi
             {
                 return null;
             }
-            var postData = new StringBuilder();
-            foreach (var pair in requestParams)
-            {
-                if (pair.Value == null)
-                {
-                    continue;
-                }
-                postData.Append(HttpUtility.UrlEncode(pair.Key));
-                postData.Append("=");
-                postData.Append(HttpUtility.UrlEncode(pair.Value));
-                postData.Append("&");
-            }
-            if (postData.Length == 0)
-            {
-                return null;
-            }
-            return Encoding.UTF8.GetBytes(postData.ToString());
+            return new FormUrlEncodedContent(requestParams);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace TelegramBotDemo
         {
             var bot = new TelegramBot(accessToken);
 
-            var me = bot.MakeRequest(new GetMe());
+            var me = bot.MakeRequestAsync(new GetMe()).Result;
             if (me == null)
             {
                 Console.WriteLine("GetMe() FAILED. Do you forget to add your AccessToken to App.config?");
@@ -43,7 +43,7 @@ namespace TelegramBotDemo
             long offset = 0;
             while (!stopMe)
             {
-                var updates = bot.MakeRequest(new GetUpdates() { Offset = offset });
+                var updates = bot.MakeRequestAsync(new GetUpdates() { Offset = offset }).Result;
                 if (updates != null)
                 {
                     foreach (var update in updates)
@@ -63,11 +63,11 @@ namespace TelegramBotDemo
                         {
                             if (update.Message.Text.Length % 2 == 0)
                             {
-                                bot.MakeRequest(new SendMessage(update.Message.Chat.Id, "You wrote " + update.Message.Text.Length + " characters"));
+                                bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "You wrote " + update.Message.Text.Length + " characters")).Wait();
                             }
                             else
                             {
-                                bot.MakeRequest(new ForwardMessage(update.Message.Chat.Id, update.Message.Chat.Id, update.Message.MessageId));
+                                bot.MakeRequestAsync(new ForwardMessage(update.Message.Chat.Id, update.Message.Chat.Id, update.Message.MessageId)).Wait();
                             }
                         }
                     }

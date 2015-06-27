@@ -20,11 +20,18 @@ Install as [nuget package](https://www.nuget.org/packages/NetTelegramBotApi):
 
     Install-Package NetTelegramBotApi
 
-Dependencies: `System.Web`, [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json/)
+Dependencies: [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json/)
 
 ## Version history
 
-### 2.0.50626 - Requests hierarchy
+### 3.1.50627 - Using HttpClient
+
+Switched to HttpClient (instead of HttpRequest):
+
+* no more `System.Web` dependency;
+* `MakeRequest` method is now async only, use `.Result` or `.Wait()` for synchronous calls
+
+### 2.1.50626 - Requests hierarchy
 
 Refactored to new request model - base `RequestBase` class and one (and one async) `MakeRequest` method.
 
