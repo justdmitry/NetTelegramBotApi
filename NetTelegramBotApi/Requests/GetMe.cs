@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi.Requests
@@ -10,12 +11,13 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class GetMe : RequestBase<User>
     {
-        public GetMe() : base("getMe")
+        public GetMe() 
+            : base("getMe")
         {
             // Nothing
         }
 
-        public override IDictionary<string, string> GetParameters()
+        public override HttpContent CreateHttpContent()
         {
             return null;
         }

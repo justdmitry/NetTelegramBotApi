@@ -40,16 +40,25 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Requests\FileToSend.cs" />
     <Compile Include="Requests\ForwardMessage.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Requests\GetMe.cs" />
+    <Compile Include="Requests\GetUserProfilePhotos.cs" />
     <Compile Include="Requests\GetUpdates.cs" />
     <Compile Include="Requests\RequestBase.cs" />
+    <Compile Include="Requests\SendLocation.cs" />
+    <Compile Include="Requests\SendVideo.cs" />
+    <Compile Include="Requests\SendSticker.cs" />
+    <Compile Include="Requests\SendDocument.cs" />
     <Compile Include="Requests\SendChatAction.cs" />
+    <Compile Include="Requests\SendFileRequestBase.cs" />
     <Compile Include="Requests\SendMessage.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Requests\SendAudio.cs" />
+    <Compile Include="Requests\SendPhoto.cs" />
     <Compile Include="Types\ChatBase.cs" />
     <Compile Include="Types\Contact.cs" />
     <Compile Include="Types\ForceReply.cs" />
@@ -76,6 +85,7 @@
   <ItemGroup>
     <None Include="NetTelegramBotApi.nuspec" />
     <None Include="packages.config" />
+    <None Include="Requests\_Classes.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

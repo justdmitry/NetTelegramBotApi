@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi.Requests
@@ -13,7 +14,8 @@ namespace NetTelegramBotApi.Requests
     /// </remarks>
     public class SendChatAction : RequestBase<object>
     {
-        public SendChatAction(long chatId, string action) : base("sendChatAction")
+        public SendChatAction(long chatId, string action) 
+            : base("sendChatAction")
         {
             this.ChatId = chatId;
             this.Action = action;
@@ -36,14 +38,15 @@ namespace NetTelegramBotApi.Requests
         /// </summary>
         public string Action { get; set; }
 
-        public override IDictionary<string, string> GetParameters()
+        public override HttpContent CreateHttpContent()
         {
-            var dic = new Dictionary<string, string>();
+            var values = new[]
+            {
+                new KeyValuePair<string, string>("chat_id", ChatId.ToString()),
+                new KeyValuePair<string, string>("action", Action)
+            };
 
-            dic.Add("chat_id", ChatId.ToString());
-            dic.Add("action", Action);
-
-            return dic;
+            return new FormUrlEncodedContent(values);
         }
     }
 }

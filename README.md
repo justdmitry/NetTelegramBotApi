@@ -24,6 +24,10 @@ Dependencies: [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json
 
 ## Version history
 
+### 3.2.50628 - With sending files
+
+Methods for sending files (`SendPhoto`, `SendVideo`, etc) implemented.
+
 ### 3.1.50627 - Using HttpClient
 
 Switched to HttpClient (instead of HttpRequest):

@@ -8,13 +8,14 @@ namespace NetTelegramBotApi.Requests
     /// <summary>
     /// Use this method to send text messages. On success, the sent Message is returned.
     /// </summary>
-    public class SendMessage : RequestBase<Message>
+    public class SendLocation : RequestBase<Message>
     {
-        public SendMessage(long chatId, string text) 
-            : base("sendMessage")
+        public SendLocation(long chatId, float latitude, float longitude)
+            : base("sendLocation")
         {
             this.ChatId = chatId;
-            this.Text = text;
+            this.Latitude = latitude;
+            this.Longitude = Longitude;
         }
 
         /// <summary>
@@ -23,14 +24,14 @@ namespace NetTelegramBotApi.Requests
         public long ChatId { get; set; }
 
         /// <summary>
-        /// Text of the message to be sent
+        /// Latitude of location
         /// </summary>
-        public string Text { get; set; }
+        public float Latitude { get; set; }
 
         /// <summary>
-        /// Optional. Disables link previews for links in this message
+        /// Longitude of location
         /// </summary>
-        public bool? DisableWebPagePreview { get; set; }
+        public float Longitude { get; set; }
 
         /// <summary>
         /// Optional. If the message is a reply, ID of the original message
@@ -48,11 +49,9 @@ namespace NetTelegramBotApi.Requests
             var dic = new Dictionary<string, string>();
 
             dic.Add("chat_id", ChatId.ToString());
-            dic.Add("text", Text);
-            if (DisableWebPagePreview.HasValue)
-            {
-                dic.Add("disable_web_page_preview", DisableWebPagePreview.Value.ToString());
-            }
+            dic.Add("latitude", Latitude.ToString());
+            dic.Add("longitude", Longitude.ToString());
+
             if (ReplyToMessageId.HasValue)
             {
                 dic.Add("reply_to_message_id", ReplyToMessageId.Value.ToString());
