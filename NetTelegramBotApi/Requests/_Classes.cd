@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NetTelegramBotApi.Requests.ForwardMessage" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECAAAAAAAIAQ=</HashCode>
+      <FileName>Requests\ForwardMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.GetMe" Collapsed="true">
+    <Position X="8.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Requests\GetMe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.GetUpdates" Collapsed="true">
+    <Position X="10.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAIACAAAAAAAgAA=</HashCode>
+      <FileName>Requests\GetUpdates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.RequestBase&lt;T&gt;" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAACAACAAAAAAA=</HashCode>
+      <FileName>Requests\RequestBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.SendChatAction" Collapsed="true">
+    <Position X="4.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAQ=</HashCode>
+      <FileName>Requests\SendChatAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.FileToSend" Collapsed="true">
+    <Position X="5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\FileToSend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.SendFileRequestBase&lt;T&gt;">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAEAAAAAAAAAAACAAAAEBAAACAAAAAAAAAQ=</HashCode>
+      <FileName>Requests\SendFileRequestBase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="File" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.SendMessage" Collapsed="true">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAABAAAAAAAAAAAAAAAAAAABAAACAAACAAAAAQ=</HashCode>
+      <FileName>Requests\SendMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.SendPhoto" Collapsed="true">
+    <Position X="1.25" Y="5.25" Width="1.5" />
+    <InheritanceLine Type="NetTelegramBotApi.Requests.SendFileRequestBase&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="4.319" />
+        <Point X="3.5" Y="5.562" />
+        <Point X="2.75" Y="5.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Requests\SendPhoto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.SendAudio" Collapsed="true">
+    <Position X="1.25" Y="6.25" Width="1.5" />
+    <InheritanceLine Type="NetTelegramBotApi.Requests.SendFileRequestBase&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="4.319" />
+        <Point X="3.5" Y="6.562" />
+        <Point X="2.75" Y="6.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\SendAudio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.SendDocument" Collapsed="true">
+    <Position X="4.25" Y="6.25" Width="1.5" />
+    <InheritanceLine Type="NetTelegramBotApi.Requests.SendFileRequestBase&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="4.319" />
+        <Point X="3.5" Y="6.562" />
+        <Point X="4.25" Y="6.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\SendDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.SendSticker" Collapsed="true">
+    <Position X="4.25" Y="5.25" Width="1.5" />
+    <InheritanceLine Type="NetTelegramBotApi.Requests.SendFileRequestBase&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="4.319" />
+        <Point X="3.5" Y="5.562" />
+        <Point X="4.25" Y="5.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\SendSticker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.SendVideo" Collapsed="true">
+    <Position X="2.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\SendVideo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetTelegramBotApi.Requests.SendLocation" Collapsed="true">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="NetTelegramBotApi.Requests.RequestBase&lt;T&gt;" ManuallyRouted="true">
+      <Path>
+        <Point X="6.75" Y="1.062" />
+        <Point X="6.75" Y="1.879" />
+        <Point X="8.5" Y="1.879" />
+        <Point X="8.5" Y="3.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABEAAAAAAAAAIAAAAAAAABAAACAAAAAAAAAQ=</HashCode>
+      <FileName>Requests\SendLocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

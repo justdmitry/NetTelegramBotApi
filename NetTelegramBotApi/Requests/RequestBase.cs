@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace NetTelegramBotApi.Requests
 {
@@ -12,14 +11,9 @@ namespace NetTelegramBotApi.Requests
             this.MethodName = methodName;
         }
 
-        public string MethodName { get; private set; }
-
-        public abstract IDictionary<string, string> GetParameters();
-
-        public virtual HttpContent CreateHttpContent()
-        {
-            return null;
-        }
+        public string MethodName { get; protected set; }
+        
+        public abstract HttpContent CreateHttpContent();
 
         protected string JsonSerialize(object value)
         {

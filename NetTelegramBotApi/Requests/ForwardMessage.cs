@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi.Requests
@@ -9,7 +10,8 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class ForwardMessage : RequestBase<Message>
     {
-        public ForwardMessage(long chatId, long fromChatId, long messageId) : base("forwardMessage")
+        public ForwardMessage(long chatId, long fromChatId, long messageId) 
+            : base("forwardMessage")
         {
             this.ChatId = chatId;
             this.FromChatId = fromChatId;
@@ -31,15 +33,15 @@ namespace NetTelegramBotApi.Requests
         /// </summary>
         public long MessageId { get; set; }
 
-        public override IDictionary<string, string> GetParameters()
+        public override HttpContent CreateHttpContent()
         {
-            var dic = new Dictionary<string, string>();
-
-            dic.Add("chat_id", ChatId.ToString());
-            dic.Add("from_chat_id", FromChatId.ToString());
-            dic.Add("message_id", MessageId.ToString());
-
-            return dic;
+            var values = new[]
+            {
+                new KeyValuePair<string, string>("chat_id", ChatId.ToString()),
+                new KeyValuePair<string, string>("from_chat_id", FromChatId.ToString()),
+                new KeyValuePair<string, string>("message_id", MessageId.ToString())
+            };
+            return new FormUrlEncodedContent(values);
         }
     }
 }

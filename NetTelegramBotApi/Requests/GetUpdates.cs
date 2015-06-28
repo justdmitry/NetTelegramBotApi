@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi.Requests
@@ -9,7 +10,8 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class GetUpdates : RequestBase<Update[]>
     {
-        public GetUpdates() : base("getUpdates")
+        public GetUpdates() 
+            : base("getUpdates")
         {
             // Nothing
         }
@@ -32,19 +34,29 @@ namespace NetTelegramBotApi.Requests
         /// </summary>
         public int? Timeout { get; set; }
 
-        public override IDictionary<string, string> GetParameters()
+        public override HttpContent CreateHttpContent()
         {
             if (!Offset.HasValue && !Limit.HasValue && !Timeout.HasValue)
             {
                 return null;
             }
+
             var dic = new Dictionary<string, string>();
 
-            dic.Add("offset", Offset.ToString());
-            dic.Add("limit", Limit.ToString());
-            dic.Add("timeout", Timeout.ToString());
+            if (Offset.HasValue)
+            {
+                dic.Add("offset", Offset.ToString());
+            }
+            if (Limit.HasValue)
+            {
+                dic.Add("limit", Limit.ToString());
+            }
+            if (Timeout.HasValue)
+            {
+                dic.Add("timeout", Timeout.ToString());
+            }
 
-            return dic;
+            return new FormUrlEncodedContent(dic);
         }
     }
 }

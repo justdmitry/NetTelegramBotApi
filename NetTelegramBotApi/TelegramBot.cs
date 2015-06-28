@@ -38,7 +38,7 @@ namespace NetTelegramBotApi
                 client.BaseAddress = baseAddress;
                 using (var httpMessage = new HttpRequestMessage(HttpMethod.Get, request.MethodName))
                 {
-                    var postContent = BuildRequestBody(request);
+                    var postContent = request.CreateHttpContent();
                     if (postContent != null)
                     {
                         httpMessage.Method = HttpMethod.Post;
@@ -60,26 +60,6 @@ namespace NetTelegramBotApi
                     }
                 }
             }
-        }
-
-        protected HttpContent BuildRequestBody<T>(RequestBase<T> request)
-        {
-            if (request == null)
-            {
-                return null;
-            }
-            var content = request.CreateHttpContent();
-            if (content != null)
-            {
-                return content;
-            }
-
-            var requestParams = request.GetParameters();
-            if (requestParams == null || requestParams.Count == 0)
-            {
-                return null;
-            }
-            return new FormUrlEncodedContent(requestParams);
         }
     }
 }

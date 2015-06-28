@@ -10,7 +10,7 @@
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>-->
+    <releaseNotes>Sending/uploading files (photo, video, etc) implemented.</releaseNotes>
     <copyright>Copyright Dmitry Popov, 2015</copyright>
     <tags>telegram bot api</tags>
     <dependencies>
