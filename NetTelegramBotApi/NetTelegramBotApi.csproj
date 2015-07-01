@@ -75,6 +75,7 @@
     <Compile Include="Types\Audio.cs" />
     <Compile Include="Types\PhotoSize.cs" />
     <Compile Include="Types\GroupChat.cs" />
+    <Compile Include="Util\UnixDateTimeConverter.cs" />
     <Compile Include="Util\ChatBaseConverter.cs" />
     <Compile Include="Util\JsonLowerCaseUnderscoreContractResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

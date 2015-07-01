@@ -20,7 +20,7 @@ namespace NetTelegramBotApi.Types
         /// <summary>
         /// Date the message was sent in Unix time
         /// </summary>
-        public long Date { get; set; }
+        public DateTimeOffset Date { get; set; }
 
         /// <summary>
         /// Conversation the message belongs to — <see cref="User"/> in case of a private message, <see cref="GroupChat"/> in case of a group
@@ -35,7 +35,7 @@ namespace NetTelegramBotApi.Types
         /// <summary>
         /// Optional. For forwarded messages, date the original message was sent in Unix time
         /// </summary>
-        public long? ForwardDate { get; set; }
+        public DateTimeOffset? ForwardDate { get; set; }
 
         /// <summary>
         /// Optional. For replies, the original message. 

@@ -24,6 +24,10 @@ Dependencies: [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json
 
 ## Version history
 
+### 3.3.50701 - DateTimeOffset instead of long
+
+`Message` properties `Date` and `ForwardDate` are now DateTimeOffset (converted to local time).
+
 ### 3.2.50628 - With sending files
 
 Methods for sending files (`SendPhoto`, `SendVideo`, etc) implemented.

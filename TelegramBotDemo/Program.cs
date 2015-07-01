@@ -60,11 +60,12 @@ namespace TelegramBotDemo
                         var from = update.Message.From;
                         var text = update.Message.Text;
                         Console.WriteLine(
-                            "Msg from {0} {1} ({2}): {3}",
+                            "Msg from {0} {1} ({2}) at {4}: {3}",
                             from.FirstName,
                             from.LastName,
                             from.Username,
-                            text);
+                            text,
+                            update.Message.Date);
 
                         if (string.IsNullOrEmpty(text))
                         {
