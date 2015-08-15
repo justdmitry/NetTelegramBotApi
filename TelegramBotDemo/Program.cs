@@ -119,6 +119,19 @@ namespace TelegramBotDemo
                             }
                             continue;
                         }
+                        if (text == "/docutf8")
+                        {
+                            var reqAction = new SendChatAction(update.Message.Chat.Id, "upload_document");
+                            bot.MakeRequestAsync(reqAction).Wait();
+                            System.Threading.Thread.Sleep(500);
+                            using (var docData = Assembly.GetExecutingAssembly().GetManifestResourceStream("TelegramBotDemo.Пример UTF8 filename.txt"))
+                            {
+                                var req = new SendDocument(update.Message.Chat.Id, new FileToSend(docData, "Пример UTF8 filename.txt"));
+                                var msg = bot.MakeRequestAsync(req).Result;
+                                uploadedDocumentId = msg.Document.FileId;
+                            }
+                            continue;
+                        }
                         if (update.Message.Text.Length % 2 == 0)
                         {
                             bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "You wrote " + update.Message.Text.Length + " characters")).Wait();

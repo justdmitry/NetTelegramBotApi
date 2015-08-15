@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi.Requests
@@ -52,7 +55,18 @@ namespace NetTelegramBotApi.Requests
             {
                 var content = new MultipartFormDataContent();
                 AppendParameters((string name, string value) => content.Add(new StringContent(value), name));
-                content.Add(new StreamContent(File.NewFileContent), FileParameterName, File.NewFileName);
+
+                // HACK, but utf-8 file names (issue #5) sent correctly now (in filename, not filename*),
+                //   thanks to http://stackoverflow.com/questions/21928982/how-to-disable-base64-encoded-filenames-in-httpclient-multipartformdatacontent
+                var contentDispositionValue = string.Format(
+                    "form-data; name={0}; filename=\"{1}\"",
+                    FileParameterName,
+                    string.Concat(Encoding.UTF8.GetBytes(File.NewFileName).Select(x => (char)x).Where(x => x != '"'))
+                    );
+                var fileContent = new StreamContent(File.NewFileContent);
+                fileContent.Headers.Add("Content-Disposition",contentDispositionValue);
+                content.Add(fileContent);
+
                 return content;
             }
         }
