@@ -24,6 +24,15 @@ Dependencies: [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json
 
 ## Version history
 
+### 3.4.50815 - Webhooks support, bugfixes
+
+Improvements for working via webhooks:
+
+* `SetWebhook` request added (Issue #3)
+* `DeserializeUpdate` method added to convert webhook POST json value to `Update` object
+
+Fixed issue #6 with sending files with non-latin characters in name.
+
 ### 3.3.50701 - DateTimeOffset instead of long
 
 `Message` properties `Date` and `ForwardDate` are now DateTimeOffset (converted to local time).
