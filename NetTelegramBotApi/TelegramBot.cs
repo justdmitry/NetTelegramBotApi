@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Util;
+using NetTelegramBotApi.Types;
 using Newtonsoft.Json;
 
 namespace NetTelegramBotApi
@@ -51,7 +52,7 @@ namespace NetTelegramBotApi
                         if (response.IsSuccessStatusCode)
                         {
                             var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result = JsonConvert.DeserializeObject<BotResponse<T>>(responseText, JsonSettings);
+                            var result = DeserializeMessage<BotResponse<T>>(responseText);
                             if (result.Ok)
                             {
                                 return result.Result;
@@ -61,6 +62,21 @@ namespace NetTelegramBotApi
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Use this method to deserialize <see cref="Update">Update</see> object, sent to <see cref="SetWebhook">your webhook</see> by Telegram server.
+        /// </summary>
+        /// <param name="json">Json-string with Update (body of HTTP POST to your webhook)</param>
+        /// <returns>Deserialized <see cref="Update"/> message</returns>
+        public Update DeserializeUpdate(string json)
+        {
+            return DeserializeMessage<Update>(json);
+        }
+
+        protected T DeserializeMessage<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json, JsonSettings);
         }
     }
 }
