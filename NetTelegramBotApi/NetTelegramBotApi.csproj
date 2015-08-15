@@ -44,6 +44,7 @@
     <Compile Include="Requests\ForwardMessage.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Requests\SetWebhook.cs" />
     <Compile Include="Requests\GetMe.cs" />
     <Compile Include="Requests\GetUserProfilePhotos.cs" />
     <Compile Include="Requests\GetUpdates.cs" />
