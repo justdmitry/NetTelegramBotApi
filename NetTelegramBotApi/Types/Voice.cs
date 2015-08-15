@@ -3,32 +3,22 @@
 namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// This object represents an audio file (voice note).
+    /// This object represents a voice note.
     /// </summary>
-    public class Audio
+    public class Voice
     {
         /// <summary>
         /// Unique identifier for this file
         /// </summary>
         public string FileId { get; set; }
-
+        
         /// <summary>
         /// Duration of the audio in seconds as defined by sender
         /// </summary>
         public long Duration { get; set; }
-
+        
         /// <summary>
-        /// Optional. Performer of the audio as defined by sender or by audio tags
-        /// </summary>
-        public string Performer { get; set; }
-
-        /// <summary>
-        /// Optional. Title of the audio as defined by sender or by audio tags
-        /// </summary>
-        public string Title { get; set; }
-
-        /// <summary>
-        /// Optional. MIME type of the file as defined by sender
+        /// Optional. Mime type of a file as defined by sender
         /// </summary>
         public string MimeType { get; set; }
 

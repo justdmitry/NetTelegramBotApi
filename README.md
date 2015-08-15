@@ -6,7 +6,7 @@ Contains strongly-types request and response classes, and transport class for se
 ## Usage
 
     var bot = new TelegramBot(accessToken);
-    var me = bot.MakeRequest(new GetMe());
+    var me = await bot.MakeRequestAsync(new GetMe());
     if (me != null)
     {
        Console.WriteLine("Me: {0} (@{1})", me.FirstName, me.Username);
@@ -23,6 +23,17 @@ Install as [nuget package](https://www.nuget.org/packages/NetTelegramBotApi):
 Dependencies: [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json/)
 
 ## Version history
+
+### 3.5.50816 - API changes
+
+* Changes in Telegram API defined as [July 2015](https://core.telegram.org/bots/api-changelog#july-2015) implemented (issue #7):
+ * The `Caption` field has been **removed** from the `Video` object and added to the `Message` object instead.
+ * `Caption` and `Duration` optional fields have been added to the `SendVideo` request.
+ * `UserId` type in the `Contact` object **changed** to Long (was String - typo in API docs)
+* `Performer` and `Title` optional fields have been added to `Audio` object
+* `Duration`, `Performer` and `Title` optional fields have been added to the `SendAudio` request
+* Object `Voice` added (to `Message` class)
+* `SendVoice` request added
 
 ### 3.4.50815 - Webhooks support, bugfixes
 

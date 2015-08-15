@@ -44,6 +44,7 @@
     <Compile Include="Requests\ForwardMessage.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Requests\SendVoice.cs" />
     <Compile Include="Requests\SetWebhook.cs" />
     <Compile Include="Requests\GetMe.cs" />
     <Compile Include="Requests\GetUserProfilePhotos.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Types\Audio.cs" />
     <Compile Include="Types\PhotoSize.cs" />
     <Compile Include="Types\GroupChat.cs" />
+    <Compile Include="Types\Voice.cs" />
     <Compile Include="Util\UnixDateTimeConverter.cs" />
     <Compile Include="Util\ChatBaseConverter.cs" />
     <Compile Include="Util\JsonLowerCaseUnderscoreContractResolver.cs" />
