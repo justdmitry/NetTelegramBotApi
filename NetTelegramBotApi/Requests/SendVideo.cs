@@ -16,9 +16,28 @@ namespace NetTelegramBotApi.Requests
             this.ChatId = chatId;
             this.File = photo;
         }
+
+        /// <summary>
+        /// Duration of sent video in seconds
+        /// </summary>
+        public int? Duration { get; set; }
+
+        /// <summary>
+        /// Video caption (may also be used when resending videos by file_id).
+        /// </summary>
+        public string Caption { get; set; }
         
         protected override void AppendParameters(Action<string, string> appendCallback)
         {
+            if (Duration.HasValue)
+            {
+                appendCallback("duration", Duration.Value.ToString());
+            }
+            if (!string.IsNullOrEmpty(Caption))
+            {
+                appendCallback("caption", Caption);
+            }
+
             base.AppendParameters(appendCallback);
         }
     }

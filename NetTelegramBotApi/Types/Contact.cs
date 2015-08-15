@@ -25,6 +25,6 @@ namespace NetTelegramBotApi.Types
         /// <summary>
         /// Optional. Contact's user identifier in Telegram
         /// </summary>
-        public string UserId { get; set; }
+        public long UserId { get; set; }
     }
 }

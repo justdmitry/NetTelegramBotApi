@@ -74,6 +74,11 @@ namespace NetTelegramBotApi.Types
         public Video Video { get; set; }
 
         /// <summary>
+        /// Optional. Caption for the photo or video
+        /// </summary>
+        public string Caption { get; set; }
+
+        /// <summary>
         /// Optional. Message is a shared contact, information about the contact
         /// </summary>
         public Contact Contact { get; set; }

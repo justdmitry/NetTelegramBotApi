@@ -41,10 +41,5 @@ namespace NetTelegramBotApi.Types
         /// Optional. File size
         /// </summary>
         public long? FileSize { get; set; }
-
-        /// <summary>
-        /// Optional. Text description of the video (usually empty)
-        /// </summary>
-        public string Caption { get; set; }
     }
 }
