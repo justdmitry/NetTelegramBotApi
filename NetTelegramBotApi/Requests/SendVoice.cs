@@ -4,9 +4,10 @@ using NetTelegramBotApi.Types;
 namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document). 
+    /// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
+    /// For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Audio or Document). 
     /// On success, the sent Message is returned. 
-    /// Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
+    /// Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
     /// </summary>
     public class SendVoice : SendFileRequestBase<Message>
     {
@@ -18,7 +19,7 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Duration of sent video in seconds
+        /// Duration of sent audio in seconds
         /// </summary>
         public int? Duration { get; set; }
 

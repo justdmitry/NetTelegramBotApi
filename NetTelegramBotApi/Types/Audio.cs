@@ -3,7 +3,7 @@
 namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// This object represents an audio file (voice note).
+    /// This object represents an audio file to be treated as music by the Telegram clients.
     /// </summary>
     public class Audio
     {
