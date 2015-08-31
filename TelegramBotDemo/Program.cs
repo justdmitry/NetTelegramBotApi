@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
+using NetTelegramBotApi.Types;
 
 namespace TelegramBotDemo
 {
@@ -130,6 +131,18 @@ namespace TelegramBotDemo
                                 var msg = bot.MakeRequestAsync(req).Result;
                                 uploadedDocumentId = msg.Document.FileId;
                             }
+                            continue;
+                        }
+                        if (text == "/help")
+                        {
+                            var keyb = new ReplyKeyboardMarkup()
+                            {
+                                Keyboard = new[] { new[] { "/photo", "/doc", "/docutf8" }, new[] { "/help" } },
+                                OneTimeKeyboard = true,
+                                ResizeKeyboard = true
+                            };
+                            var reqAction = new SendMessage(update.Message.Chat.Id, "Here is all my commands") { ReplyMarkup = keyb };
+                            bot.MakeRequestAsync(reqAction).Wait();
                             continue;
                         }
                         if (update.Message.Text.Length % 2 == 0)
