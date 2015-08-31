@@ -7,7 +7,7 @@
     <owners>Dmitry Popov</owners>
     <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>-->
     <projectUrl>https://github.com/justdmitry/NetTelegramBotApi</projectUrl>
-    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <iconUrl>https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>API changes 'August 15, 2015' implemented (see version history for details)</releaseNotes>
