@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using NetTelegramBotApi.Requests;
@@ -10,6 +11,8 @@ namespace NetTelegramBotApi
 {
     public class TelegramBot
     {
+        private readonly string _proxyUrl;
+
         public static readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
         {
             ContractResolver = new Util.JsonLowerCaseUnderscoreContractResolver()
@@ -23,19 +26,26 @@ namespace NetTelegramBotApi
             JsonSettings.Converters.Add(new UnixDateTimeConverter());
         }
 
-        public TelegramBot(string accessToken)
+        /// <summary>
+        /// Initialisiert eine neue Instanz des <see cref="TelegramBot"/>
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="proxyUrl">optional: URL like </param>
+        public TelegramBot(string accessToken, string proxyUrl = null)
         {
+            _proxyUrl = proxyUrl;
             if (string.IsNullOrWhiteSpace(accessToken))
             {
                 throw new ArgumentNullException("accessToken");
             }
+
 
             this.baseAddress = new Uri("https://api.telegram.org/bot" + accessToken + "/");
         }
 
         public async Task<T> MakeRequestAsync<T>(RequestBase<T> request)
         {
-            using (var client = new HttpClient())
+            using (var client = new HttpClient(getHttpDefaultHandler()))
             {
                 client.BaseAddress = baseAddress;
                 using (var httpMessage = new HttpRequestMessage(HttpMethod.Get, request.MethodName))
@@ -62,6 +72,20 @@ namespace NetTelegramBotApi
                     }
                 }
             }
+        }
+
+        private HttpClientHandler getHttpDefaultHandler()
+        {
+            if (_proxyUrl != null)
+            {
+                return new HttpClientHandler
+                {
+                    Proxy = new WebProxy(_proxyUrl, true),
+                    UseProxy = true
+                };
+            }
+
+            return null;
         }
 
         /// <summary>
