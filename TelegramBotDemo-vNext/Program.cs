@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using NetTelegramBotApi;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Types;
+using Microsoft.Framework.Configuration;
 
-namespace TelegramBotDemo
+namespace TelegramBotDemo_vNext
 {
     public class Program
     {
@@ -15,7 +15,8 @@ namespace TelegramBotDemo
 
         public static void Main(string[] args)
         {
-            var accessToken = ConfigurationManager.AppSettings["AccessToken"];
+            var config = new ConfigurationBuilder(typeof(Program).Assembly.Location).AddJsonFile("config.json").Build();
+            var accessToken = config["AccessToken"];
 
             Console.WriteLine("Starting your bot...");
             Console.WriteLine();
@@ -33,7 +34,7 @@ namespace TelegramBotDemo
             var me = bot.MakeRequestAsync(new GetMe()).Result;
             if (me == null)
             {
-                Console.WriteLine("GetMe() FAILED. Do you forget to add your AccessToken to App.config?");
+                Console.WriteLine("GetMe() FAILED. Do you forget to add your AccessToken to config.json?");
                 Console.WriteLine("(Press ENTER to quit)");
                 Console.ReadLine();
                 return;
@@ -43,8 +44,6 @@ namespace TelegramBotDemo
             Console.WriteLine();
             Console.WriteLine("Find @{0} in Telegram and send him a message - it will be displayed here", me.Username);
             Console.WriteLine("(Press ENTER to stop listening and quit)");
-            Console.WriteLine();
-            Console.WriteLine("ATENTION! This project uses nuget package, not 'live' project in solution (because 'live' project is vNext now)");
             Console.WriteLine();
 
             string uploadedPhotoId = null;
@@ -83,7 +82,7 @@ namespace TelegramBotDemo
                                 var reqAction = new SendChatAction(update.Message.Chat.Id, "upload_photo");
                                 bot.MakeRequestAsync(reqAction).Wait();
                                 System.Threading.Thread.Sleep(500);
-                                using (var photoData = Assembly.GetExecutingAssembly().GetManifestResourceStream("TelegramBotDemo.t_logo.png"))
+                                using (var photoData = typeof(Program).Assembly.GetManifestResourceStream("TelegramBotDemo-vNext.t_logo.png"))
                                 {
                                     var req = new SendPhoto(update.Message.Chat.Id, new FileToSend(photoData, "Telegram_logo.png"))
                                     {
@@ -110,7 +109,7 @@ namespace TelegramBotDemo
                                 var reqAction = new SendChatAction(update.Message.Chat.Id, "upload_document");
                                 bot.MakeRequestAsync(reqAction).Wait();
                                 System.Threading.Thread.Sleep(500);
-                                using (var docData = Assembly.GetExecutingAssembly().GetManifestResourceStream("TelegramBotDemo.Telegram_Bot_API.htm"))
+                                using (var docData = typeof(Program).Assembly.GetManifestResourceStream("TelegramBotDemo-vNext.Telegram_Bot_API.htm"))
                                 {
                                     var req = new SendDocument(update.Message.Chat.Id, new FileToSend(docData, "Telegram_Bot_API.htm"));
                                     var msg = bot.MakeRequestAsync(req).Result;
@@ -129,7 +128,7 @@ namespace TelegramBotDemo
                             var reqAction = new SendChatAction(update.Message.Chat.Id, "upload_document");
                             bot.MakeRequestAsync(reqAction).Wait();
                             System.Threading.Thread.Sleep(500);
-                            using (var docData = Assembly.GetExecutingAssembly().GetManifestResourceStream("TelegramBotDemo.Пример UTF8 filename.txt"))
+                            using (var docData = typeof(Program).Assembly.GetManifestResourceStream("TelegramBotDemo-vNext.Пример UTF8 filename.txt"))
                             {
                                 var req = new SendDocument(update.Message.Chat.Id, new FileToSend(docData, "Пример UTF8 filename.txt"));
                                 var msg = bot.MakeRequestAsync(req).Result;

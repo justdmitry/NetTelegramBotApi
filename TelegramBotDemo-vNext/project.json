@@ -1,0 +1,28 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "TelegramBotDemo-vNext Console Application",
+  "authors": [ "Dmitry" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "NetTelegramBotApi": "3.6",
+    "Microsoft.Framework.Configuration": "1.0.0-beta8",
+    "Microsoft.Framework.Configuration.Json": "1.0.0-beta8"
+  },
+
+  "resourceFiles": [
+    "t_logo.png",
+    "Telegram_Bot_API.htm",
+    "Пример UTF8 filename.txt"
+  ],
+
+  "commands": {
+    "run": "run"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}
