@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using NetTelegramBotApi;
@@ -63,6 +64,7 @@ namespace TelegramBotDemo_vNext
                         }
                         var from = update.Message.From;
                         var text = update.Message.Text;
+                        var photos = update.Message.Photo;
                         Console.WriteLine(
                             "Msg from {0} {1} ({2}) at {4}: {3}",
                             from.FirstName,
@@ -70,6 +72,19 @@ namespace TelegramBotDemo_vNext
                             from.Username,
                             text,
                             update.Message.Date);
+
+                        if (photos != null)
+                        {
+                            var webClient = new WebClient();
+                            foreach (var photo in photos)
+                            {
+                                Console.WriteLine("  New image arrived: size {1}x{2} px, {3} bytes, id: {0}", photo.FileId, photo.Height, photo.Width, photo.FileSize);
+                                var file = bot.MakeRequestAsync(new GetFile(photo.FileId)).Result;
+                                var tempFileName = System.IO.Path.GetTempFileName();
+                                webClient.DownloadFile(file.FileDownloadUrl, tempFileName);
+                                Console.WriteLine("    Saved to {0}", tempFileName);
+                            }
+                        }
 
                         if (string.IsNullOrEmpty(text))
                         {
@@ -150,7 +165,12 @@ namespace TelegramBotDemo_vNext
                         }
                         if (update.Message.Text.Length % 2 == 0)
                         {
-                            bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, "You wrote " + update.Message.Text.Length + " characters")).Wait();
+                            bot.MakeRequestAsync(new SendMessage(
+                                update.Message.Chat.Id,
+                                "You wrote *" + update.Message.Text.Length + " characters*")
+                            {
+                                ParseMode = SendMessage.ParseModeEnum.Markdown
+                            }).Wait();
                         }
                         else
                         {

@@ -24,6 +24,17 @@ Dependencies: [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json
 
 ## Version history
 
+### 3.7.50926 - API updates, proxy support
+
+* Changes in Telegram API defined as [August 29, 2015](https://core.telegram.org/bots/api-changelog#august-29-2015) implemented (issue #19):
+ * Added support for uploading certificates in `SetWebhook`
+* Changes in Telegram API defined as [September 7, 2015](https://core.telegram.org/bots/api-changelog#september-7-2015) implemented (issue #20):
+ * Added `ParseMode` field to `SendMessage` request for simple markdown markup (see [FAQ](https://core.telegram.org/bots/api#using-markdown) for details)
+* Changes in Telegram API defined as [September 18, 2015](https://core.telegram.org/bots/api-changelog#september-18-2015) implemented (issue #21):
+ * Bots can now download files and media sent by users, use `GetFile` request and `File` object (run demo project and send him a picture!)
+* Proxy support added:
+ * Use `WebProxy` property when creating bot (see [issue #22](https://github.com/justdmitry/NetTelegramBotApi/pull/22) for sample)
+
 ### 3.6.50925 - Upgrade to vNext
 
 Project converted to Visual Studio 2015 and new project type (`xproj`).

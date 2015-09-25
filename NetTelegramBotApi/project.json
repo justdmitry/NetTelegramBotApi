@@ -1,5 +1,5 @@
 {
-  "version": "3.6.50925",
+  "version": "3.7.50926",
   "title": "NetTelegramBotApi",
   "description": "Telegram Bot API library",
   "authors": [ "Dmitry Popov" ],
@@ -7,7 +7,7 @@
   "projectUrl": "https://github.com/justdmitry/NetTelegramBotApi",
   "iconUrl": "https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif",
   "copyright": "Copyright © Dmitry Popov, 2015",
-  "releaseNotes": "Upgrade to vNext",
+  "releaseNotes": "New! Support files download (sent by users)! Also, proxy support included. Other API changes implemented too.",
 
   "dependencies": {
     "Newtonsoft.Json": "7.0.1"
