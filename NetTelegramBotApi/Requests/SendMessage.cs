@@ -28,6 +28,12 @@ namespace NetTelegramBotApi.Requests
         public string Text { get; set; }
 
         /// <summary>
+        /// Send "Markdown", if you want Telegram apps to show bold, italic and inline URLs in your bot's message. 
+        /// For the moment, only Telegram for Android supports this.
+        /// </summary>
+        public ParseModeEnum ParseMode { get; set; }
+
+        /// <summary>
         /// Optional. Disables link previews for links in this message
         /// </summary>
         public bool? DisableWebPagePreview { get; set; }
@@ -49,6 +55,10 @@ namespace NetTelegramBotApi.Requests
 
             dic.Add("chat_id", ChatId.ToString());
             dic.Add("text", Text);
+            if (ParseMode == ParseModeEnum.Markdown)
+            {
+                dic.Add("parse_mode", "Markdown");
+            }
             if (DisableWebPagePreview.HasValue)
             {
                 dic.Add("disable_web_page_preview", DisableWebPagePreview.Value.ToString());
@@ -63,6 +73,12 @@ namespace NetTelegramBotApi.Requests
             }
 
             return new FormUrlEncodedContent(dic);
+        }
+
+        public enum ParseModeEnum
+        {
+            None,
+            Markdown
         }
     }
 }
