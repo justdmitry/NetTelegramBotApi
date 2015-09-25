@@ -16,6 +16,8 @@ namespace NetTelegramBotApi
             ContractResolver = new Util.JsonLowerCaseUnderscoreContractResolver()
         };
 
+        private string accessToken;
+
         private Uri baseAddress;
 
         static TelegramBot()
@@ -36,6 +38,7 @@ namespace NetTelegramBotApi
                 throw new ArgumentNullException("accessToken");
             }
 
+            this.accessToken = accessToken;
             this.baseAddress = new Uri("https://api.telegram.org/bot" + accessToken + "/");
         }
 
@@ -61,7 +64,13 @@ namespace NetTelegramBotApi
                             var result = DeserializeMessage<BotResponse<T>>(responseText);
                             if (result.Ok)
                             {
-                                return result.Result;
+                                var retVal = result.Result;
+                                var forPostProcessing = retVal as IPostProcessingRequired;
+                                if (forPostProcessing != null)
+                                {
+                                    forPostProcessing.PostProcess(accessToken);
+                                }
+                                return retVal;
                             }
                         }
                         return default(T);
