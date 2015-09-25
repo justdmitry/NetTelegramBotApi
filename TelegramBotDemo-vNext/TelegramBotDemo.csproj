@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NetTelegramBotApi, Version=3.6.50925.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NetTelegramBotApi.3.6.50925\lib\net45\NetTelegramBotApi.dll</HintPath>
+    <Reference Include="NetTelegramBotApi, Version=3.6.50910.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetTelegramBotApi.3.6.50910\lib\dotnet\NetTelegramBotApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
