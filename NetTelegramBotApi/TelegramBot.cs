@@ -11,8 +11,6 @@ namespace NetTelegramBotApi
 {
     public class TelegramBot
     {
-        private readonly string _proxyUrl;
-
         public static readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
         {
             ContractResolver = new Util.JsonLowerCaseUnderscoreContractResolver()
@@ -27,25 +25,23 @@ namespace NetTelegramBotApi
         }
 
         /// <summary>
-        /// Initialisiert eine neue Instanz des <see cref="TelegramBot"/>
+        /// Proxy information for internet access
         /// </summary>
-        /// <param name="accessToken"></param>
-        /// <param name="proxyUrl">optional: URL like </param>
-        public TelegramBot(string accessToken, string proxyUrl = null)
+        public IWebProxy WebProxy { get; set; }
+
+        public TelegramBot(string accessToken)
         {
-            _proxyUrl = proxyUrl;
             if (string.IsNullOrWhiteSpace(accessToken))
             {
                 throw new ArgumentNullException("accessToken");
             }
-
 
             this.baseAddress = new Uri("https://api.telegram.org/bot" + accessToken + "/");
         }
 
         public async Task<T> MakeRequestAsync<T>(RequestBase<T> request)
         {
-            using (var client = new HttpClient(getHttpDefaultHandler()))
+            using (var client = new HttpClient(MakeHttpMessageHandler()))
             {
                 client.BaseAddress = baseAddress;
                 using (var httpMessage = new HttpRequestMessage(HttpMethod.Get, request.MethodName))
@@ -74,18 +70,13 @@ namespace NetTelegramBotApi
             }
         }
 
-        private HttpClientHandler getHttpDefaultHandler()
+        protected virtual HttpClientHandler MakeHttpMessageHandler()
         {
-            if (_proxyUrl != null)
+            return new HttpClientHandler
             {
-                return new HttpClientHandler
-                {
-                    Proxy = new WebProxy(_proxyUrl, true),
-                    UseProxy = true
-                };
-            }
-
-            return null;
+                Proxy = WebProxy,
+                UseProxy = (WebProxy != null)
+            };
         }
 
         /// <summary>
