@@ -44,10 +44,13 @@ namespace NetTelegramBotApi.Requests
 
         public override HttpContent CreateHttpContent()
         {
-            if (File.AlreadyUploaded)
+            if (File == null || File.AlreadyUploaded)
             {
                 var dic = new Dictionary<string, string>();
-                dic.Add(FileParameterName, File.ExistingFileId);
+                if (File != null)
+                {
+                    dic.Add(FileParameterName, File.ExistingFileId);
+                }
                 AppendParameters((string name, string value) => dic.Add(name, value));
                 return new FormUrlEncodedContent(dic);
             }

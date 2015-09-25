@@ -16,13 +16,26 @@ namespace NetTelegramBotApi.Requests
     /// we recommend using a secret path in the URL, e.g. www.example.com/<secret_path>. 
     /// Since nobody else knows this secret_path, you can be pretty sure it’s us.
     /// </remarks>
-    public class SetWebhook : RequestBase<bool>
+    public class SetWebhook : SendFileRequestBase<bool>
     {
         /// <param name="url">HTTPS url to send updates to. Use null or empty string to remove webhook integration</param>
         public SetWebhook(string url)
-            : base("setWebhook")
+            : this(url, null)
+        {
+            // Nothing
+        }
+
+        /// <param name="url">HTTPS url to send updates to. Use null or empty string to remove webhook integration</param>
+        /// <param name="certificatePublicKey">Optional. Your public key certificate so that the root certificate in use can be checked</param>
+        public SetWebhook(string url, FileToSend certificatePublicKey)
+            : base("setWebhook", "certificate")
         {
             this.Url = url;
+            if (certificatePublicKey != null && certificatePublicKey.AlreadyUploaded)
+            {
+                throw new InvalidOperationException("You can't use preloaded (earlier) files as certificate. Please provide binary data.");
+            }
+            this.File = certificatePublicKey;
         }
 
         /// <summary>
@@ -30,13 +43,11 @@ namespace NetTelegramBotApi.Requests
         /// </summary>
         public string Url { get; set; }
 
-        public override HttpContent CreateHttpContent()
+        protected override void AppendParameters(Action<string, string> appendCallback)
         {
-            var values = new[]
-            {
-                new KeyValuePair<string, string>("url", Url),
-            };
-            return new FormUrlEncodedContent(values);
+            appendCallback("url", Url);
+
+            base.AppendParameters(appendCallback);
         }
     }
 }
