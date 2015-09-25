@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using NetTelegramBotApi.Requests;
@@ -23,6 +24,11 @@ namespace NetTelegramBotApi
             JsonSettings.Converters.Add(new UnixDateTimeConverter());
         }
 
+        /// <summary>
+        /// Proxy information for internet access
+        /// </summary>
+        public IWebProxy WebProxy { get; set; }
+
         public TelegramBot(string accessToken)
         {
             if (string.IsNullOrWhiteSpace(accessToken))
@@ -35,7 +41,7 @@ namespace NetTelegramBotApi
 
         public async Task<T> MakeRequestAsync<T>(RequestBase<T> request)
         {
-            using (var client = new HttpClient())
+            using (var client = new HttpClient(MakeHttpMessageHandler()))
             {
                 client.BaseAddress = baseAddress;
                 using (var httpMessage = new HttpRequestMessage(HttpMethod.Get, request.MethodName))
@@ -62,6 +68,15 @@ namespace NetTelegramBotApi
                     }
                 }
             }
+        }
+
+        protected virtual HttpClientHandler MakeHttpMessageHandler()
+        {
+            return new HttpClientHandler
+            {
+                Proxy = WebProxy,
+                UseProxy = (WebProxy != null)
+            };
         }
 
         /// <summary>
