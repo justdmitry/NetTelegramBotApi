@@ -30,7 +30,7 @@ namespace NetTelegramBotApi.Util
             {
                 return jo.ToObject<GroupChat>(serializer);
             }
-            throw new ApplicationException("Can't decode");
+            throw new Exception("Can't decode");
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

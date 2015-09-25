@@ -5,3 +5,4 @@ obj
 *.user
 StyleCop.Cache
 /*.nupkg
+/.vs

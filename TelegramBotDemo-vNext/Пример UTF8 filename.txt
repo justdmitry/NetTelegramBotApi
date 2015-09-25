@@ -1,0 +1,5 @@
+﻿Eng:
+This is sample file with non-latin name (validating issue #5)
+
+Rus:
+Это пример файла с кириллицей в названии (проверяем issue #5)

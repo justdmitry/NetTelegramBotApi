@@ -1,0 +1,41 @@
+{
+  "version": "3.6.50925",
+  "title": "NetTelegramBotApi",
+  "description": "Telegram Bot API library",
+  "authors": [ "Dmitry Popov" ],
+  "tags": [ "telegram", "bot", "api" ],
+  "projectUrl": "https://github.com/justdmitry/NetTelegramBotApi",
+  "iconUrl": "https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif",
+  "copyright": "Copyright © Dmitry Popov, 2015",
+  "releaseNotes": "Upgrade to vNext",
+
+  "dependencies": {
+    "Newtonsoft.Json": "7.0.1"
+  },
+
+  "frameworks": {
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0"
+      }
+    },
+    "dnx45": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0"
+      }
+    },
+    "dnx50": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Linq": "4.0.0",
+        "System.Net.Http": "4.0.0",
+        "System.Collections": "4.0.10",
+        "System.Text.RegularExpressions": "4.0.10"
+      }
+    }
+  }
+}

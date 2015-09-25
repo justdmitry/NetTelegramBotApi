@@ -24,6 +24,14 @@ Dependencies: [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json
 
 ## Version history
 
+### 3.6.50925 - Upgrade to vNext
+
+Project converted to Visual Studio 2015 and new project type (`xproj`).
+
+NuGet package now targets multiple runtimes: `net45`, `dnx45`, `dnx50` and `dnxcore50`.
+
+New demo console app added (`TelegramBotDemo-vNext`) for testing under `dnx451` runtime. Old demo app ('classic' console project) also available, but **Attention! Now it grabs package from nuget!** (because old-style .csproj can't reference new .xproj assemblies directly).
+
 ### 3.5.50818 - API changes 'August 15, 2015'
 
 Changes in Telegram API defined as [August 15, 2015](https://core.telegram.org/bots/api-changelog#august-15-2015) implemented (issue #13).
