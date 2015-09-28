@@ -17,6 +17,13 @@ namespace NetTelegramBotApi.Requests
             this.Text = text;
         }
 
+        public SendMessage(long chatId, string text, ReplyMarkupBase replyMarkup)
+            : base("sendMessage")
+        {
+            this.ChatId = chatId;
+            this.Text = text;
+            this.ReplyMarkup = replyMarkup;
+        }
         /// <summary>
         /// Unique identifier for the message recipient — User or GroupChat id
         /// </summary>
