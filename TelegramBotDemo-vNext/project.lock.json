@@ -3,10 +3,10 @@
   "version": 1,
   "targets": {
     "DNX,Version=v4.5.1": {
-      "Microsoft.Framework.Configuration/1.0.0-beta8-15087": {
+      "Microsoft.Framework.Configuration/1.0.0-beta7": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta8-15087"
+          "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta7"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -21,7 +21,7 @@
           "lib/dnx451/Microsoft.Framework.Configuration.dll": {}
         }
       },
-      "Microsoft.Framework.Configuration.Abstractions/1.0.0-beta8-15087": {
+      "Microsoft.Framework.Configuration.Abstractions/1.0.0-beta7": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -36,10 +36,10 @@
           "lib/dnx451/Microsoft.Framework.Configuration.Abstractions.dll": {}
         }
       },
-      "Microsoft.Framework.Configuration.Json/1.0.0-beta8-15087": {
+      "Microsoft.Framework.Configuration.Json/1.0.0-beta7": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Framework.Configuration": "1.0.0-beta8-15087",
+          "Microsoft.Framework.Configuration": "1.0.0-beta7",
           "Newtonsoft.Json": "6.0.6"
         },
         "frameworkAssemblies": [
@@ -55,7 +55,7 @@
           "lib/dnx451/Microsoft.Framework.Configuration.Json.dll": {}
         }
       },
-      "NetTelegramBotApi/3.6.50925": {
+      "NetTelegramBotApi/3.7.50926": {
         "type": "project",
         "dependencies": {
           "Newtonsoft.Json": "7.0.1"
@@ -76,14 +76,14 @@
     }
   },
   "libraries": {
-    "NetTelegramBotApi/3.6.50925": {
+    "NetTelegramBotApi/3.7.50926": {
       "type": "project",
       "path": "../NetTelegramBotApi/project.json"
     },
-    "Microsoft.Framework.Configuration/1.0.0-beta8-15087": {
+    "Microsoft.Framework.Configuration/1.0.0-beta7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "6Nr+LgN5oYkJXm6uz4bgOhyPjSVFqvzoJsizqzf4zhO4OCWIexedVxBBqpN4adWQrMAQzQJaCZApGTXti5twuA==",
+      "sha512": "l2kMGvDGmLrpWwQz90pKHxuCPA4C5Ds3zWT/bNmt6M/PCM5wxEns/orKHH2m9Cx5H08WZy0FVyQMNQmED126cA==",
       "files": [
         "lib/dnx451/Microsoft.Framework.Configuration.dll",
         "lib/dnx451/Microsoft.Framework.Configuration.xml",
@@ -91,16 +91,16 @@
         "lib/dotnet/Microsoft.Framework.Configuration.xml",
         "lib/net45/Microsoft.Framework.Configuration.dll",
         "lib/net45/Microsoft.Framework.Configuration.xml",
-        "Microsoft.Framework.Configuration.1.0.0-beta8-15087.nupkg",
-        "Microsoft.Framework.Configuration.1.0.0-beta8-15087.nupkg.sha512",
+        "Microsoft.Framework.Configuration.1.0.0-beta7.nupkg",
+        "Microsoft.Framework.Configuration.1.0.0-beta7.nupkg.sha512",
         "Microsoft.Framework.Configuration.nuspec",
         "repo.json"
       ]
     },
-    "Microsoft.Framework.Configuration.Abstractions/1.0.0-beta8-15087": {
+    "Microsoft.Framework.Configuration.Abstractions/1.0.0-beta7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "IsR48EhpvI7o23j0XTZQWVqH+y+REtAUCNUTxcXFPpjsRxkDltjUg8bR6SeF7B3eeXNccuHxfwvWZYx1fcKorw==",
+      "sha512": "bLVb0cfwlpIhFmJ2jJzMaOjoG3BGcyP6dtMU1NNzfs3mo1lr2Om5FKWFlYVou3uClM0yNdMtGzu5rQDb2UGxZA==",
       "files": [
         "lib/dnx451/Microsoft.Framework.Configuration.Abstractions.dll",
         "lib/dnx451/Microsoft.Framework.Configuration.Abstractions.xml",
@@ -108,16 +108,16 @@
         "lib/dotnet/Microsoft.Framework.Configuration.Abstractions.xml",
         "lib/net45/Microsoft.Framework.Configuration.Abstractions.dll",
         "lib/net45/Microsoft.Framework.Configuration.Abstractions.xml",
-        "Microsoft.Framework.Configuration.Abstractions.1.0.0-beta8-15087.nupkg",
-        "Microsoft.Framework.Configuration.Abstractions.1.0.0-beta8-15087.nupkg.sha512",
+        "Microsoft.Framework.Configuration.Abstractions.1.0.0-beta7.nupkg",
+        "Microsoft.Framework.Configuration.Abstractions.1.0.0-beta7.nupkg.sha512",
         "Microsoft.Framework.Configuration.Abstractions.nuspec",
         "repo.json"
       ]
     },
-    "Microsoft.Framework.Configuration.Json/1.0.0-beta8-15087": {
+    "Microsoft.Framework.Configuration.Json/1.0.0-beta7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "h7dt1ZLz4GtM4MOU0WptY7gnCyOoWA5FVb8dxC1BUYmplHLWUG4NqzTsWq18JDuT9kqbCdy6rcbdCeCU4NHevA==",
+      "sha512": "ytBQBly0ISkMDfud7O7y5TZJN6swZjhqZZX2Oe4nbKiAc4J2ucPC2YmbBU/QYAG6lBo/V1hYuv6WO0RObfKDWg==",
       "files": [
         "lib/dnx451/Microsoft.Framework.Configuration.Json.dll",
         "lib/dnx451/Microsoft.Framework.Configuration.Json.xml",
@@ -125,8 +125,8 @@
         "lib/dotnet/Microsoft.Framework.Configuration.Json.xml",
         "lib/net45/Microsoft.Framework.Configuration.Json.dll",
         "lib/net45/Microsoft.Framework.Configuration.Json.xml",
-        "Microsoft.Framework.Configuration.Json.1.0.0-beta8-15087.nupkg",
-        "Microsoft.Framework.Configuration.Json.1.0.0-beta8-15087.nupkg.sha512",
+        "Microsoft.Framework.Configuration.Json.1.0.0-beta7.nupkg",
+        "Microsoft.Framework.Configuration.Json.1.0.0-beta7.nupkg.sha512",
         "Microsoft.Framework.Configuration.Json.nuspec",
         "repo.json"
       ]
@@ -157,8 +157,8 @@
   "projectFileDependencyGroups": {
     "": [
       "NetTelegramBotApi >= 3.6",
-      "Microsoft.Framework.Configuration >= 1.0.0-beta8",
-      "Microsoft.Framework.Configuration.Json >= 1.0.0-beta8"
+      "Microsoft.Framework.Configuration >= 1.0.0-beta7",
+      "Microsoft.Framework.Configuration.Json >= 1.0.0-beta7"
     ],
     "DNX,Version=v4.5.1": []
   }
