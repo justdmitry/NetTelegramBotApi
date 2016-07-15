@@ -1,41 +1,28 @@
 {
-  "version": "3.7.50926",
+  "version": "3.8.0",
   "title": "NetTelegramBotApi",
   "description": "Telegram Bot API library",
-  "authors": [ "Dmitry Popov" ],
-  "tags": [ "telegram", "bot", "api" ],
-  "projectUrl": "https://github.com/justdmitry/NetTelegramBotApi",
-  "iconUrl": "https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif",
-  "copyright": "Copyright © Dmitry Popov, 2015",
-  "releaseNotes": "New! Support files download (sent by users)! Also, proxy support included. Other API changes implemented too.",
+
+  "packOptions": {
+    "summary": "Telegram Bot API library",
+    "owners": [ "Dmitry Popov" ],
+    "tags": [ "telegram", "bot", "api" ],
+    "projectUrl": "https://github.com/justdmitry/NetTelegramBotApi",
+    "iconUrl": "https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif",
+    "copyright": "Copyright © Dmitry Popov, 2015",
+    "releaseNotes": "Upgrade to .NET Core RTM and netstandard1.3",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/justdmitry/NetTelegramBotApi.git"
+    }
+  },
 
   "dependencies": {
-    "Newtonsoft.Json": "7.0.1"
+    "Newtonsoft.Json": "9.0.1",
+    "System.Net.Http": "4.1.0"
   },
 
   "frameworks": {
-    "net45": {
-      "frameworkAssemblies": {
-        "System.Net.Http": "4.0.0"
-      }
-    },
-    "dnx45": {
-      "frameworkAssemblies": {
-        "System.Net.Http": "4.0.0"
-      }
-    },
-    "dnx50": {
-      "frameworkAssemblies": {
-        "System.Net.Http": "4.0.0"
-      }
-    },
-    "dnxcore50": {
-      "dependencies": {
-        "System.Linq": "4.0.0",
-        "System.Net.Http": "4.0.0",
-        "System.Collections": "4.0.10",
-        "System.Text.RegularExpressions": "4.0.10"
-      }
-    }
+    "netstandard1.3": {}
   }
 }
