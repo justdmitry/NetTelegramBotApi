@@ -24,6 +24,10 @@ Dependencies: [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json
 
 ## Version history
 
+### 3.8.1 - .NET Core RTM, netstandard1.3
+
+* Upgraded to .NET Core 1.0.0 and `netstandard1.3`
+
 ### 3.7.50926 - API updates, proxy support
 
 * Changes in Telegram API defined as [August 29, 2015](https://core.telegram.org/bots/api-changelog#august-29-2015) implemented (issue #19):
