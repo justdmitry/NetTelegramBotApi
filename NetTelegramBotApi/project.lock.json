@@ -2,6 +2,28 @@
   "locked": false,
   "version": 2,
   "targets": {
+    ".NETFramework,Version=v4.5": {
+      "Newtonsoft.Json/9.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6": {
+      "Newtonsoft.Json/9.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
     ".NETStandard,Version=v1.3": {
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
@@ -3397,10 +3419,17 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Newtonsoft.Json >= 9.0.1",
-      "System.Net.Http >= 4.1.0"
+      "Newtonsoft.Json >= 9.0.1"
     ],
-    ".NETStandard,Version=v1.3": []
+    ".NETFramework,Version=v4.5": [
+      "System.Net.Http >= 4.0.0"
+    ],
+    ".NETFramework,Version=v4.6": [
+      "System.Net.Http >= 4.0.0"
+    ],
+    ".NETStandard,Version=v1.3": [
+      "System.Net.Http >= 4.1.0"
+    ]
   },
   "tools": {},
   "projectFileToolGroups": {}

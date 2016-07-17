@@ -1,5 +1,5 @@
 {
-  "version": "3.8.0",
+  "version": "3.8.1",
   "title": "NetTelegramBotApi",
   "description": "Telegram Bot API library",
 
@@ -18,11 +18,24 @@
   },
 
   "dependencies": {
-    "Newtonsoft.Json": "9.0.1",
-    "System.Net.Http": "4.1.0"
+    "Newtonsoft.Json": "9.0.1"
   },
 
   "frameworks": {
-    "netstandard1.3": {}
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0"
+      }
+    },
+    "net46": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0"
+      }
+    },
+    "netstandard1.3": {
+      "dependencies": {
+        "System.Net.Http": "4.1.0"
+      }
+    }
   }
 }
