@@ -6,51 +6,59 @@ using NetTelegramBotApi.Types;
 namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to send text messages. On success, the sent Message is returned.
+    /// Use this method to send information about a venue. On success, the sent Message is returned.
     /// </summary>
-    public class SendMessage : RequestBase<Message>
+    public class SendVenue : RequestBase<Message>
     {
-        public SendMessage(long chatId, string text) 
-            : base("sendMessage")
+        public SendVenue(long chatId, float latitude, float longitude)
+            : base("sendLocation")
         {
             this.ChatId = chatId;
-            this.Text = text;
+            this.Latitude = latitude;
+            this.Longitude = Longitude;
         }
-        public SendMessage(string channelName, string text)
-            : base("sendMessage")
+        public SendVenue(string channelName, float latitude, float longitude)
+            : base("sendLocation")
         {
             this.ChannelName = channelName;
-            this.Text = text;
+            this.Latitude = latitude;
+            this.Longitude = Longitude;
         }
 
         /// <summary>
-        /// Unique identifier for the message recipient — User or GroupChat id.
+        /// Unique identifier for the target chat
         /// </summary>
-        /// <remarks>
-        /// Use <see cref="ChannelName"/> for sending to channels
-        /// </remarks>
-        public long? ChatId { get; set; }
+        public long? ChatId { get; protected set; }
 
         /// <summary>
-        /// Target channel (in the format @channelusername)
+        /// Username of the target channel (in the format @channelusername)
         /// </summary>
         public string ChannelName { get; set; }
 
         /// <summary>
-        /// Text of the message to be sent
+        /// Latitude of the venue
         /// </summary>
-        public string Text { get; set; }
+        public float Latitude { get; set; }
 
         /// <summary>
-        /// Send "Markdown", if you want Telegram apps to show bold, italic and inline URLs in your bot's message. 
-        /// For the moment, only Telegram for Android supports this.
+        /// Longitude of the venue
         /// </summary>
-        public ParseModeEnum ParseMode { get; set; }
+        public float Longitude { get; set; }
 
         /// <summary>
-        /// Optional. Disables link previews for links in this message
+        /// Name of the venue
         /// </summary>
-        public bool? DisableWebPagePreview { get; set; }
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Address of the venue
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Optional. Foursquare identifier of the venue
+        /// </summary>
+        public string FoursquareId { get; set; }
 
         /// <summary>
         /// Sends the message silently. 
@@ -85,19 +93,15 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("chat_id", ChannelName);
             }
-            dic.Add("text", Text);
-            if (ParseMode == ParseModeEnum.Markdown)
+            dic.Add("latitude", Latitude.ToString());
+            dic.Add("longitude", Longitude.ToString());
+            dic.Add("title", Title);
+            dic.Add("address", Address);
+            if (!string.IsNullOrEmpty(FoursquareId))
             {
-                dic.Add("parse_mode", "Markdown");
+                dic.Add("foursquare_id", FoursquareId);
             }
-            if (ParseMode == ParseModeEnum.HTML)
-            {
-                dic.Add("parse_mode", "HTML");
-            }
-            if (DisableWebPagePreview.HasValue)
-            {
-                dic.Add("disable_web_page_preview", DisableWebPagePreview.Value.ToString());
-            }
+
             if (DisableNotification.HasValue)
             {
                 dic.Add("disable_notification", DisableNotification.Value.ToString());
@@ -112,13 +116,6 @@ namespace NetTelegramBotApi.Requests
             }
 
             return new FormUrlEncodedContent(dic);
-        }
-
-        public enum ParseModeEnum
-        {
-            None,
-            Markdown,
-            HTML
         }
     }
 }

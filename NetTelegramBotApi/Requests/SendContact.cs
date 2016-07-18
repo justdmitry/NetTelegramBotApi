@@ -6,51 +6,49 @@ using NetTelegramBotApi.Types;
 namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to send text messages. On success, the sent Message is returned.
+    /// Use this method to send phone contacts. On success, the sent Message is returned.
     /// </summary>
-    public class SendMessage : RequestBase<Message>
+    public class SendContact : RequestBase<Message>
     {
-        public SendMessage(long chatId, string text) 
-            : base("sendMessage")
+        public SendContact(long chatId, string phoneNumber, string firstName)
+            : base("sendContact")
         {
             this.ChatId = chatId;
-            this.Text = text;
+            this.PhoneNumber = phoneNumber;
+            this.FirstName = firstName;
         }
-        public SendMessage(string channelName, string text)
-            : base("sendMessage")
+        public SendContact(string channelName, string phoneNumber, string firstName)
+            : base("sendContact")
         {
             this.ChannelName = channelName;
-            this.Text = text;
+            this.PhoneNumber = phoneNumber;
+            this.FirstName = firstName;
         }
 
         /// <summary>
-        /// Unique identifier for the message recipient — User or GroupChat id.
+        /// Unique identifier for the target chat
         /// </summary>
-        /// <remarks>
-        /// Use <see cref="ChannelName"/> for sending to channels
-        /// </remarks>
-        public long? ChatId { get; set; }
+        public long? ChatId { get; protected set; }
 
         /// <summary>
-        /// Target channel (in the format @channelusername)
+        /// Username of the target channel (in the format @channelusername)
         /// </summary>
         public string ChannelName { get; set; }
 
         /// <summary>
-        /// Text of the message to be sent
+        /// Contact's phone number
         /// </summary>
-        public string Text { get; set; }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// Send "Markdown", if you want Telegram apps to show bold, italic and inline URLs in your bot's message. 
-        /// For the moment, only Telegram for Android supports this.
+        /// Contact's first name
         /// </summary>
-        public ParseModeEnum ParseMode { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
-        /// Optional. Disables link previews for links in this message
+        /// Optional. Contact's last name
         /// </summary>
-        public bool? DisableWebPagePreview { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Sends the message silently. 
@@ -85,19 +83,13 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("chat_id", ChannelName);
             }
-            dic.Add("text", Text);
-            if (ParseMode == ParseModeEnum.Markdown)
+            dic.Add("phone_number", PhoneNumber);
+            dic.Add("first_name", FirstName);
+            if (!string.IsNullOrEmpty(LastName))
             {
-                dic.Add("parse_mode", "Markdown");
+                dic.Add("last_name", LastName);
             }
-            if (ParseMode == ParseModeEnum.HTML)
-            {
-                dic.Add("parse_mode", "HTML");
-            }
-            if (DisableWebPagePreview.HasValue)
-            {
-                dic.Add("disable_web_page_preview", DisableWebPagePreview.Value.ToString());
-            }
+
             if (DisableNotification.HasValue)
             {
                 dic.Add("disable_notification", DisableNotification.Value.ToString());
@@ -112,13 +104,6 @@ namespace NetTelegramBotApi.Requests
             }
 
             return new FormUrlEncodedContent(dic);
-        }
-
-        public enum ParseModeEnum
-        {
-            None,
-            Markdown,
-            HTML
         }
     }
 }

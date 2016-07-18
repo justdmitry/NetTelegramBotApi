@@ -15,13 +15,24 @@ namespace NetTelegramBotApi.Requests
         {
             this.ChatId = chatId;
             this.Latitude = latitude;
-            this.Longitude = Longitude;
+            this.Longitude = longitude;
         }
+        public SendLocation(string channelName, float latitude, float longitude)
+            : base("sendLocation")
+        {
+            this.ChannelName = channelName;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+        }
+        /// <summary>
+        /// Unique identifier for the target chat
+        /// </summary>
+        public long? ChatId { get; protected set; }
 
         /// <summary>
-        /// Unique identifier for the message recipient — User or GroupChat id
+        /// Username of the target channel (in the format @channelusername)
         /// </summary>
-        public long ChatId { get; set; }
+        public string ChannelName { get; set; }
 
         /// <summary>
         /// Latitude of location
@@ -32,6 +43,12 @@ namespace NetTelegramBotApi.Requests
         /// Longitude of location
         /// </summary>
         public float Longitude { get; set; }
+
+        /// <summary>
+        /// Sends the message silently. 
+        /// iOS users will not receive a notification, Android users will receive a notification with no sound.
+        /// </summary>
+        public bool? DisableNotification { get; set; }
 
         /// <summary>
         /// Optional. If the message is a reply, ID of the original message
@@ -46,12 +63,27 @@ namespace NetTelegramBotApi.Requests
 
         public override HttpContent CreateHttpContent()
         {
+            if (ChatId.HasValue && !string.IsNullOrEmpty(ChannelName))
+            {
+                throw new Exception("Use ChatId or ChannelName, not both.");
+            }
             var dic = new Dictionary<string, string>();
 
-            dic.Add("chat_id", ChatId.ToString());
+            if (ChatId.HasValue)
+            {
+                dic.Add("chat_id", ChatId.Value.ToString());
+            }
+            if (!string.IsNullOrEmpty(ChannelName))
+            {
+                dic.Add("chat_id", ChannelName);
+            }
             dic.Add("latitude", Latitude.ToString());
             dic.Add("longitude", Longitude.ToString());
 
+            if (DisableNotification.HasValue)
+            {
+                dic.Add("disable_notification", DisableNotification.Value.ToString());
+            }
             if (ReplyToMessageId.HasValue)
             {
                 dic.Add("reply_to_message_id", ReplyToMessageId.Value.ToString());

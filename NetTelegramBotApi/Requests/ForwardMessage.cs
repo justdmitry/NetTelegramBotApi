@@ -17,16 +17,53 @@ namespace NetTelegramBotApi.Requests
             this.FromChatId = fromChatId;
             this.MessageId = messageId;
         }
+        public ForwardMessage(long chatId, string fromChannelName, long messageId)
+            : base("forwardMessage")
+        {
+            this.ChatId = chatId;
+            this.FromChannelName = fromChannelName;
+            this.MessageId = messageId;
+        }
+        public ForwardMessage(string channelName, long fromChatId, long messageId)
+            : base("forwardMessage")
+        {
+            this.ChannelName = channelName;
+            this.FromChatId = fromChatId;
+            this.MessageId = messageId;
+        }
+        public ForwardMessage(string channelName, string fromChannelName, long messageId)
+            : base("forwardMessage")
+        {
+            this.ChannelName = channelName;
+            this.FromChannelName = fromChannelName;
+            this.MessageId = messageId;
+        }
 
         /// <summary>
-        /// Unique identifier for the message recipient — User or GroupChat id
+        /// Unique identifier for the target chat
         /// </summary>
-        public long ChatId { get; set; }
+        public long? ChatId { get; set; }
+
+        /// <summary>
+        /// Unique identifier for target channel (in the format @channelusername)
+        /// </summary>
+        public string ChannelName { get; set; }
 
         /// <summary>
         /// Unique identifier for the chat where the original message was sent — User or GroupChat id
         /// </summary>
-        public long FromChatId { get; set; }
+        public long? FromChatId { get; set; }
+
+        /// <summary>
+        /// Unique identifier for the chat where the original message was sent - channel username in the format @channelusername)
+        /// </summary>
+        public string FromChannelName { get; set; }
+
+        /// <summary>
+        /// Sends the message silently. 
+        /// iOS users will not receive a notification, Android users will receive a notification with no sound.
+        /// </summary>
+        public bool? DisableNotification { get; set; }
 
         /// <summary>
         /// Unique message identifier
@@ -35,13 +72,40 @@ namespace NetTelegramBotApi.Requests
 
         public override HttpContent CreateHttpContent()
         {
-            var values = new[]
+            if (ChatId.HasValue && !string.IsNullOrEmpty(ChannelName))
             {
-                new KeyValuePair<string, string>("chat_id", ChatId.ToString()),
-                new KeyValuePair<string, string>("from_chat_id", FromChatId.ToString()),
-                new KeyValuePair<string, string>("message_id", MessageId.ToString())
-            };
-            return new FormUrlEncodedContent(values);
+                throw new Exception("Use ChatId or ChannelName, not both.");
+            }
+            if (FromChatId.HasValue && !string.IsNullOrEmpty(FromChannelName))
+            {
+                throw new Exception("Use FromChatId or FromChannelName, not both.");
+            }
+
+            var dic = new Dictionary<string, string>();
+
+            if (ChatId.HasValue)
+            {
+                dic.Add("chat_id", ChatId.Value.ToString());
+            }
+            if (!string.IsNullOrEmpty(ChannelName))
+            {
+                dic.Add("chat_id", ChannelName);
+            }
+            if (FromChatId.HasValue)
+            {
+                dic.Add("from_chat_id", FromChatId.Value.ToString());
+            }
+            if (!string.IsNullOrEmpty(FromChannelName))
+            {
+                dic.Add("from_chat_id", FromChannelName);
+            }
+            if (DisableNotification.HasValue)
+            {
+                dic.Add("disable_notification", DisableNotification.Value.ToString());
+            }
+            dic.Add("message_id", MessageId.ToString());
+
+            return new FormUrlEncodedContent(dic);           
         }
     }
 }

@@ -70,6 +70,8 @@ namespace TelegramBotDemo_vNext
                         var from = update.Message.From;
                         var text = update.Message.Text;
                         var photos = update.Message.Photo;
+                        var contact = update.Message.Contact;
+                        var location = update.Message.Location;
                         Console.WriteLine(
                             "Msg from {0} {1} ({2}) at {4}: {3}",
                             from.FirstName,
@@ -90,6 +92,19 @@ namespace TelegramBotDemo_vNext
                                 System.IO.File.WriteAllBytes(tempFileName, bytes);
                                 Console.WriteLine("    Saved to {0}", tempFileName);
                             }
+                        }
+                        if (contact != null)
+                        {
+                            var req = new SendContact(update.Message.Chat.Id, contact.PhoneNumbet, contact.FirstName)
+                            {
+                                LastName = contact.LastName
+                            };
+                            bot.MakeRequestAsync(req).Wait();
+                        }
+                        if (location != null)
+                        {
+                            var req = new SendLocation(update.Message.Chat.Id, location.Latitude, location.Longitude);
+                            bot.MakeRequestAsync(req).Wait();
                         }
 
                         if (string.IsNullOrEmpty(text))
@@ -161,7 +176,11 @@ namespace TelegramBotDemo_vNext
                         {
                             var keyb = new ReplyKeyboardMarkup()
                             {
-                                Keyboard = new[] { new[] { "/photo", "/doc", "/docutf8" }, new[] { "/help" } },
+                                Keyboard = new[] {
+                                    new[] { new KeyboardButton("/photo"), new KeyboardButton("/doc"), new KeyboardButton("/docutf8") },
+                                    new[] { new KeyboardButton("/contact") { RequestContact = true }, new KeyboardButton("/location") { RequestLocation = true } },
+                                    new[] { new KeyboardButton("/help") }
+                                },
                                 OneTimeKeyboard = true,
                                 ResizeKeyboard = true
                             };

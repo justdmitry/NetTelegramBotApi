@@ -22,7 +22,6 @@ namespace NetTelegramBotApi
 
         static TelegramBot()
         {
-            JsonSettings.Converters.Add(new ChatBaseConverter());
             JsonSettings.Converters.Add(new UnixDateTimeConverter());
         }
 

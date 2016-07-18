@@ -10,11 +10,15 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class SendVideo : SendFileRequestBase<Message>
     {
-        public SendVideo(long chatId, FileToSend photo)
-            : base("sendVideo", "video")
+        public SendVideo(long chatId, FileToSend video) 
+            : base(chatId, "sendVideo", "video")
         {
-            this.ChatId = chatId;
-            this.File = photo;
+            this.File = video;
+        }
+        public SendVideo(string channelName, FileToSend video)
+            : base(channelName, "sendVideo", "video")
+        {
+            this.File = video;
         }
 
         /// <summary>
@@ -23,15 +27,33 @@ namespace NetTelegramBotApi.Requests
         public int? Duration { get; set; }
 
         /// <summary>
-        /// Video caption (may also be used when resending videos by file_id).
+        /// Video width
+        /// </summary>
+        public int? Width { get; set; }
+
+        /// <summary>
+        /// Video height
+        /// </summary>
+        public int? Height { get; set; }
+
+        /// <summary>
+        /// Video caption (may also be used when resending videos by file_id), 0-200 characters
         /// </summary>
         public string Caption { get; set; }
-        
+
         protected override void AppendParameters(Action<string, string> appendCallback)
         {
             if (Duration.HasValue)
             {
                 appendCallback("duration", Duration.Value.ToString());
+            }
+            if (Width.HasValue)
+            {
+                appendCallback("width", Width.Value.ToString());
+            }
+            if (Height.HasValue)
+            {
+                appendCallback("height", Height.Value.ToString());
             }
             if (!string.IsNullOrEmpty(Caption))
             {

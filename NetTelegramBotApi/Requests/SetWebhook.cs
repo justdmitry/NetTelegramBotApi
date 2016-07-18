@@ -28,7 +28,7 @@ namespace NetTelegramBotApi.Requests
         /// <param name="url">HTTPS url to send updates to. Use null or empty string to remove webhook integration</param>
         /// <param name="certificatePublicKey">Optional. Your public key certificate so that the root certificate in use can be checked</param>
         public SetWebhook(string url, FileToSend certificatePublicKey)
-            : base("setWebhook", "certificate")
+            : base((string)null, "setWebhook", "certificate")
         {
             this.Url = url;
             if (certificatePublicKey != null && certificatePublicKey.AlreadyUploaded)

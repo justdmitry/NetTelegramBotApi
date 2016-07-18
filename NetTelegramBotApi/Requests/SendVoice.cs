@@ -11,11 +11,15 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class SendVoice : SendFileRequestBase<Message>
     {
-        public SendVoice(long chatId, FileToSend audio)
-            : base("sendVoice", "audio")
+        public SendVoice(long chatId, FileToSend voice) 
+            : base(chatId, "sendVoice", "voice")
         {
-            this.ChatId = chatId;
-            this.File = audio;
+            this.File = voice;
+        }
+        public SendVoice(string channelName, FileToSend voice)
+            : base(channelName, "sendVoice", "voice")
+        {
+            this.File = voice;
         }
 
         /// <summary>
