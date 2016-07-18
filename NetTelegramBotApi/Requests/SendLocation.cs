@@ -77,8 +77,8 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("chat_id", ChannelName);
             }
-            dic.Add("latitude", Latitude.ToString());
-            dic.Add("longitude", Longitude.ToString());
+            dic.Add("latitude", Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            dic.Add("longitude", Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
 
             if (DisableNotification.HasValue)
             {
