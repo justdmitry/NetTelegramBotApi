@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using NetTelegramBotApi.Types;
 
@@ -10,7 +11,7 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class ForwardMessage : RequestBase<Message>
     {
-        public ForwardMessage(long chatId, long fromChatId, long messageId) 
+        public ForwardMessage(long chatId, long fromChatId, long messageId)
             : base("forwardMessage")
         {
             this.ChatId = chatId;
@@ -60,7 +61,7 @@ namespace NetTelegramBotApi.Requests
         public string FromChannelName { get; set; }
 
         /// <summary>
-        /// Sends the message silently. 
+        /// Sends the message silently.
         /// iOS users will not receive a notification, Android users will receive a notification with no sound.
         /// </summary>
         public bool? DisableNotification { get; set; }
@@ -85,7 +86,7 @@ namespace NetTelegramBotApi.Requests
 
             if (ChatId.HasValue)
             {
-                dic.Add("chat_id", ChatId.Value.ToString());
+                dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (!string.IsNullOrEmpty(ChannelName))
             {
@@ -93,7 +94,7 @@ namespace NetTelegramBotApi.Requests
             }
             if (FromChatId.HasValue)
             {
-                dic.Add("from_chat_id", FromChatId.Value.ToString());
+                dic.Add("from_chat_id", FromChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (!string.IsNullOrEmpty(FromChannelName))
             {
@@ -103,9 +104,9 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("disable_notification", DisableNotification.Value.ToString());
             }
-            dic.Add("message_id", MessageId.ToString());
+            dic.Add("message_id", MessageId.ToString(CultureInfo.InvariantCulture));
 
-            return new FormUrlEncodedContent(dic);           
+            return new FormUrlEncodedContent(dic);
         }
     }
 }

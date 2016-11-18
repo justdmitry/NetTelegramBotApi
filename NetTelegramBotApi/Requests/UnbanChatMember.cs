@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to unban a previously kicked user in a supergroup. The user will not return to the group automatically, but will be able to join via link, etc. 
+    /// Use this method to unban a previously kicked user in a supergroup. The user will not return to the group automatically, but will be able to join via link, etc.
     /// The bot must be an administrator in the group for this to work. Returns True on success.
     /// </summary>
     public class UnbanChatMember : RequestBase<bool>
@@ -48,13 +49,13 @@ namespace NetTelegramBotApi.Requests
 
             if (ChatId.HasValue)
             {
-                dic.Add("chat_id", ChatId.Value.ToString());
+                dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
             }
-            dic.Add("user_id", UserId.ToString());
+            dic.Add("user_id", UserId.ToString(CultureInfo.InvariantCulture));
 
             return new FormUrlEncodedContent(dic);
         }

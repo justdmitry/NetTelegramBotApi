@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi.Requests
@@ -45,15 +46,15 @@ namespace NetTelegramBotApi.Requests
         {
             if (Duration.HasValue)
             {
-                appendCallback("duration", Duration.Value.ToString());
+                appendCallback("duration", Duration.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (Width.HasValue)
             {
-                appendCallback("width", Width.Value.ToString());
+                appendCallback("width", Width.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (Height.HasValue)
             {
-                appendCallback("height", Height.Value.ToString());
+                appendCallback("height", Height.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (!string.IsNullOrEmpty(Caption))
             {

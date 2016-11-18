@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using NetTelegramBotApi.Types;
 
@@ -51,7 +52,7 @@ namespace NetTelegramBotApi.Requests
         public string LastName { get; set; }
 
         /// <summary>
-        /// Sends the message silently. 
+        /// Sends the message silently.
         /// iOS users will not receive a notification, Android users will receive a notification with no sound.
         /// </summary>
         public bool? DisableNotification { get; set; }
@@ -62,7 +63,7 @@ namespace NetTelegramBotApi.Requests
         public long? ReplyToMessageId { get; set; }
 
         /// <summary>
-        /// Optional. Additional interface options. A JSON-serialized object for a custom reply keyboard, 
+        /// Optional. Additional interface options. A JSON-serialized object for a custom reply keyboard,
         /// instructions to hide keyboard or to force a reply from the user.
         /// </summary>
         public ReplyMarkupBase ReplyMarkup { get; set; }
@@ -77,7 +78,7 @@ namespace NetTelegramBotApi.Requests
 
             if (ChatId.HasValue)
             {
-                dic.Add("chat_id", ChatId.Value.ToString());
+                dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (!string.IsNullOrEmpty(ChannelName))
             {
@@ -96,7 +97,7 @@ namespace NetTelegramBotApi.Requests
             }
             if (ReplyToMessageId.HasValue)
             {
-                dic.Add("reply_to_message_id", ReplyToMessageId.Value.ToString());
+                dic.Add("reply_to_message_id", ReplyToMessageId.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (ReplyMarkup != null)
             {

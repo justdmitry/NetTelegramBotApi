@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using NetTelegramBotApi.Types;
 
@@ -9,11 +10,11 @@ namespace NetTelegramBotApi.Requests
     /// Use this method to kick a user from a group or a supergroup.
     /// </summary>
     /// <remarks>
-    /// Note: This will method only work if the ‘All Members Are Admins’ setting is off in the target group. 
+    /// Note: This will method only work if the ‘All Members Are Admins’ setting is off in the target group.
     /// Otherwise members may only be removed by the group's creator or by the member that added them.
-    /// 
-    /// In the case of supergroups, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first. 
-    /// The bot must be an administrator in the group for this to work. 
+    ///
+    /// In the case of supergroups, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first.
+    /// The bot must be an administrator in the group for this to work.
     /// Returns True on success.
     /// </remarks>
     public class KickChatMember : RequestBase<bool>
@@ -55,13 +56,13 @@ namespace NetTelegramBotApi.Requests
 
             if (ChatId.HasValue)
             {
-                dic.Add("chat_id", ChatId.Value.ToString());
+                dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
             }
-            dic.Add("user_id", UserId.ToString());
+            dic.Add("user_id", UserId.ToString(CultureInfo.InvariantCulture));
 
             return new FormUrlEncodedContent(dic);
         }

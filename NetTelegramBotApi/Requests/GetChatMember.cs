@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using NetTelegramBotApi.Types;
 
@@ -47,13 +48,13 @@ namespace NetTelegramBotApi.Requests
 
             if (ChatId.HasValue)
             {
-                dic.Add("chat_id", ChatId.Value.ToString());
+                dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
             }
-            dic.Add("user_id", UserId.ToString());
+            dic.Add("user_id", UserId.ToString(CultureInfo.InvariantCulture));
 
             return new FormUrlEncodedContent(dic);
         }

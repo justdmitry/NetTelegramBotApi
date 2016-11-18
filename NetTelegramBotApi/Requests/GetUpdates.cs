@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using NetTelegramBotApi.Types;
 
@@ -10,16 +11,16 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class GetUpdates : RequestBase<Update[]>
     {
-        public GetUpdates() 
+        public GetUpdates()
             : base("getUpdates")
         {
             // Nothing
         }
 
         /// <summary>
-        /// Identifier of the first update to be returned. 
-        /// Must be greater by one than the highest among the identifiers of previously received updates. 
-        /// By default, updates starting with the earliest unconfirmed update are returned. 
+        /// Identifier of the first update to be returned.
+        /// Must be greater by one than the highest among the identifiers of previously received updates.
+        /// By default, updates starting with the earliest unconfirmed update are returned.
         /// An update is considered confirmed as soon as getUpdates is called with an offset higher than its update_id.
         /// </summary>
         public long? Offset { get; set; }
@@ -45,15 +46,15 @@ namespace NetTelegramBotApi.Requests
 
             if (Offset.HasValue)
             {
-                dic.Add("offset", Offset.ToString());
+                dic.Add("offset", Offset.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (Limit.HasValue)
             {
-                dic.Add("limit", Limit.ToString());
+                dic.Add("limit", Limit.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (Timeout.HasValue)
             {
-                dic.Add("timeout", Timeout.ToString());
+                dic.Add("timeout", Timeout.Value.ToString(CultureInfo.InvariantCulture));
             }
 
             return new FormUrlEncodedContent(dic);
