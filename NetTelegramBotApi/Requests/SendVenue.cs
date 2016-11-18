@@ -15,14 +15,14 @@ namespace NetTelegramBotApi.Requests
         {
             this.ChatId = chatId;
             this.Latitude = latitude;
-            this.Longitude = Longitude;
+            this.Longitude = longitude;
         }
         public SendVenue(string channelName, float latitude, float longitude)
             : base("sendLocation")
         {
             this.ChannelName = channelName;
             this.Latitude = latitude;
-            this.Longitude = Longitude;
+            this.Longitude = longitude;
         }
 
         /// <summary>
