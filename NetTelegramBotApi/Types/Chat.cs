@@ -57,5 +57,10 @@ namespace NetTelegramBotApi.Types
         /// Optional. Last name of the other party in a private chat
         /// </summary>
         public string Username { get; set; }
+
+        /// <summary>
+        /// Optional. True if a group has ‘All Members Are Admins’ enabled.
+        /// </summary>
+        public bool AllMembersAreAdministrators { get; set; }
     }
 }
