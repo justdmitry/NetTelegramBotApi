@@ -33,6 +33,14 @@ namespace NetTelegramBotApi.Requests
         /// </summary>
         public bool? ShowAlert { get; set; }
 
+        /// <summary>
+        /// Optional. URL that will be opened by the user's client.
+        /// If you have created a Game and accepted the conditions via @Botfather,
+        /// specify the URL that opens your game – note that this will only work if the query comes from a callback_game button.
+        /// Otherwise, you may use links like telegram.me/your_bot?start=XXXX that open your bot with a parameter.
+        /// </summary>
+        public string Url { get; set; }
+
         public override HttpContent CreateHttpContent()
         {
             var dic = new Dictionary<string, string>();
@@ -41,9 +49,15 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("text", Text);
             }
+
             if (ShowAlert.HasValue)
             {
                 dic.Add("show_alert", ShowAlert.Value.ToString());
+            }
+
+            if (!string.IsNullOrEmpty(Url))
+            {
+                dic.Add("url", Url);
             }
 
             return new FormUrlEncodedContent(dic);
