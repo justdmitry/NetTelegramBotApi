@@ -5,14 +5,14 @@ using NetTelegramBotApi.Types;
 namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
-    /// For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document). 
-    /// On success, the sent Message is returned. 
+    /// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
+    /// For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
+    /// On success, the sent Message is returned.
     /// Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
     /// </summary>
     public class SendAudio : SendFileRequestBase<Message>
     {
-        public SendAudio(long chatId, FileToSend audio) 
+        public SendAudio(long chatId, FileToSend audio)
             : base(chatId, "sendAudio", "audio")
         {
             this.File = audio;
@@ -22,6 +22,11 @@ namespace NetTelegramBotApi.Requests
         {
             this.File = audio;
         }
+
+        /// <summary>
+        /// Audio caption, 0-200 characters
+        /// </summary>
+        public string Caption { get; set; }
 
         /// <summary>
         /// Duration of sent audio in seconds
@@ -37,17 +42,24 @@ namespace NetTelegramBotApi.Requests
         /// Title of sent audio
         /// </summary>
         public string Title { get; set; }
-        
+
         protected override void AppendParameters(Action<string, string> appendCallback)
         {
+            if (!string.IsNullOrEmpty(Caption))
+            {
+                appendCallback("caption", Caption);
+            }
+
             if (Duration.HasValue)
             {
                 appendCallback("duration", Duration.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(Performer))
             {
                 appendCallback("performer", Performer);
             }
+
             if (!string.IsNullOrEmpty(Title))
             {
                 appendCallback("title", Title);
