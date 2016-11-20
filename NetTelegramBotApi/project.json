@@ -1,5 +1,5 @@
 {
-  "version": "3.9.0-beta3",
+  "version": "3.9.0-beta4",
   "title": "NetTelegramBotApi",
   "description": "Telegram Bot API library",
 
@@ -10,7 +10,7 @@
     "projectUrl": "https://github.com/justdmitry/NetTelegramBotApi",
     "iconUrl": "https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif",
     "copyright": "Copyright © Dmitry Popov, 2015-2016",
-    "releaseNotes": "Telegram API v2.2 added (except 'Updating messages' and 'Inline mode')",
+    "releaseNotes": "Updating messages: EditMessageText, EditMessageCaption, EditMessageReplyMarkup",
     "repository": {
       "type": "git",
       "url": "https://github.com/justdmitry/NetTelegramBotApi.git"
