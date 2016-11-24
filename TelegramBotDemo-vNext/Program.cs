@@ -27,8 +27,10 @@ namespace TelegramBotDemo_vNext
             Console.WriteLine();
 
             var t = Task.Run(() => RunBot(accessToken));
+            t.ContinueWith(task => { Console.WriteLine(t.Exception?.GetBaseException()); });
 
             Console.ReadLine();
+
             stopMe = true;
         }
 
@@ -186,6 +188,12 @@ namespace TelegramBotDemo_vNext
                             };
                             var reqAction = new SendMessage(update.Message.Chat.Id, "Here is all my commands") { ReplyMarkup = keyb };
                             bot.MakeRequestAsync(reqAction).Wait();
+                            continue;
+                        }
+                        if (text == "/longmsg")
+                        {
+                            var msg = new string('X', 10240);
+                            bot.MakeRequestAsync(new SendMessage(update.Message.Chat.Id, msg)).Wait();
                             continue;
                         }
                         if (update.Message.Text.Length % 2 == 0)

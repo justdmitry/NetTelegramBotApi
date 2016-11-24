@@ -1,5 +1,5 @@
 {
-  "version": "3.9.0-beta4",
+  "version": "4.0.0-rc1",
   "title": "NetTelegramBotApi",
   "description": "Telegram Bot API library",
 
@@ -10,7 +10,7 @@
     "projectUrl": "https://github.com/justdmitry/NetTelegramBotApi",
     "iconUrl": "https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif",
     "copyright": "Copyright © Dmitry Popov, 2015-2016",
-    "releaseNotes": "Updating messages: EditMessageText, EditMessageCaption, EditMessageReplyMarkup",
+    "releaseNotes": "MakeRequestAsync() throws BotRequestException when failed",
     "repository": {
       "type": "git",
       "url": "https://github.com/justdmitry/NetTelegramBotApi.git"
