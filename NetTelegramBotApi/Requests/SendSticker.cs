@@ -8,11 +8,15 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class SendSticker : SendFileRequestBase<Message>
     {
-        public SendSticker(long chatId, FileToSend photo)
-            : base("sendSticker", "sticker")
+        public SendSticker(long chatId, FileToSend sticker) 
+            : base(chatId, "sendSticker", "sticker")
         {
-            this.ChatId = chatId;
-            this.File = photo;
+            this.File = sticker;
+        }
+        public SendSticker(string channelName, FileToSend sticker)
+            : base(channelName, "sendSticker", "sticker")
+        {
+            this.File = sticker;
         }
         
         protected override void AppendParameters(Action<string, string> appendCallback)

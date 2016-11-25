@@ -10,7 +10,7 @@ namespace NetTelegramBotApi.Types
         /// <summary>
         /// Contact's phone number
         /// </summary>
-        public string PhoneNumbet { get; set; }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Contact's first name

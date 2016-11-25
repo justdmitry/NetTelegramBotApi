@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using NetTelegramBotApi.Types;
 
@@ -20,11 +21,22 @@ namespace NetTelegramBotApi.Requests
             this.ChatId = chatId;
             this.Action = action;
         }
+        public SendChatAction(string channelName, string action)
+            : base("sendChatAction")
+        {
+            this.ChannelName = channelName;
+            this.Action = action;
+        }
 
         /// <summary>
-        /// Unique identifier for the message recipient — User or GroupChat id
+        /// Unique identifier for the target chat
         /// </summary>
-        public long ChatId { get; set; }
+        public long? ChatId { get; protected set; }
+
+        /// <summary>
+        /// Username of the target channel (in the format @channelusername)
+        /// </summary>
+        public string ChannelName { get; set; }
 
         /// <summary>
         /// Type of action to broadcast. 
@@ -40,13 +52,23 @@ namespace NetTelegramBotApi.Requests
 
         public override HttpContent CreateHttpContent()
         {
-            var values = new[]
+            if (ChatId.HasValue && !string.IsNullOrEmpty(ChannelName))
             {
-                new KeyValuePair<string, string>("chat_id", ChatId.ToString()),
-                new KeyValuePair<string, string>("action", Action)
-            };
+                throw new Exception("Use ChatId or ChannelName, not both.");
+            }
+            var dic = new Dictionary<string, string>();
 
-            return new FormUrlEncodedContent(values);
+            if (ChatId.HasValue)
+            {
+                dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
+            }
+            if (!string.IsNullOrEmpty(ChannelName))
+            {
+                dic.Add("chat_id", ChannelName);
+            }
+            dic.Add("action", Action);
+
+            return new FormUrlEncodedContent(dic);
         }
     }
 }

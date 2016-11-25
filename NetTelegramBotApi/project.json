@@ -1,5 +1,5 @@
 {
-  "version": "3.8.1",
+  "version": "4.0.0-rc2",
   "title": "NetTelegramBotApi",
   "description": "Telegram Bot API library",
 
@@ -9,8 +9,8 @@
     "tags": [ "telegram", "bot", "api" ],
     "projectUrl": "https://github.com/justdmitry/NetTelegramBotApi",
     "iconUrl": "https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif",
-    "copyright": "Copyright © Dmitry Popov, 2015",
-    "releaseNotes": "Upgrade to .NET Core RTM and netstandard1.3",
+    "copyright": "Copyright © Dmitry Popov, 2015-2016",
+    "releaseNotes": "Bot API 2.3 (November 21, 2016) implemented",
     "repository": {
       "type": "git",
       "url": "https://github.com/justdmitry/NetTelegramBotApi.git"

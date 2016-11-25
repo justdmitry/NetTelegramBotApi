@@ -3,12 +3,8 @@
 namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// This object represents a general file (as opposed to photos and audio files). 
-    /// Telegram users can send files of any type of up to 1.5 GB in size.
+    /// This object represents a general file (as opposed to photos, voice messages and audio files).
     /// </summary>
-    /// <remarks>
-    /// A missing thumbnail for a file (or sticker) is presented as an empty object. 
-    /// </remarks>
     public class Document
     {
         /// <summary>

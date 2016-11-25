@@ -9,15 +9,28 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class SendDocument : SendFileRequestBase<Message>
     {
-        public SendDocument(long chatId, FileToSend photo) 
-            : base("sendDocument", "document")
+        public SendDocument(long chatId, FileToSend document) 
+            : base(chatId, "sendDocument", "document")
         {
-            this.ChatId = chatId;
-            this.File = photo;
+            this.File = document;
         }
-        
+        public SendDocument(string channelName, FileToSend document)
+            : base(channelName, "sendDocument", "document")
+        {
+            this.File = document;
+        }
+
+        /// <summary>
+        /// Document caption (may also be used when resending documents by file_id), 0-200 characters
+        /// </summary>
+        public string Caption { get; set; }
+
         protected override void AppendParameters(Action<string, string> appendCallback)
         {
+            if (!string.IsNullOrEmpty(Caption))
+            {
+                appendCallback("caption", Caption);
+            }
             base.AppendParameters(appendCallback);
         }
     }

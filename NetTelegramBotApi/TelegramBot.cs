@@ -22,7 +22,6 @@ namespace NetTelegramBotApi
 
         static TelegramBot()
         {
-            JsonSettings.Converters.Add(new ChatBaseConverter());
             JsonSettings.Converters.Add(new UnixDateTimeConverter());
         }
 
@@ -42,6 +41,7 @@ namespace NetTelegramBotApi
             this.baseAddress = new Uri("https://api.telegram.org/bot" + accessToken + "/");
         }
 
+        /// <exception cref="BotRequestException">When non-Ok response returned from server.</exception>
         public async Task<T> MakeRequestAsync<T>(RequestBase<T> request)
         {
             using (var client = new HttpClient(MakeHttpMessageHandler()))
@@ -58,22 +58,35 @@ namespace NetTelegramBotApi
 
                     using (var response = await client.SendAsync(httpMessage).ConfigureAwait(false))
                     {
-                        if (response.IsSuccessStatusCode)
+                        if ((int)response.StatusCode >= 500)
                         {
-                            var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result = DeserializeMessage<BotResponse<T>>(responseText);
-                            if (result.Ok)
-                            {
-                                var retVal = result.Result;
-                                var forPostProcessing = retVal as IPostProcessingRequired;
-                                if (forPostProcessing != null)
-                                {
-                                    forPostProcessing.PostProcess(accessToken);
-                                }
-                                return retVal;
-                            }
+                            // Let's throw exception. It's server fault
+                            response.EnsureSuccessStatusCode();
                         }
-                        return default(T);
+
+                        var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        var result = DeserializeMessage<BotResponse<T>>(responseText);
+                        if (!result.Ok || !response.IsSuccessStatusCode)
+                        {
+                            var exceptionMessage = $"Request failed (status code {(int)response.StatusCode}): {result.Description}";
+                            throw new BotRequestException(exceptionMessage)
+                            {
+                                StatusCode = response.StatusCode,
+                                ResponseBody = responseText,
+                                Description = result.Description,
+                                ErrorCode = result.ErrorCode,
+                                Parameters = result.Parameters,
+                            };
+                        }
+
+                        var retVal = result.Result;
+                        var forPostProcessing = retVal as IPostProcessingRequired;
+                        if (forPostProcessing != null)
+                        {
+                            forPostProcessing.PostProcess(accessToken);
+                        }
+
+                        return retVal;
                     }
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using NetTelegramBotApi.Types;
 
@@ -34,14 +35,14 @@ namespace NetTelegramBotApi.Requests
         public override HttpContent CreateHttpContent()
         {
             var dic = new Dictionary<string, string>();
-            dic.Add("user_id", UserId.ToString());
+            dic.Add("user_id", UserId.ToString(CultureInfo.InvariantCulture));
             if (Offset.HasValue)
             {
-                dic.Add("offset", Offset.ToString());
+                dic.Add("offset", Offset.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (Limit.HasValue)
             {
-                dic.Add("limit", Limit.ToString());
+                dic.Add("limit", Limit.Value.ToString(CultureInfo.InvariantCulture));
             }
 
             return new FormUrlEncodedContent(dic);

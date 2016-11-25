@@ -9,12 +9,16 @@ namespace NetTelegramBotApi.Requests
     public class SendPhoto : SendFileRequestBase<Message>
     {
         public SendPhoto(long chatId, FileToSend photo) 
-            : base("sendPhoto", "photo")
+            : base(chatId, "sendPhoto", "photo")
         {
-            this.ChatId = chatId;
             this.File = photo;
         }
-        
+        public SendPhoto(string channelName, FileToSend photo)
+            : base(channelName, "sendPhoto", "photo")
+        {
+            this.File = photo;
+        }
+
         /// <summary>
         /// Photo caption (may also be used when resending photos by file_id).
         /// </summary>

@@ -2202,7 +2202,7 @@
           "lib/netstandard1.3/_._": {}
         }
       },
-      "NetTelegramBotApi/3.8.0": {
+      "NetTelegramBotApi/4.0.0-rc1": {
         "type": "project",
         "framework": ".NETStandard,Version=v1.3",
         "dependencies": {
@@ -7001,7 +7001,7 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "NetTelegramBotApi/3.8.0": {
+    "NetTelegramBotApi/4.0.0-rc1": {
       "type": "project",
       "path": "../NetTelegramBotApi/project.json",
       "msbuildProject": "../NetTelegramBotApi/NetTelegramBotApi.xproj"

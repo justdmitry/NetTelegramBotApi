@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using NetTelegramBotApi.Types;
 
@@ -13,18 +13,36 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public abstract class SendFileRequestBase<T> : RequestBase<T>
     {
-        public SendFileRequestBase(string methodName, string fileParameterName)
+        public SendFileRequestBase(long chatId, string methodName, string fileParameterName)
             : base(methodName)
         {
+            this.ChatId = chatId;
+            this.FileParameterName = fileParameterName;
+        }
+        public SendFileRequestBase(string channelName, string methodName, string fileParameterName)
+            : base(methodName)
+        {
+            this.ChannelName = channelName;
             this.FileParameterName = fileParameterName;
         }
 
         /// <summary>
-        /// Unique identifier for the message recipient — User or GroupChat id
+        /// Unique identifier for the target chat
         /// </summary>
-        public long ChatId { get; protected set; }
+        public long? ChatId { get; protected set; }
+
+        /// <summary>
+        /// Username of the target channel (in the format @channelusername)
+        /// </summary>
+        public string ChannelName { get; set; }
 
         public FileToSend File { get; protected set; }
+
+        /// <summary>
+        /// Sends the message silently.
+        /// iOS users will not receive a notification, Android users will receive a notification with no sound.
+        /// </summary>
+        public bool? DisableNotification { get; set; }
 
         /// <summary>
         /// Optional. If the message is a reply, ID of the original message
@@ -32,7 +50,7 @@ namespace NetTelegramBotApi.Requests
         public long? ReplyToMessageId { get; set; }
 
         /// <summary>
-        /// Optional. Additional interface options. A JSON-serialized object for a custom reply keyboard, 
+        /// Optional. Additional interface options. A JSON-serialized object for a custom reply keyboard,
         /// instructions to hide keyboard or to force a reply from the user.
         /// </summary>
         public ReplyMarkupBase ReplyMarkup { get; set; }
@@ -76,10 +94,26 @@ namespace NetTelegramBotApi.Requests
 
         protected virtual void AppendParameters(Action<string, string> appendCallback)
         {
-            appendCallback("chat_id", ChatId.ToString());
+            if (ChatId.HasValue && !string.IsNullOrEmpty(ChannelName))
+            {
+                throw new Exception("Use ChatId or ChannelName, not both.");
+            }
+
+            if (ChatId.HasValue)
+            {
+                appendCallback("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
+            }
+            if (!string.IsNullOrEmpty(ChannelName))
+            {
+                appendCallback("chat_id", ChannelName);
+            }
             if (ReplyToMessageId.HasValue)
             {
-                appendCallback("reply_to_message_id", ReplyToMessageId.Value.ToString());
+                appendCallback("reply_to_message_id", ReplyToMessageId.Value.ToString(CultureInfo.InvariantCulture));
+            }
+            if (DisableNotification.HasValue)
+            {
+                appendCallback("disable_notification", DisableNotification.Value.ToString());
             }
             if (ReplyMarkup != null)
             {

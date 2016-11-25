@@ -28,6 +28,11 @@ namespace NetTelegramBotApi.Types
         public PhotoSize Thumb { get; set; }
 
         /// <summary>
+        /// Optional. Emoji associated with the sticker
+        /// </summary>
+        public string Emoji { get; set; }
+
+        /// <summary>
         /// Optional. File size
         /// </summary>
         public long? FileSize { get; set; }

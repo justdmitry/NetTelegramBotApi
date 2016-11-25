@@ -5,8 +5,13 @@ namespace NetTelegramBotApi.Types
     /// <summary>
     /// This object represents a Telegram user or bot.
     /// </summary>
-    public class User : ChatBase
+    public class User
     {
+        /// <summary>
+        /// Unique identifier for this user, or bot, or group chat
+        /// </summary>
+        public long Id { get; set; }
+
         /// <summary>
         /// User‘s or bot’s first name
         /// </summary>
