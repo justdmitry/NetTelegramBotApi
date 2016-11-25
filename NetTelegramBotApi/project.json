@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0-rc2",
+  "version": "4.0.0",
   "title": "NetTelegramBotApi",
   "description": "Telegram Bot API library",
 
@@ -10,7 +10,7 @@
     "projectUrl": "https://github.com/justdmitry/NetTelegramBotApi",
     "iconUrl": "https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif",
     "copyright": "Copyright © Dmitry Popov, 2015-2016",
-    "releaseNotes": "Bot API 2.3 (November 21, 2016) implemented",
+    "releaseNotes": "See https://github.com/justdmitry/NetTelegramBotApi/releases/tag/v4.0.0",
     "repository": {
       "type": "git",
       "url": "https://github.com/justdmitry/NetTelegramBotApi.git"
