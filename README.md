@@ -3,6 +3,8 @@ C# client library for building Telegram bot (https://core.telegram.org/bots/api)
 
 Contains strongly-types request and response classes, and transport class for sending requests and receiving results.
 
+[![NuGet](https://img.shields.io/nuget/v/NetTelegramBotApi.svg?maxAge=86400&style=flat)](https://www.nuget.org/packages/NetTelegramBotApi/)
+
 ## Usage
 
     var bot = new TelegramBot(accessToken);
@@ -14,15 +16,24 @@ Contains strongly-types request and response classes, and transport class for se
 
 See `TelegramBotDemo` project for more samples.
 
-## Installation
-
-Install as [nuget package](https://www.nuget.org/packages/NetTelegramBotApi):
-
-    Install-Package NetTelegramBotApi
-
-Dependencies: [`Newtonsoft.Json`](https://www.nuget.org/packages/Newtonsoft.Json/)
-
 ## Version history
+
+### 4.0.0 - Big update
+
+Telegram API updated up to [v2.3 (November 21, 2016)](https://core.telegram.org/bots/api-changelog#november-21-2016). Message editing, games - everything should work **except inline mode** (see below).
+
+**Breaking changes** (compared to 3.8.1):
+
+1. `MakeRequestAsync` now throws `BotRequestException` if non-Ok response is received from server.
+2. Typo fixed on `Contact` type: `PhoneNumber` was `PhoneNumbet`
+3. `ReplyKeyboardHide` renamed to `ReplyKeyboardRemove` (when it had been renamed in API???)
+4. Breaking changes in API 2.3:
+    * Parameter `EditMessage` replaced with `DisableEditMessage` in `SetGameScore`
+    * In `ReplyKeyboardRemove`: `HideKeyboard` renamed to `RemoveKeyboard`
+
+**Inline mode**
+
+[Inline mode](https://core.telegram.org/bots/api#inline-mode) needs a lot of new classes to be created. Please make PR if you wish to help.
 
 ### 3.8.1 - .NET Core RTM, netstandard1.3
 
