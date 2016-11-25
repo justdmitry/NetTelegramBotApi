@@ -38,12 +38,17 @@ namespace NetTelegramBotApi.Types
         public Chat ForwardFromChat { get; set; }
 
         /// <summary>
+        /// Optional. For forwarded channel posts, identifier of the original message in the channel
+        /// </summary>
+        public long? ForwardFromMessageId { get; set; }
+
+        /// <summary>
         /// Optional. For forwarded messages, date the original message was sent in Unix time
         /// </summary>
         public DateTimeOffset? ForwardDate { get; set; }
 
         /// <summary>
-        /// Optional. For replies, the original message. 
+        /// Optional. For replies, the original message.
         /// Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
         /// </summary>
         public Message ReplyToMessage { get; set; }
@@ -147,9 +152,9 @@ namespace NetTelegramBotApi.Types
         /// Optional. Service message: the supergroup has been created
         /// </summary>
         /// <remarks>
-        /// This field can‘t be received in a message coming through updates, 
-        /// because bot can’t be a member of a supergroup when it is created. 
-        /// It can only be found in reply_to_message if someone replies to a very first message 
+        /// This field can‘t be received in a message coming through updates,
+        /// because bot can’t be a member of a supergroup when it is created.
+        /// It can only be found in reply_to_message if someone replies to a very first message
         /// in a directly created supergroup.
         /// </remarks>
         public bool SupergroupChatCreated { get; set; }
@@ -158,8 +163,8 @@ namespace NetTelegramBotApi.Types
         /// Optional. Service message: the channel has been created
         /// </summary>
         /// <remarks>
-        /// This field can‘t be received in a message coming through updates, 
-        /// because bot can’t be a member of a channel when it is created. 
+        /// This field can‘t be received in a message coming through updates,
+        /// because bot can’t be a member of a channel when it is created.
         /// It can only be found in reply_to_message if someone replies to a very first message in a channel.
         /// </remarks>
         public bool ChannelChatCreated { get; set; }
@@ -178,7 +183,7 @@ namespace NetTelegramBotApi.Types
         /// Optional. Specified message was pinned
         /// </summary>
         /// <remarks>
-        /// Note that the Message object in this field will not contain further reply_to_message fields 
+        /// Note that the Message object in this field will not contain further reply_to_message fields
         /// even if it is itself a reply.
         /// </remarks>
         public Message PinnedMessage { get; set; }

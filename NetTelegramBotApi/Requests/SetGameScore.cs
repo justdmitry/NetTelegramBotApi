@@ -31,9 +31,14 @@ namespace NetTelegramBotApi.Requests
         public long Score { get; protected set; }
 
         /// <summary>
-        /// Pass True, if the game message should be automatically edited to include the current scoreboard
+        /// Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters
         /// </summary>
-        public bool EditMessage { get; set; }
+        public bool Force { get; set; }
+
+        /// <summary>
+        /// Pass True, if the game message should not be automatically edited to include the current scoreboard
+        /// </summary>
+        public bool DisableEditMessage { get; set; }
 
         /// <summary>
         /// Required if inline_message_id is not specified. Unique identifier for the target chat
@@ -67,7 +72,9 @@ namespace NetTelegramBotApi.Requests
             dic.Add("user_id", UserId.ToString(CultureInfo.InvariantCulture));
             dic.Add("score", Score.ToString(CultureInfo.InvariantCulture));
 
-            dic.Add("edit_message", EditMessage.ToString());
+            dic.Add("force", Force.ToString());
+
+            dic.Add("disable_edit_message", DisableEditMessage.ToString());
 
             if (ChatId.HasValue)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 
 namespace NetTelegramBotApi.Requests
@@ -41,6 +42,12 @@ namespace NetTelegramBotApi.Requests
         /// </summary>
         public string Url { get; set; }
 
+        /// <summary>
+        /// The maximum amount of time in seconds that the result of the callback query may be cached client-side.
+        /// Telegram apps will support caching starting in version 3.14. Defaults to 0.
+        /// </summary>
+        public long CacheTime { get; set; }
+
         public override HttpContent CreateHttpContent()
         {
             var dic = new Dictionary<string, string>();
@@ -59,6 +66,8 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("url", Url);
             }
+
+            dic.Add("cache_time", CacheTime.ToString(CultureInfo.InvariantCulture));
 
             return new FormUrlEncodedContent(dic);
         }

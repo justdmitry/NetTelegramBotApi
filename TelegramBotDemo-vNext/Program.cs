@@ -97,7 +97,7 @@ namespace TelegramBotDemo_vNext
                         }
                         if (contact != null)
                         {
-                            var req = new SendContact(update.Message.Chat.Id, contact.PhoneNumbet, contact.FirstName)
+                            var req = new SendContact(update.Message.Chat.Id, contact.PhoneNumber, contact.FirstName)
                             {
                                 LastName = contact.LastName
                             };
