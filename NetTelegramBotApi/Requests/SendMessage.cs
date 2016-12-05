@@ -32,6 +32,13 @@ namespace NetTelegramBotApi.Requests
         /// </remarks>
         public long? ChatId { get; set; }
 
+        public SendMessage(long chatId, string text, ReplyMarkupBase replyMarkup)
+            : base("sendMessage")
+        {
+            this.ChatId = chatId;
+            this.Text = text;
+            this.ReplyMarkup = replyMarkup;
+        }
         /// <summary>
         /// Target channel (in the format @channelusername)
         /// </summary>
