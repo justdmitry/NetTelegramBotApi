@@ -198,12 +198,13 @@ namespace TelegramBotDemo_vNext
                         }
                         if (update.Message.Text.Length % 2 == 0)
                         {
-                            bot.MakeRequestAsync(new SendMessage(
+                            var msg = bot.MakeRequestAsync(new SendMessage(
                                 update.Message.Chat.Id,
                                 "You wrote *" + update.Message.Text.Length + " characters*")
                             {
                                 ParseMode = SendMessage.ParseModeEnum.Markdown
-                            }).Wait();
+                            }).GetAwaiter().GetResult();
+                            Console.WriteLine($"Issue #45: {msg.From.FirstName}");
                         }
                         else
                         {
