@@ -156,7 +156,10 @@ namespace TelegramBotDemo
                         {
                             var keyb = new ReplyKeyboardMarkup()
                             {
-                                Keyboard = new[] { new[] { "/photo", "/doc", "/docutf8" }, new[] { "/help" } },
+                                Keyboard = new[] {
+                                    new[] { new KeyboardButton("/photo"), new KeyboardButton("/doc"), new KeyboardButton("/docutf8") },
+                                    new[] { new KeyboardButton("/help") }
+                                },
                                 OneTimeKeyboard = true,
                                 ResizeKeyboard = true
                             };
