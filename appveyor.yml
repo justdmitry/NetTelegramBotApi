@@ -1,0 +1,8 @@
+version: N{build}
+image: Visual Studio 2017 RC
+before_build:
+- cmd: dotnet restore
+build:
+  verbosity: minimal
+test_script:
+- cmd: dotnet test NetTelegramBotApi.Tests/NetTelegramBotApi.Tests.csproj
