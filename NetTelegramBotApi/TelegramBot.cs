@@ -13,7 +13,8 @@ namespace NetTelegramBotApi
     {
         public static readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
         {
-            ContractResolver = new Util.JsonLowerCaseUnderscoreContractResolver()
+            ContractResolver = new Util.JsonLowerCaseUnderscoreContractResolver(),
+            NullValueHandling = NullValueHandling.Ignore,
         };
 
         private string accessToken;
