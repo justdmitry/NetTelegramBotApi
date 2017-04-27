@@ -37,7 +37,7 @@ namespace NetTelegramBotApi.Types
         /// <summary>
         /// Optional. New incoming inline query
         /// </summary>
-        public InlineQuery InlineQuery { get; set; }
+        public Inline.InlineQuery InlineQuery { get; set; }
 
         /// <summary>
         /// Optional. The result of an inline query that was chosen by a user and sent to their chat partner.
