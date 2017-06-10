@@ -17,7 +17,7 @@ namespace NetTelegramBotApi.Types
         /// User will not be able to summon this keyboard.
         /// If you want to hide the keyboard from sight but keep it accessible, use one_time_keyboard in ReplyKeyboardMarkup
         /// </remarks>
-        public bool RemoveKeyboard { get; set; }
+        public bool RemoveKeyboard { get; set; } = true;
 
         /// <summary>
         /// Optional. Use this parameter if you want to hide keyboard for specific users only.
