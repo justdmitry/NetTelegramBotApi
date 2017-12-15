@@ -171,7 +171,7 @@ namespace TelegramBotDemo
                         {
                             bot.MakeRequestAsync(new SendMessage(
                                 update.Message.Chat.Id,
-                                "You wrote *" + update.Message.Text.Length + " characters*")
+                                "You wrote: \r\n_" + update.Message.Text.MarkdownEncode() + "_")
                             {
                                 ParseMode = SendMessage.ParseModeEnum.Markdown
                             }).Wait();

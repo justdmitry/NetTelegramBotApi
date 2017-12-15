@@ -200,7 +200,7 @@ namespace TelegramBotDemo_vNext
                         {
                             bot.MakeRequestAsync(new SendMessage(
                                 update.Message.Chat.Id,
-                                "You wrote *" + update.Message.Text.Length + " characters*")
+                                "You wrote: \r\n" + update.Message.Text.MarkdownEncode())
                             {
                                 ParseMode = SendMessage.ParseModeEnum.Markdown
                             }).Wait();
