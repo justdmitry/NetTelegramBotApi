@@ -18,6 +18,11 @@ namespace NetTelegramBotApi.Types
         public string FirstName { get; set; }
 
         /// <summary>
+        /// User‘s or bot’s
+        /// </summary>
+        public bool IsBot { get; set; }
+        
+        /// <summary>
         /// Optional. User‘s or bot’s last name
         /// </summary>
         public string LastName { get; set; }
@@ -26,5 +31,7 @@ namespace NetTelegramBotApi.Types
         /// Optional. User‘s or bot’s username
         /// </summary>
         public string Username { get; set; }
+        
+        
     }
 }
