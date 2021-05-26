@@ -3,11 +3,10 @@
   <PropertyGroup>
     <Description>TelegramBotDemo-vNext Console Application</Description>
     <Authors>Dmitry</Authors>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>TelegramBotDemo-vNext</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>TelegramBotDemo-vNext</PackageId>
-    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

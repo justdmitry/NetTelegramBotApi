@@ -36,7 +36,7 @@ namespace TelegramBotDemo_vNext
 
         public static void RunBot(string accessToken)
         {
-            var bot = new TelegramBot(accessToken);
+            var bot = new TelegramBot(accessToken, new HttpClient());
 
             var me = bot.MakeRequestAsync(new GetMe()).Result;
             if (me == null)
@@ -120,15 +120,13 @@ namespace TelegramBotDemo_vNext
                                 var reqAction = new SendChatAction(update.Message.Chat.Id, "upload_photo");
                                 bot.MakeRequestAsync(reqAction).Wait();
                                 System.Threading.Thread.Sleep(500);
-                                using (var photoData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("TelegramBotDemo-vNext.t_logo.png"))
+                                using var photoData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("TelegramBotDemo-vNext.t_logo.png");
+                                var req = new SendPhoto(update.Message.Chat.Id, new FileToSend(photoData, "Telegram_logo.png"))
                                 {
-                                    var req = new SendPhoto(update.Message.Chat.Id, new FileToSend(photoData, "Telegram_logo.png"))
-                                    {
-                                        Caption = "Telegram_logo.png"
-                                    };
-                                    var msg = bot.MakeRequestAsync(req).Result;
-                                    uploadedPhotoId = msg.Photo.Last().FileId;
-                                }
+                                    Caption = "Telegram_logo.png"
+                                };
+                                var msg = bot.MakeRequestAsync(req).Result;
+                                uploadedPhotoId = msg.Photo.Last().FileId;
                             }
                             else
                             {
@@ -147,12 +145,10 @@ namespace TelegramBotDemo_vNext
                                 var reqAction = new SendChatAction(update.Message.Chat.Id, "upload_document");
                                 bot.MakeRequestAsync(reqAction).Wait();
                                 System.Threading.Thread.Sleep(500);
-                                using (var docData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("TelegramBotDemo-vNext.Telegram_Bot_API.htm"))
-                                {
-                                    var req = new SendDocument(update.Message.Chat.Id, new FileToSend(docData, "Telegram_Bot_API.htm"));
-                                    var msg = bot.MakeRequestAsync(req).Result;
-                                    uploadedDocumentId = msg.Document.FileId;
-                                }
+                                using var docData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("TelegramBotDemo-vNext.Telegram_Bot_API.htm");
+                                var req = new SendDocument(update.Message.Chat.Id, new FileToSend(docData, "Telegram_Bot_API.htm"));
+                                var msg = bot.MakeRequestAsync(req).Result;
+                                uploadedDocumentId = msg.Document.FileId;
                             }
                             else
                             {
@@ -166,12 +162,10 @@ namespace TelegramBotDemo_vNext
                             var reqAction = new SendChatAction(update.Message.Chat.Id, "upload_document");
                             bot.MakeRequestAsync(reqAction).Wait();
                             System.Threading.Thread.Sleep(500);
-                            using (var docData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("TelegramBotDemo-vNext.Пример_UTF8_filename.txt"))
-                            {
-                                var req = new SendDocument(update.Message.Chat.Id, new FileToSend(docData, "Пример_UTF8_filename.txt"));
-                                var msg = bot.MakeRequestAsync(req).Result;
-                                uploadedDocumentId = msg.Document.FileId;
-                            }
+                            using var docData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("TelegramBotDemo-vNext.Пример_UTF8_filename.txt");
+                            var req = new SendDocument(update.Message.Chat.Id, new FileToSend(docData, "Пример_UTF8_filename.txt"));
+                            var msg = bot.MakeRequestAsync(req).Result;
+                            uploadedDocumentId = msg.Document.FileId;
                             continue;
                         }
                         if (text == "/help")

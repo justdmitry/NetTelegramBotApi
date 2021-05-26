@@ -18,6 +18,11 @@ See `TelegramBotDemo` project for more samples.
 
 ## Version history
 
+### 5.0.0 - net5.0
+
+* Target framworks changed: `net5.0` only
+* `System.Text.Json` replaces `Newtosoft.Json`
+
 ### 4.0.0 - Big update
 
 Telegram API updated up to [v2.3 (November 21, 2016)](https://core.telegram.org/bots/api-changelog#november-21-2016). Message editing, games - everything should work **except inline mode** (see below).

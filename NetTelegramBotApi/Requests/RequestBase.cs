@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net.Http;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace NetTelegramBotApi.Requests
 {
@@ -12,12 +12,12 @@ namespace NetTelegramBotApi.Requests
         }
 
         public string MethodName { get; protected set; }
-        
+
         public abstract HttpContent CreateHttpContent();
 
         protected string JsonSerialize(object value)
         {
-            return JsonConvert.SerializeObject(value, TelegramBot.JsonSettings);
+            return JsonSerializer.Serialize(value, TelegramBot.JsonOptions);
         }
     }
 }

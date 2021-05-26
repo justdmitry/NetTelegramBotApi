@@ -3,37 +3,32 @@
   <PropertyGroup>
     <Description>Telegram Bot API library</Description>
     <AssemblyTitle>NetTelegramBotApi</AssemblyTitle>
-    <Version>4.2.0</Version>
-    <TargetFrameworks>net45;net46;netstandard1.3</TargetFrameworks>
-    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <Version>5.0.0</Version>
+    <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>NetTelegramBotApi</AssemblyName>
     <PackageId>NetTelegramBotApi</PackageId>
     <PackageTags>telegram;bot;api</PackageTags>
-    <PackageReleaseNotes>See https://github.com/justdmitry/NetTelegramBotApi/releases/tag/v4.2.0</PackageReleaseNotes>
-    <PackageIconUrl>https://raw.githubusercontent.com/justdmitry/NetTelegramBotApi/master/package-icon.gif</PackageIconUrl>
+    <PackageReleaseNotes>See https://github.com/justdmitry/NetTelegramBotApi/releases/tag/v5.0.0</PackageReleaseNotes>
+    <PackageIcon>package-icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/justdmitry/NetTelegramBotApi</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/justdmitry/NetTelegramBotApi.git</RepositoryUrl>
     <Authors>Dmitry Popov</Authors>
     <Company />
-    <Copyright>Copyright © Dmitry Popov, 2015-2017</Copyright>
+    <Copyright>Copyright © Dmitry Popov, 2015-2021</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="System.Text.Json" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Reference Include="System" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Reference Include="System" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="Microsoft.CSharp" />
+  <ItemGroup>
+    <None Include="..\package-icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

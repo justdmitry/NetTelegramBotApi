@@ -1,105 +1,81 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using NetTelegramBotApi.Requests;
 using NetTelegramBotApi.Util;
 using NetTelegramBotApi.Types;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace NetTelegramBotApi
 {
-    public class TelegramBot
+    public class TelegramBot : ITelegramBot
     {
-        public static readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
+        public static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions
         {
-            ContractResolver = new Util.JsonLowerCaseUnderscoreContractResolver(),
-            NullValueHandling = NullValueHandling.Ignore,
+            PropertyNamingPolicy = new JsonLowerCaseUnderscoreNamingPolicy(),
+            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         };
 
-        private string accessToken;
-
-        private Uri baseAddress;
+        private readonly string accessToken;
+        private readonly HttpClient httpClient;
 
         static TelegramBot()
         {
-            JsonSettings.Converters.Add(new UnixDateTimeConverter());
+            JsonOptions.Converters.Add(new UnixDateTimeConverter());
         }
 
-        /// <summary>
-        /// Proxy information for internet access
-        /// </summary>
-        public IWebProxy WebProxy { get; set; }
-
-        public TelegramBot(string accessToken)
+        public TelegramBot(string accessToken, HttpClient httpClient)
         {
             if (string.IsNullOrWhiteSpace(accessToken))
             {
-                throw new ArgumentNullException("accessToken");
+                throw new ArgumentNullException(nameof(accessToken));
             }
 
             this.accessToken = accessToken;
-            this.baseAddress = new Uri("https://api.telegram.org/bot" + accessToken + "/");
+            this.httpClient = httpClient ?? new HttpClient();
         }
 
         /// <exception cref="BotRequestException">When non-Ok response returned from server.</exception>
         public async Task<T> MakeRequestAsync<T>(RequestBase<T> request)
         {
-            using (var client = new HttpClient(MakeHttpMessageHandler()))
+            var uri = new Uri("https://api.telegram.org/bot" + accessToken + "/" + request.MethodName);
+            using var httpMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+            using var postContent = request.CreateHttpContent();
+            if (postContent != null)
             {
-                client.BaseAddress = baseAddress;
-                using (var httpMessage = new HttpRequestMessage(HttpMethod.Get, request.MethodName))
-                {
-                    var postContent = request.CreateHttpContent();
-                    if (postContent != null)
-                    {
-                        httpMessage.Method = HttpMethod.Post;
-                        httpMessage.Content = postContent;
-                    }
-
-                    using (var response = await client.SendAsync(httpMessage).ConfigureAwait(false))
-                    {
-                        if ((int)response.StatusCode >= 500)
-                        {
-                            // Let's throw exception. It's server fault
-                            response.EnsureSuccessStatusCode();
-                        }
-
-                        var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        var result = DeserializeMessage<BotResponse<T>>(responseText);
-                        if (!result.Ok || !response.IsSuccessStatusCode)
-                        {
-                            var exceptionMessage = $"Request failed (status code {(int)response.StatusCode}): {result.Description}";
-                            throw new BotRequestException(exceptionMessage)
-                            {
-                                StatusCode = response.StatusCode,
-                                ResponseBody = responseText,
-                                Description = result.Description,
-                                ErrorCode = result.ErrorCode,
-                                Parameters = result.Parameters,
-                            };
-                        }
-
-                        var retVal = result.Result;
-                        var forPostProcessing = retVal as IPostProcessingRequired;
-                        if (forPostProcessing != null)
-                        {
-                            forPostProcessing.PostProcess(accessToken);
-                        }
-
-                        return retVal;
-                    }
-                }
+                httpMessage.Method = HttpMethod.Post;
+                httpMessage.Content = postContent;
             }
-        }
 
-        protected virtual HttpClientHandler MakeHttpMessageHandler()
-        {
-            return new HttpClientHandler
+            using var response = await httpClient.SendAsync(httpMessage).ConfigureAwait(false);
+            if ((int)response.StatusCode >= 500)
             {
-                Proxy = WebProxy,
-                UseProxy = (WebProxy != null)
-            };
+                // Let's throw exception. It's server fault
+                response.EnsureSuccessStatusCode();
+            }
+
+            var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var result = DeserializeMessage<BotResponse<T>>(responseText);
+            if (!result.Ok || !response.IsSuccessStatusCode)
+            {
+                var exceptionMessage = $"Request failed (status code {(int)response.StatusCode}): {result.Description}";
+                throw new BotRequestException(exceptionMessage)
+                {
+                    StatusCode = response.StatusCode,
+                    ResponseBody = responseText,
+                    Description = result.Description,
+                    ErrorCode = result.ErrorCode,
+                    Parameters = result.Parameters,
+                };
+            }
+
+            var retVal = result.Result;
+            if (retVal is IPostProcessingRequired forPostProcessing)
+            {
+                forPostProcessing.PostProcess(accessToken);
+            }
+
+            return retVal;
         }
 
         /// <summary>
@@ -112,9 +88,9 @@ namespace NetTelegramBotApi
             return DeserializeMessage<Update>(json);
         }
 
-        protected T DeserializeMessage<T>(string json)
+        protected static T DeserializeMessage<T>(string json)
         {
-            return JsonConvert.DeserializeObject<T>(json, JsonSettings);
+            return JsonSerializer.Deserialize<T>(json, JsonOptions);
         }
     }
 }
