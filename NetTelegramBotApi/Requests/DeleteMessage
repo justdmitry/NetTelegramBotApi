@@ -1,0 +1,45 @@
+using System.Collections.Generic;
+using System.Net.Http;
+
+namespace NetTelegramBotApi.Requests
+{
+    /// <summary>
+    /// Use this method to delete chat message.
+    /// On success, True is returned.
+    /// </summary>
+    public class DeleteMessage : RequestBase<bool>
+    {
+        public DeleteMessage(long chatId, long messageId)
+            : base("deleteMessage")
+        {
+            this.ChatId = chatId;
+            this.MessageId = messageId;
+        }
+
+        /// <summary>
+        /// Unique identifier for the target chat 
+        /// </summary>
+        public long? ChatId { get; protected set; }
+
+        /// <summary>
+        /// Identifier of the message
+        /// </summary>
+        public long? MessageId { get; protected set; }
+
+        public override HttpContent CreateHttpContent()
+        {
+            var dic = new Dictionary<string, string>();
+            if (MessageId.HasValue)
+            {
+                dic.Add("chat_id", ChatId.ToString());
+            }
+
+            if (MessageId.HasValue)
+            {
+                dic.Add("message_id", MessageId.ToString());
+            }
+
+            return new FormUrlEncodedContent(dic);
+        }
+    }
+}
