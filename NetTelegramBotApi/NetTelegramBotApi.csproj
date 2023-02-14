@@ -3,19 +3,19 @@
   <PropertyGroup>
     <Description>Telegram Bot API library</Description>
     <AssemblyTitle>NetTelegramBotApi</AssemblyTitle>
-    <Version>5.1.0</Version>
+    <Version>5.2.0</Version>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>NetTelegramBotApi</AssemblyName>
     <PackageId>NetTelegramBotApi</PackageId>
     <PackageTags>telegram;bot;api</PackageTags>
-    <PackageReleaseNotes>See https://github.com/justdmitry/NetTelegramBotApi/releases/tag/v5.1.0</PackageReleaseNotes>
+    <PackageReleaseNotes>User and Chat types updated (as in Bot API 6.5 from Feb 3, 2023)</PackageReleaseNotes>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/justdmitry/NetTelegramBotApi</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/justdmitry/NetTelegramBotApi.git</RepositoryUrl>
     <Authors>Dmitry Popov</Authors>
     <Company />
-    <Copyright>Copyright © Dmitry Popov, 2015-2021</Copyright>
+    <Copyright>Copyright © Dmitry Popov, 2015-2022</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
