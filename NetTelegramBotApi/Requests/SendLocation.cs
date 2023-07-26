@@ -36,6 +36,11 @@ namespace NetTelegramBotApi.Requests
         public string ChannelName { get; set; }
 
         /// <summary>
+        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+        /// </summary>
+        public long? MessageThreadId { get; set; }
+
+        /// <summary>
         /// Latitude of location
         /// </summary>
         public float Latitude { get; set; }
@@ -77,6 +82,10 @@ namespace NetTelegramBotApi.Requests
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
+            }
+            if (MessageThreadId.HasValue)
+            {
+                dic.Add("message_thread_id", MessageThreadId.Value.ToString(CultureInfo.InvariantCulture));
             }
             dic.Add("latitude", Latitude.ToString(CultureInfo.InvariantCulture));
             dic.Add("longitude", Longitude.ToString(CultureInfo.InvariantCulture));

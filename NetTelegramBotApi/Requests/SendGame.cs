@@ -37,6 +37,11 @@ namespace NetTelegramBotApi.Requests
         public string ChannelName { get; set; }
 
         /// <summary>
+        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+        /// </summary>
+        public long? MessageThreadId { get; set; }
+
+        /// <summary>
         /// Short name of the game, serves as the unique identifier for the game. Set up your games via @Botfather
         /// </summary>
         public string GameShortName { get; set; }
@@ -74,6 +79,11 @@ namespace NetTelegramBotApi.Requests
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
+            }
+
+            if (MessageThreadId.HasValue)
+            {
+                dic.Add("message_thread_id", MessageThreadId.Value.ToString(CultureInfo.InvariantCulture));
             }
 
             dic.Add("game_short_name", GameShortName);

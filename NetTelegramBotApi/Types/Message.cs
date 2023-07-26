@@ -13,6 +13,11 @@ namespace NetTelegramBotApi.Types
         public long MessageId { get; set; }
 
         /// <summary>
+        /// Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
+        /// </summary>
+        public long? MessageThreadId { get; set; }
+
+        /// <summary>
         /// Optional. Sender, can be empty for messages sent to channels
         /// </summary>
         public User From { get; set; }

@@ -36,6 +36,11 @@ namespace NetTelegramBotApi.Requests
         /// </summary>
         public string ChannelName { get; set; }
 
+        /// <summary>
+        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+        /// </summary>
+        public long? MessageThreadId { get; set; }
+
         public FileToSend File { get; protected set; }
 
         /// <summary>
@@ -106,6 +111,10 @@ namespace NetTelegramBotApi.Requests
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 appendCallback("chat_id", ChannelName);
+            }
+            if (MessageThreadId.HasValue)
+            {
+                appendCallback("message_thread_id", MessageThreadId.Value.ToString(CultureInfo.InvariantCulture));
             }
             if (ReplyToMessageId.HasValue)
             {
