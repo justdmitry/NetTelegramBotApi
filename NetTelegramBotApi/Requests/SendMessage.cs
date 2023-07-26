@@ -91,7 +91,11 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("parse_mode", "Markdown");
             }
-            if (ParseMode == ParseModeEnum.HTML)
+            else if (ParseMode == ParseModeEnum.MarkdownV2)
+            {
+                dic.Add("parse_mode", "MarkdownV2");
+            }
+            else if (ParseMode == ParseModeEnum.HTML)
             {
                 dic.Add("parse_mode", "HTML");
             }
@@ -119,6 +123,7 @@ namespace NetTelegramBotApi.Requests
         {
             None,
             Markdown,
+            MarkdownV2,
             HTML
         }
     }
