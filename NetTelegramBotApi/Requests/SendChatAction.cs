@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
-using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi.Requests
 {
@@ -26,6 +25,17 @@ namespace NetTelegramBotApi.Requests
         {
             this.ChannelName = channelName;
             this.Action = action;
+        }
+
+        public SendChatAction(long chatId, ChatActionEnum action)
+            : this(chatId, ConvertChatAction(action))
+        {
+            // Nothing
+        }
+        public SendChatAction(string channelName, ChatActionEnum action)
+            : this(channelName, ConvertChatAction(action))
+        {
+            // Nothing
         }
 
         /// <summary>
@@ -69,6 +79,40 @@ namespace NetTelegramBotApi.Requests
             dic.Add("action", Action);
 
             return new FormUrlEncodedContent(dic);
+        }
+
+        protected static string ConvertChatAction(ChatActionEnum action)
+        {
+            return action switch
+            {
+                ChatActionEnum.Typing => "typing",
+                ChatActionEnum.UploadPhoto => "upload_photo",
+                ChatActionEnum.RecordVideo => "record_video",
+                ChatActionEnum.UploadVideo => "upload_video",
+                ChatActionEnum.RecordVoice => "record_voice",
+                ChatActionEnum.UploadVoice => "upload_voice",
+                ChatActionEnum.UploadDocument => "upload_document",
+                ChatActionEnum.ChooseSticker => "choose_sticker",
+                ChatActionEnum.FindLocation => "find_location",
+                ChatActionEnum.RecordVideoNote => "record_video_note",
+                ChatActionEnum.UploadVideoNote => "upload_video_note",
+                _ => string.Empty,
+            };
+        }
+
+        public enum ChatActionEnum
+        {
+            Typing,
+            UploadPhoto,
+            RecordVideo,
+            UploadVideo,
+            RecordVoice,
+            UploadVoice,
+            UploadDocument,
+            ChooseSticker,
+            FindLocation,
+            RecordVideoNote,
+            UploadVideoNote,
         }
     }
 }
