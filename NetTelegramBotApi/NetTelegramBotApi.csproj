@@ -3,26 +3,26 @@
   <PropertyGroup>
     <Description>Telegram Bot API library</Description>
     <AssemblyTitle>NetTelegramBotApi</AssemblyTitle>
-    <Version>5.3.0</Version>
-    <TargetFramework>net6.0</TargetFramework>
+    <Version>5.4.0</Version>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>NetTelegramBotApi</AssemblyName>
     <PackageId>NetTelegramBotApi</PackageId>
     <PackageTags>telegram;bot;api</PackageTags>
-    <PackageReleaseNotes>MessageThreadId, ChatActionEnum, MarkdownV2</PackageReleaseNotes>
+    <PackageReleaseNotes>Upgrade to net8</PackageReleaseNotes>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/justdmitry/NetTelegramBotApi</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/justdmitry/NetTelegramBotApi.git</RepositoryUrl>
     <Authors>Dmitry Popov</Authors>
     <Company />
-    <Copyright>Copyright © Dmitry Popov, 2015-2023</Copyright>
+    <Copyright>Copyright © Dmitry Popov, 2015-2024</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="6.0.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>

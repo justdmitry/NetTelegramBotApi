@@ -18,6 +18,24 @@ See `TelegramBotDemo` project for more samples.
 
 ## Version history
 
+### 5.4 - net8.0
+
+* Target framworks changed: `net8.0` only
+
+### 5.3
+
+* Add ParseMode.MarkdownV2
+* Add SendChatAction.ChatActionEnum
+* Add MessageThreadId
+
+### 5.2
+
+* User and Chat updated to actual Bot API
+
+### 5.1 - net6.0
+
+* Target framworks changed: `net6.0` only
+
 ### 5.0.0 - net5.0
 
 * Target framworks changed: `net5.0` only
