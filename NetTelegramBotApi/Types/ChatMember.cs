@@ -17,21 +17,15 @@
 
         public ChatMemberStatus GetStatus()
         {
-            switch (Status)
+            return Status switch
             {
-                case "creator":
-                    return ChatMemberStatus.Creator;
-                case "administrator":
-                    return ChatMemberStatus.Administrator;
-                case "member":
-                    return ChatMemberStatus.Member;
-                case "left":
-                    return ChatMemberStatus.Left;
-                case "kicked":
-                    return ChatMemberStatus.Kicked;
-                default:
-                    return ChatMemberStatus.Unknown;
-            }
+                "creator" => ChatMemberStatus.Creator,
+                "administrator" => ChatMemberStatus.Administrator,
+                "member" => ChatMemberStatus.Member,
+                "left" => ChatMemberStatus.Left,
+                "kicked" => ChatMemberStatus.Kicked,
+                _ => ChatMemberStatus.Unknown,
+            };
         }
     }
 }
