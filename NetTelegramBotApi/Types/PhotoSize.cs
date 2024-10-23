@@ -6,22 +6,22 @@
     public class PhotoSize
     {
         /// <summary>
-        /// Unique identifier for this file
+        /// Unique identifier for this file.
         /// </summary>
         public string FileId { get; set; }
 
         /// <summary>
-        /// Photo width
+        /// Photo width.
         /// </summary>
         public long Width { get; set; }
 
         /// <summary>
-        /// Photo height
+        /// Photo height.
         /// </summary>
         public long Height { get; set; }
 
         /// <summary>
-        /// Optional. File size
+        /// Optional. File size.
         /// </summary>
         public long? FileSize { get; set; }
     }

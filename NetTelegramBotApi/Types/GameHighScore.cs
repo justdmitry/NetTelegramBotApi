@@ -6,17 +6,17 @@
     public class GameHighScore
     {
         /// <summary>
-        /// Position in high score table for the game
+        /// Position in high score table for the game.
         /// </summary>
         public long Position { get; set; }
 
         /// <summary>
-        /// User
+        /// User.
         /// </summary>
         public User User { get; set; }
 
         /// <summary>
-        /// Score
+        /// Score.
         /// </summary>
         public long Score { get; set; }
     }

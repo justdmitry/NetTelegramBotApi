@@ -9,11 +9,11 @@
     public class ReplyKeyboardRemove : ReplyMarkupBase
     {
         /// <summary>
-        /// Requests clients to remove the custom keyboard
+        /// Requests clients to remove the custom keyboard.
         /// </summary>
         /// <remarks>
         /// User will not be able to summon this keyboard.
-        /// If you want to hide the keyboard from sight but keep it accessible, use one_time_keyboard in ReplyKeyboardMarkup
+        /// If you want to hide the keyboard from sight but keep it accessible, use one_time_keyboard in ReplyKeyboardMarkup.
         /// </remarks>
         public bool RemoveKeyboard { get; set; }
 

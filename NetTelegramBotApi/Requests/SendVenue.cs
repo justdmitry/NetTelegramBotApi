@@ -28,42 +28,42 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Unique identifier for the target chat
+        /// Unique identifier for the target chat.
         /// </summary>
         public long? ChatId { get; protected set; }
 
         /// <summary>
-        /// Username of the target channel (in the format @channelusername)
+        /// Username of the target channel (in the format @channelusername).
         /// </summary>
         public string ChannelName { get; set; }
 
         /// <summary>
-        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         /// </summary>
         public long? MessageThreadId { get; set; }
 
         /// <summary>
-        /// Latitude of the venue
+        /// Latitude of the venue.
         /// </summary>
         public float Latitude { get; set; }
 
         /// <summary>
-        /// Longitude of the venue
+        /// Longitude of the venue.
         /// </summary>
         public float Longitude { get; set; }
 
         /// <summary>
-        /// Name of the venue
+        /// Name of the venue.
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// Address of the venue
+        /// Address of the venue.
         /// </summary>
         public string Address { get; set; }
 
         /// <summary>
-        /// Optional. Foursquare identifier of the venue
+        /// Optional. Foursquare identifier of the venue.
         /// </summary>
         public string FoursquareId { get; set; }
 
@@ -74,7 +74,7 @@ namespace NetTelegramBotApi.Requests
         public bool? DisableNotification { get; set; }
 
         /// <summary>
-        /// Optional. If the message is a reply, ID of the original message
+        /// Optional. If the message is a reply, ID of the original message.
         /// </summary>
         public long? ReplyToMessageId { get; set; }
 

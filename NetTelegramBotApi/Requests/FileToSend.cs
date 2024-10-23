@@ -32,7 +32,7 @@ namespace NetTelegramBotApi.Requests
 
         /// <summary>
         /// True, if file is already uploaded to server, only <see cref="ExistingFileId"/> is used.
-        /// Otherwise, <see cref="NewFileContent"/> and <see cref="NewFileName"/> are used;
+        /// Otherwise, <see cref="NewFileContent"/> and <see cref="NewFileName"/> are used.
         /// </summary>
         public bool AlreadyUploaded { get; private set; }
 

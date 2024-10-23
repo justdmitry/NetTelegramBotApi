@@ -25,12 +25,12 @@ namespace NetTelegramBotApi.Requests
         public long? Offset { get; set; }
 
         /// <summary>
-        /// Limits the number of updates to be retrieved. Values between 1—100 are accepted. Defaults to 100
+        /// Limits the number of updates to be retrieved. Values between 1—100 are accepted. Defaults to 100.
         /// </summary>
         public int? Limit { get; set; }
 
         /// <summary>
-        /// Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling
+        /// Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling.
         /// </summary>
         public int? Timeout { get; set; }
 

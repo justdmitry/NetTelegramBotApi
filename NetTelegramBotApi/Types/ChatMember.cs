@@ -6,12 +6,12 @@
     public class ChatMember
     {
         /// <summary>
-        /// Information about the user
+        /// Information about the user.
         /// </summary>
         public User User { get; set; }
 
         /// <summary>
-        /// The member's status in the chat. Can be “creator”, “administrator”, “member”, “left” or “kicked”
+        /// The member's status in the chat. Can be “creator”, “administrator”, “member”, “left” or “kicked”.
         /// </summary>
         public string Status { get; set; }
 

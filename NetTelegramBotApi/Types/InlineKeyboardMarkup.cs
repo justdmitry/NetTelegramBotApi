@@ -10,7 +10,7 @@
     public class InlineKeyboardMarkup : ReplyMarkupBase
     {
         /// <summary>
-        /// Array of button rows, each represented by an Array of InlineKeyboardButton objects
+        /// Array of button rows, each represented by an Array of InlineKeyboardButton objects.
         /// </summary>
         public InlineKeyboardButton[][] InlineKeyboard { get; set; }
     }

@@ -6,6 +6,6 @@
         Private = 1,
         Group = 2,
         Supergroup = 3,
-        Channel = 4
+        Channel = 4,
     }
 }

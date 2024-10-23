@@ -44,27 +44,27 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Unique identifier for the target chat
+        /// Unique identifier for the target chat.
         /// </summary>
         public long? ChatId { get; set; }
 
         /// <summary>
-        /// Unique identifier for target channel (in the format @channelusername)
+        /// Unique identifier for target channel (in the format @channelusername).
         /// </summary>
         public string ChannelName { get; set; }
 
         /// <summary>
-        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         /// </summary>
         public long? MessageThreadId { get; set; }
 
         /// <summary>
-        /// Unique identifier for the chat where the original message was sent — User or GroupChat id
+        /// Unique identifier for the chat where the original message was sent — User or GroupChat id.
         /// </summary>
         public long? FromChatId { get; set; }
 
         /// <summary>
-        /// Unique identifier for the chat where the original message was sent - channel username in the format @channelusername)
+        /// Unique identifier for the chat where the original message was sent - channel username in the format @channelusername).
         /// </summary>
         public string FromChannelName { get; set; }
 
@@ -75,7 +75,7 @@ namespace NetTelegramBotApi.Requests
         public bool? DisableNotification { get; set; }
 
         /// <summary>
-        /// Unique message identifier
+        /// Unique message identifier.
         /// </summary>
         public long MessageId { get; set; }
 

@@ -6,7 +6,7 @@
     public class User
     {
         /// <summary>
-        /// Unique identifier for this user, or bot, or group chat
+        /// Unique identifier for this user, or bot, or group chat.
         /// </summary>
         public long Id { get; set; }
 
@@ -16,22 +16,22 @@
         public bool IsBot { get; set; }
 
         /// <summary>
-        /// User's or bot's first name
+        /// User's or bot's first name.
         /// </summary>
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Optional. User's or bot's last name
+        /// Optional. User's or bot's last name.
         /// </summary>
         public string LastName { get; set; }
 
         /// <summary>
-        /// Optional. User's or bot's username
+        /// Optional. User's or bot's username.
         /// </summary>
         public string Username { get; set; }
 
         /// <summary>
-        /// Optional. IETF language tag of the user's language
+        /// Optional. IETF language tag of the user's language.
         /// </summary>
         public string LanguageCode { get; set; }
 

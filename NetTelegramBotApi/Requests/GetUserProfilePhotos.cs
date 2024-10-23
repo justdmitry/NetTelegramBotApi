@@ -17,7 +17,7 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Unique identifier of the target user
+        /// Unique identifier of the target user.
         /// </summary>
         public long UserId { get; set; }
 

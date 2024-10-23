@@ -25,27 +25,27 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Target user id
+        /// Target user id.
         /// </summary>
         public long UserId { get; protected set; }
 
         /// <summary>
-        /// Required if inline_message_id is not specified. Unique identifier for the target chat
+        /// Required if inline_message_id is not specified. Unique identifier for the target chat.
         /// </summary>
         public long? ChatId { get; protected set; }
 
         /// <summary>
-        /// Required if inline_message_id is not specified. Unique identifier for the target chat
+        /// Required if inline_message_id is not specified. Unique identifier for the target chat.
         /// </summary>
         public string ChannelName { get; set; }
 
         /// <summary>
-        /// Required if inline_message_id is not specified. Identifier of the sent message
+        /// Required if inline_message_id is not specified. Identifier of the sent message.
         /// </summary>
         public long? MessageId { get; set; }
 
         /// <summary>
-        /// Required if chat_id and message_id are not specified. Identifier of the inline message
+        /// Required if chat_id and message_id are not specified. Identifier of the inline message.
         /// </summary>
         public string InlineMessageId { get; set; }
 

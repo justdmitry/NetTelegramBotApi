@@ -10,20 +10,20 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     /// <remarks>
     /// If you'd like to make sure that the Webhook request comes from Telegram,
-    /// we recommend using a secret path in the URL, e.g. www.example.com/<secret_path>.
+    /// we recommend using a secret path in the URL, e.g. www.example.com/secret_path.
     /// Since nobody else knows this secret_path, you can be pretty sure it’s us.
     /// </remarks>
     public class SetWebhook : SendFileRequestBase<bool>
     {
-        /// <param name="url">HTTPS url to send updates to. Use null or empty string to remove webhook integration</param>
+        /// <param name="url">HTTPS url to send updates to. Use null or empty string to remove webhook integration.</param>
         public SetWebhook(string url)
             : this(url, null)
         {
             // Nothing
         }
 
-        /// <param name="url">HTTPS url to send updates to. Use null or empty string to remove webhook integration</param>
-        /// <param name="certificatePublicKey">Optional. Your public key certificate so that the root certificate in use can be checked</param>
+        /// <param name="url">HTTPS url to send updates to. Use null or empty string to remove webhook integration.</param>
+        /// <param name="certificatePublicKey">Optional. Your public key certificate so that the root certificate in use can be checked.</param>
         public SetWebhook(string url, FileToSend certificatePublicKey)
             : base((string)null, "setWebhook", "certificate")
         {
@@ -37,7 +37,7 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// HTTPS url to send updates to. Use an empty string to remove webhook integration
+        /// HTTPS url to send updates to. Use an empty string to remove webhook integration.
         /// </summary>
         public string Url { get; set; }
 

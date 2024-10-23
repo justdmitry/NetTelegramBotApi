@@ -21,42 +21,42 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// User identifier
+        /// User identifier.
         /// </summary>
         public long UserId { get; protected set; }
 
         /// <summary>
-        /// New score, must be positive
+        /// New score, must be positive.
         /// </summary>
         public long Score { get; protected set; }
 
         /// <summary>
-        /// Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters
+        /// Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters.
         /// </summary>
         public bool Force { get; set; }
 
         /// <summary>
-        /// Pass True, if the game message should not be automatically edited to include the current scoreboard
+        /// Pass True, if the game message should not be automatically edited to include the current scoreboard.
         /// </summary>
         public bool DisableEditMessage { get; set; }
 
         /// <summary>
-        /// Required if inline_message_id is not specified. Unique identifier for the target chat
+        /// Required if inline_message_id is not specified. Unique identifier for the target chat.
         /// </summary>
         public long? ChatId { get; protected set; }
 
         /// <summary>
-        /// Required if inline_message_id is not specified. Unique identifier for the target chat
+        /// Required if inline_message_id is not specified. Unique identifier for the target chat.
         /// </summary>
         public string ChannelName { get; set; }
 
         /// <summary>
-        /// Required if inline_message_id is not specified. Identifier of the sent message
+        /// Required if inline_message_id is not specified. Identifier of the sent message.
         /// </summary>
         public long? MessageId { get; set; }
 
         /// <summary>
-        /// Required if chat_id and message_id are not specified. Identifier of the inline message
+        /// Required if chat_id and message_id are not specified. Identifier of the inline message.
         /// </summary>
         public string InlineMessageId { get; set; }
 

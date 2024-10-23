@@ -9,17 +9,17 @@
     public class InlineKeyboardButton
     {
         /// <summary>
-        /// Label text on the button
+        /// Label text on the button.
         /// </summary>
         public string Text { get; set; }
 
         /// <summary>
-        /// Optional. HTTP url to be opened when button is pressed
+        /// Optional. HTTP url to be opened when button is pressed.
         /// </summary>
         public string Url { get; set; }
 
         /// <summary>
-        /// Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes
+        /// Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes.
         /// </summary>
         public string CallbackData { get; set; }
 

@@ -7,12 +7,12 @@
     public class Game
     {
         /// <summary>
-        /// Title of the game
+        /// Title of the game.
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// Description of the game
+        /// Description of the game.
         /// </summary>
         public string Description { get; set; }
 
@@ -35,7 +35,7 @@
 
         /// <summary>
         /// Optional. Animation that will be displayed in the game message in chats.
-        /// Upload via BotFather
+        /// Upload via BotFather.
         /// </summary>
         public Animation Animation { get; set; }
     }

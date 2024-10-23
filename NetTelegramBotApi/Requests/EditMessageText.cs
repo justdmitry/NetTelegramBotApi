@@ -36,27 +36,27 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Optional. Required if inline_message_id is not specified. Unique identifier for the target chat
+        /// Optional. Required if inline_message_id is not specified. Unique identifier for the target chat.
         /// </summary>
         public long? ChatId { get; protected set; }
 
         /// <summary>
-        /// Optional. Required if inline_message_id is not specified. Username of the target channel
+        /// Optional. Required if inline_message_id is not specified. Username of the target channel.
         /// </summary>
         public string ChannelName { get; protected set; }
 
         /// <summary>
-        /// Optional. Required if inline_message_id is not specified. Identifier of the sent message
+        /// Optional. Required if inline_message_id is not specified. Identifier of the sent message.
         /// </summary>
         public long? MessageId { get; protected set; }
 
         /// <summary>
-        /// Optional. Required if chat_id and message_id are not specified. Identifier of the inline message
+        /// Optional. Required if chat_id and message_id are not specified. Identifier of the inline message.
         /// </summary>
         public long? InlineMessageId { get; protected set; }
 
         /// <summary>
-        /// New text of the message
+        /// New text of the message.
         /// </summary>
         public string Text { get; set; }
 
@@ -67,7 +67,7 @@ namespace NetTelegramBotApi.Requests
         public SendMessage.ParseModeEnum ParseMode { get; set; }
 
         /// <summary>
-        /// Optional. Disables link previews for links in this message
+        /// Optional. Disables link previews for links in this message.
         /// </summary>
         public bool? DisableWebPagePreview { get; set; }
 

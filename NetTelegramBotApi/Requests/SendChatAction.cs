@@ -41,17 +41,17 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Unique identifier for the target chat
+        /// Unique identifier for the target chat.
         /// </summary>
         public long? ChatId { get; protected set; }
 
         /// <summary>
-        /// Username of the target channel (in the format @channelusername)
+        /// Username of the target channel (in the format @channelusername).
         /// </summary>
         public string ChannelName { get; set; }
 
         /// <summary>
-        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         /// </summary>
         public long? MessageThreadId { get; set; }
 

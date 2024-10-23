@@ -7,15 +7,15 @@ namespace NetTelegramBotApi.Types
     /// (act as if the user has selected the bot‘s message and tapped ’Reply').
     /// This can be extremely useful if you want to create user-friendly step-by-step interfaces
     /// without having to sacrifice privacy mode.
-    /// <see cref="https://core.telegram.org/bots/api#forcereply">See more info on Telegram site</see>
+    /// <see cref="https://core.telegram.org/bots/api#forcereply">See more info on Telegram site</see>.
     /// </summary>
     public class ForceReply : ReplyMarkupBase
     {
         /// <summary>
-        /// Shows reply interface to the user, as if they manually selected the bot‘s message and tapped ’Reply'
+        /// Shows reply interface to the user, as if they manually selected the bot‘s message and tapped ’Reply'.
         /// </summary>
         /// <remarks>
-        /// In original Telegram API, member is called 'ForceReply', but in C# it's forbidden to have properties with same name as class
+        /// In original Telegram API, member is called 'ForceReply', but in C# it's forbidden to have properties with same name as class.
         /// </remarks>
         [JsonPropertyName("force_reply")]
         public bool Force { get; set; }

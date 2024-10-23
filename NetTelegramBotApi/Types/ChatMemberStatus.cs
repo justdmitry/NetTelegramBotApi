@@ -7,6 +7,6 @@
         Administrator,
         Member,
         Left,
-        Kicked
+        Kicked,
     }
 }

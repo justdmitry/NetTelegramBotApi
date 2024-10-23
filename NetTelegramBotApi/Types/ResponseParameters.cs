@@ -1,7 +1,7 @@
 ﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// Contains information about why a request was unsuccessfull
+    /// Contains information about why a request was unsuccessfull.
     /// </summary>
     public class ResponseParameters
     {
@@ -12,7 +12,7 @@
 
         /// <summary>
         /// Optional. In case of exceeding flood control,
-        /// the number of seconds left to wait before the request can be repeated
+        /// the number of seconds left to wait before the request can be repeated.
         /// </summary>
         public long? RetryAfter { get; set; }
     }

@@ -6,12 +6,12 @@
     public class Location
     {
         /// <summary>
-        /// Longitude as defined by sender
+        /// Longitude as defined by sender.
         /// </summary>
         public float Longitude { get; set; }
 
         /// <summary>
-        /// Latitude as defined by sender
+        /// Latitude as defined by sender.
         /// </summary>
         public float Latitude { get; set; }
     }

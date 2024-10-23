@@ -13,6 +13,6 @@
         Code = 8,
         Pre = 9,
         TextLink = 10,
-        TextMention = 11
+        TextMention = 11,
     }
 }

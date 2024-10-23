@@ -27,22 +27,22 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Unique identifier for the target chat
+        /// Unique identifier for the target chat.
         /// </summary>
         public long? ChatId { get; protected set; }
 
         /// <summary>
-        /// Username of the target channel (in the format @channelusername)
+        /// Username of the target channel (in the format @channelusername).
         /// </summary>
         public string ChannelName { get; set; }
 
         /// <summary>
-        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         /// </summary>
         public long? MessageThreadId { get; set; }
 
         /// <summary>
-        /// Short name of the game, serves as the unique identifier for the game. Set up your games via @Botfather
+        /// Short name of the game, serves as the unique identifier for the game. Set up your games via @Botfather.
         /// </summary>
         public string GameShortName { get; set; }
 
@@ -53,7 +53,7 @@ namespace NetTelegramBotApi.Requests
         public bool? DisableNotification { get; set; }
 
         /// <summary>
-        /// Optional. If the message is a reply, ID of the original message
+        /// Optional. If the message is a reply, ID of the original message.
         /// </summary>
         public long? ReplyToMessageId { get; set; }
 

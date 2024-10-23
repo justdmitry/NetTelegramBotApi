@@ -29,22 +29,22 @@ namespace NetTelegramBotApi.Requests
         /// Unique identifier for the message recipient — User or GroupChat id.
         /// </summary>
         /// <remarks>
-        /// Use <see cref="ChannelName"/> for sending to channels
+        /// Use <see cref="ChannelName"/> for sending to channels.
         /// </remarks>
         public long? ChatId { get; set; }
 
         /// <summary>
-        /// Target channel (in the format @channelusername)
+        /// Target channel (in the format @channelusername).
         /// </summary>
         public string ChannelName { get; set; }
 
         /// <summary>
-        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+        /// Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         /// </summary>
         public long? MessageThreadId { get; set; }
 
         /// <summary>
-        /// Text of the message to be sent
+        /// Text of the message to be sent.
         /// </summary>
         public string Text { get; set; }
 
@@ -55,7 +55,7 @@ namespace NetTelegramBotApi.Requests
         public ParseModeEnum ParseMode { get; set; }
 
         /// <summary>
-        /// Optional. Disables link previews for links in this message
+        /// Optional. Disables link previews for links in this message.
         /// </summary>
         public bool? DisableWebPagePreview { get; set; }
 
@@ -66,7 +66,7 @@ namespace NetTelegramBotApi.Requests
         public bool? DisableNotification { get; set; }
 
         /// <summary>
-        /// Optional. If the message is a reply, ID of the original message
+        /// Optional. If the message is a reply, ID of the original message.
         /// </summary>
         public long? ReplyToMessageId { get; set; }
 
@@ -142,7 +142,7 @@ namespace NetTelegramBotApi.Requests
             None,
             Markdown,
             MarkdownV2,
-            HTML
+            HTML,
         }
     }
 }

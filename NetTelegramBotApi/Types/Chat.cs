@@ -8,19 +8,18 @@ namespace NetTelegramBotApi.Types
     public class Chat
     {
         /// <summary>
-        /// Unique identifier for this chat
+        /// Unique identifier for this chat.
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// Type of chat, can be either “private”, “group”, “supergroup” or “channel”. See also <seealso cref="GetChatType"/>
+        /// Type of chat, can be either “private”, “group”, “supergroup” or “channel”. See also <seealso cref="GetChatType"/>.
         /// </summary>
         public string Type { get; set; }
 
         /// <summary>
-        /// Returns one of 'ChatType' members, based on chat 'Type' value,
+        /// Returns one of 'ChatType' members, based on chat 'Type' value.
         /// </summary>
-        /// <returns></returns>
         public ChatType GetChatType()
         {
             return Type switch
@@ -54,7 +53,7 @@ namespace NetTelegramBotApi.Types
         public string LastName { get; set; }
 
         /// <summary>
-        /// Optional. True, if the supergroup chat is a forum (has topics enabled)
+        /// Optional. True, if the supergroup chat is a forum (has topics enabled).
         /// </summary>
         public bool IsForum { get; set; }
 
@@ -79,7 +78,7 @@ namespace NetTelegramBotApi.Types
         public string Bio { get; set; }
 
         /// <summary>
-        /// Optional. True, if privacy settings of the other party in the private chat allows to use tg://user?id=<user_id> links only in chats with the user. Returned only in getChat.
+        /// Optional. True, if privacy settings of the other party in the private chat allows to use tg://user?id=&lt;user_id&gt; links only in chats with the user. Returned only in getChat.
         /// </summary>
         public bool HasPrivateForwards { get; set; }
 

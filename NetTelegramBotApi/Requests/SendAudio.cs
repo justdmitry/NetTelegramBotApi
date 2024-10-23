@@ -25,22 +25,22 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Audio caption, 0-200 characters
+        /// Audio caption, 0-200 characters.
         /// </summary>
         public string Caption { get; set; }
 
         /// <summary>
-        /// Duration of sent audio in seconds
+        /// Duration of sent audio in seconds.
         /// </summary>
         public int? Duration { get; set; }
 
         /// <summary>
-        /// Performer of sent audio
+        /// Performer of sent audio.
         /// </summary>
         public string Performer { get; set; }
 
         /// <summary>
-        /// Title of sent audio
+        /// Title of sent audio.
         /// </summary>
         public string Title { get; set; }
 

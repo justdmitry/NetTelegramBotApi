@@ -18,7 +18,7 @@
         public Message Message { get; set; }
 
         /// <summary>
-        /// Optional. New version of a message that is known to the bot and was edited
+        /// Optional. New version of a message that is known to the bot and was edited.
         /// </summary>
         public Message EditedMessage { get; set; }
 
@@ -28,12 +28,12 @@
         public Message ChannelPost { get; set; }
 
         /// <summary>
-        /// Optional. New version of a channel post that is known to the bot and was edited
+        /// Optional. New version of a channel post that is known to the bot and was edited.
         /// </summary>
         public Message EditedChannelPost { get; set; }
 
         /// <summary>
-        /// Optional. New incoming inline query
+        /// Optional. New incoming inline query.
         /// </summary>
         public InlineQuery InlineQuery { get; set; }
 
@@ -43,7 +43,7 @@
         public ChosenInlineResult ChosenInlineResult { get; set; }
 
         /// <summary>
-        /// Optional. New incoming callback query
+        /// Optional. New incoming callback query.
         /// </summary>
         public CallbackQuery CallbackQuery { get; set; }
     }

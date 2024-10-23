@@ -18,12 +18,12 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Unique identifier for the query to be answered
+        /// Unique identifier for the query to be answered.
         /// </summary>
         public string CallbackQueryId { get; protected set; }
 
         /// <summary>
-        /// Optional. Text of the notification. If not specified, nothing will be shown to the user
+        /// Optional. Text of the notification. If not specified, nothing will be shown to the user.
         /// </summary>
         public string Text { get; set; }
 

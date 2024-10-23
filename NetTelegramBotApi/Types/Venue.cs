@@ -6,22 +6,22 @@
     public class Venue
     {
         /// <summary>
-        /// Venue location
+        /// Venue location.
         /// </summary>
         public Location Location { get; set; }
 
         /// <summary>
-        /// Name of the venue
+        /// Name of the venue.
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// Address of the venue
+        /// Address of the venue.
         /// </summary>
         public string Address { get; set; }
 
         /// <summary>
-        /// Optional. Foursquare identifier of the venue
+        /// Optional. Foursquare identifier of the venue.
         /// </summary>
         public string foursquareId { get; set; }
     }
