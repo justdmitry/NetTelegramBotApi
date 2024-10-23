@@ -17,6 +17,7 @@ namespace NetTelegramBotApi.Requests
         {
             this.File = audio;
         }
+
         public SendAudio(string channelName, FileToSend audio)
             : base(channelName, "sendAudio", "audio")
         {

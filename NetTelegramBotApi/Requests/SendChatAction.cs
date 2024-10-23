@@ -20,6 +20,7 @@ namespace NetTelegramBotApi.Requests
             this.ChatId = chatId;
             this.Action = action;
         }
+
         public SendChatAction(string channelName, string action)
             : base("sendChatAction")
         {
@@ -32,6 +33,7 @@ namespace NetTelegramBotApi.Requests
         {
             // Nothing
         }
+
         public SendChatAction(string channelName, ChatActionEnum action)
             : this(channelName, ConvertChatAction(action))
         {
@@ -71,20 +73,24 @@ namespace NetTelegramBotApi.Requests
             {
                 throw new Exception("Use ChatId or ChannelName, not both.");
             }
+
             var dic = new Dictionary<string, string>();
 
             if (ChatId.HasValue)
             {
                 dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
             }
+
             if (MessageThreadId.HasValue)
             {
                 dic.Add("message_thread_id", MessageThreadId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             dic.Add("action", Action);
 
             return new FormUrlEncodedContent(dic);

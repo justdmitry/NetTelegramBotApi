@@ -13,6 +13,7 @@ namespace NetTelegramBotApi.Requests
         {
             this.File = photo;
         }
+
         public SendPhoto(string channelName, FileToSend photo)
             : base(channelName, "sendPhoto", "photo")
         {
@@ -30,6 +31,7 @@ namespace NetTelegramBotApi.Requests
             {
                 appendCallback("caption", Caption);
             }
+
             base.AppendParameters(appendCallback);
         }
     }

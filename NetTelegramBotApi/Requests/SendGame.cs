@@ -69,6 +69,7 @@ namespace NetTelegramBotApi.Requests
             {
                 throw new Exception("Use ChatId or ChannelName, not both.");
             }
+
             var dic = new Dictionary<string, string>();
 
             if (ChatId.HasValue)

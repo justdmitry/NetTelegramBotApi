@@ -19,6 +19,7 @@ namespace NetTelegramBotApi.Requests
             this.ChatId = chatId;
             this.FileParameterName = fileParameterName;
         }
+
         public SendFileRequestBase(string channelName, string methodName, string fileParameterName)
             : base(methodName)
         {
@@ -74,6 +75,7 @@ namespace NetTelegramBotApi.Requests
                 {
                     dic.Add(FileParameterName, File.ExistingFileId);
                 }
+
                 AppendParameters((string name, string value) => dic.Add(name, value));
                 return new FormUrlEncodedContent(dic);
             }
@@ -108,22 +110,27 @@ namespace NetTelegramBotApi.Requests
             {
                 appendCallback("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 appendCallback("chat_id", ChannelName);
             }
+
             if (MessageThreadId.HasValue)
             {
                 appendCallback("message_thread_id", MessageThreadId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (ReplyToMessageId.HasValue)
             {
                 appendCallback("reply_to_message_id", ReplyToMessageId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (DisableNotification.HasValue)
             {
                 appendCallback("disable_notification", DisableNotification.Value.ToString());
             }
+
             if (ReplyMarkup != null)
             {
                 appendCallback("reply_markup", JsonSerialize(ReplyMarkup));

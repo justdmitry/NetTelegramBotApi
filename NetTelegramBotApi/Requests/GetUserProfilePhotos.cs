@@ -39,6 +39,7 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("offset", Offset.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (Limit.HasValue)
             {
                 dic.Add("limit", Limit.Value.ToString(CultureInfo.InvariantCulture));

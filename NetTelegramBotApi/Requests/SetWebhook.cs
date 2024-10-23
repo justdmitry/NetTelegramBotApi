@@ -32,6 +32,7 @@ namespace NetTelegramBotApi.Requests
             {
                 throw new InvalidOperationException("You can't use preloaded (earlier) files as certificate. Please provide binary data.");
             }
+
             this.File = certificatePublicKey;
         }
 

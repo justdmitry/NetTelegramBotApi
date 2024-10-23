@@ -24,6 +24,7 @@ namespace NetTelegramBotApi.Types
             {
                 return MessageEntityType.Mention;
             }
+
             switch (Type.ToLowerInvariant())
             {
                 case "hashtag":

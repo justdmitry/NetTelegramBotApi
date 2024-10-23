@@ -14,6 +14,7 @@ namespace NetTelegramBotApi.Requests
         {
             this.File = document;
         }
+
         public SendDocument(string channelName, FileToSend document)
             : base(channelName, "sendDocument", "document")
         {
@@ -31,6 +32,7 @@ namespace NetTelegramBotApi.Requests
             {
                 appendCallback("caption", Caption);
             }
+
             base.AppendParameters(appendCallback);
         }
     }

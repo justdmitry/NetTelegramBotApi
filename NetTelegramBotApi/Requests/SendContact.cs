@@ -18,6 +18,7 @@ namespace NetTelegramBotApi.Requests
             this.PhoneNumber = phoneNumber;
             this.FirstName = firstName;
         }
+
         public SendContact(string channelName, string phoneNumber, string firstName)
             : base("sendContact")
         {
@@ -79,20 +80,24 @@ namespace NetTelegramBotApi.Requests
             {
                 throw new Exception("Use ChatId or ChannelName, not both.");
             }
+
             var dic = new Dictionary<string, string>();
 
             if (ChatId.HasValue)
             {
                 dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
             }
+
             if (MessageThreadId.HasValue)
             {
                 dic.Add("message_thread_id", MessageThreadId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             dic.Add("phone_number", PhoneNumber);
             dic.Add("first_name", FirstName);
             if (!string.IsNullOrEmpty(LastName))
@@ -104,10 +109,12 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("disable_notification", DisableNotification.Value.ToString());
             }
+
             if (ReplyToMessageId.HasValue)
             {
                 dic.Add("reply_to_message_id", ReplyToMessageId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (ReplyMarkup != null)
             {
                 dic.Add("reply_markup", JsonSerialize(ReplyMarkup));

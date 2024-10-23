@@ -15,6 +15,7 @@ namespace NetTelegramBotApi.Requests
         {
             this.ChatId = chatId;
         }
+
         public LeaveChat(string channelName)
             : base("leaveChat")
         {
@@ -37,12 +38,14 @@ namespace NetTelegramBotApi.Requests
             {
                 throw new Exception("Use ChatId or ChannelName, not both.");
             }
+
             var dic = new Dictionary<string, string>();
 
             if (ChatId.HasValue)
             {
                 dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);

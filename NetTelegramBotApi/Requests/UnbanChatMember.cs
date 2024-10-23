@@ -17,12 +17,14 @@ namespace NetTelegramBotApi.Requests
             this.ChatId = chatId;
             this.UserId = userId;
         }
+
         public UnbanChatMember(string channelName, long userId)
             : base("unbanChatMember")
         {
             this.ChannelName = channelName;
             this.UserId = userId;
         }
+
         /// <summary>
         /// Unique identifier for the target chat
         /// </summary>
@@ -44,16 +46,19 @@ namespace NetTelegramBotApi.Requests
             {
                 throw new Exception("Use ChatId or ChannelName, not both.");
             }
+
             var dic = new Dictionary<string, string>();
 
             if (ChatId.HasValue)
             {
                 dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
             }
+
             dic.Add("user_id", UserId.ToString(CultureInfo.InvariantCulture));
 
             return new FormUrlEncodedContent(dic);

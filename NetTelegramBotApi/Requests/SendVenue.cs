@@ -18,6 +18,7 @@ namespace NetTelegramBotApi.Requests
             this.Latitude = latitude;
             this.Longitude = longitude;
         }
+
         public SendVenue(string channelName, float latitude, float longitude)
             : base("sendLocation")
         {
@@ -89,20 +90,24 @@ namespace NetTelegramBotApi.Requests
             {
                 throw new Exception("Use ChatId or ChannelName, not both.");
             }
+
             var dic = new Dictionary<string, string>();
 
             if (ChatId.HasValue)
             {
                 dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
             }
+
             if (MessageThreadId.HasValue)
             {
                 dic.Add("message_thread_id", MessageThreadId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             dic.Add("latitude", Latitude.ToString(CultureInfo.InvariantCulture));
             dic.Add("longitude", Longitude.ToString(CultureInfo.InvariantCulture));
             dic.Add("title", Title);
@@ -116,10 +121,12 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("disable_notification", DisableNotification.Value.ToString());
             }
+
             if (ReplyToMessageId.HasValue)
             {
                 dic.Add("reply_to_message_id", ReplyToMessageId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (ReplyMarkup != null)
             {
                 dic.Add("reply_markup", JsonSerialize(ReplyMarkup));

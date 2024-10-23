@@ -16,6 +16,7 @@ namespace NetTelegramBotApi.Requests
         {
             this.File = video;
         }
+
         public SendVideo(string channelName, FileToSend video)
             : base(channelName, "sendVideo", "video")
         {
@@ -48,14 +49,17 @@ namespace NetTelegramBotApi.Requests
             {
                 appendCallback("duration", Duration.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (Width.HasValue)
             {
                 appendCallback("width", Width.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (Height.HasValue)
             {
                 appendCallback("height", Height.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(Caption))
             {
                 appendCallback("caption", Caption);

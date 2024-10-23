@@ -13,6 +13,7 @@ namespace NetTelegramBotApi.Requests
         {
             this.File = sticker;
         }
+
         public SendSticker(string channelName, FileToSend sticker)
             : base(channelName, "sendSticker", "sticker")
         {

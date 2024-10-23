@@ -18,6 +18,7 @@ namespace NetTelegramBotApi.Requests
             this.FromChatId = fromChatId;
             this.MessageId = messageId;
         }
+
         public ForwardMessage(long chatId, string fromChannelName, long messageId)
             : base("forwardMessage")
         {
@@ -25,6 +26,7 @@ namespace NetTelegramBotApi.Requests
             this.FromChannelName = fromChannelName;
             this.MessageId = messageId;
         }
+
         public ForwardMessage(string channelName, long fromChatId, long messageId)
             : base("forwardMessage")
         {
@@ -32,6 +34,7 @@ namespace NetTelegramBotApi.Requests
             this.FromChatId = fromChatId;
             this.MessageId = messageId;
         }
+
         public ForwardMessage(string channelName, string fromChannelName, long messageId)
             : base("forwardMessage")
         {
@@ -82,6 +85,7 @@ namespace NetTelegramBotApi.Requests
             {
                 throw new Exception("Use ChatId or ChannelName, not both.");
             }
+
             if (FromChatId.HasValue && !string.IsNullOrEmpty(FromChannelName))
             {
                 throw new Exception("Use FromChatId or FromChannelName, not both.");
@@ -93,26 +97,32 @@ namespace NetTelegramBotApi.Requests
             {
                 dic.Add("chat_id", ChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 dic.Add("chat_id", ChannelName);
             }
+
             if (MessageThreadId.HasValue)
             {
                 dic.Add("message_thread_id", MessageThreadId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (FromChatId.HasValue)
             {
                 dic.Add("from_chat_id", FromChatId.Value.ToString(CultureInfo.InvariantCulture));
             }
+
             if (!string.IsNullOrEmpty(FromChannelName))
             {
                 dic.Add("from_chat_id", FromChannelName);
             }
+
             if (DisableNotification.HasValue)
             {
                 dic.Add("disable_notification", DisableNotification.Value.ToString());
             }
+
             dic.Add("message_id", MessageId.ToString(CultureInfo.InvariantCulture));
 
             return new FormUrlEncodedContent(dic);
