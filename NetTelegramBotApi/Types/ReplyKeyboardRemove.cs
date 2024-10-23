@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
     /// Upon receiving a message with this object, Telegram clients will remove the current custom keyboard

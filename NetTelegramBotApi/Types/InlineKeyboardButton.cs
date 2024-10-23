@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
     /// This object represents one button of an inline keyboard. You must use exactly one of the optional fields.

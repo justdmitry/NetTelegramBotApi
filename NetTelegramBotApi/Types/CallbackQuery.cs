@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// This object represents an incoming callback query from a callback button in an inline keyboard. 
-    /// If the button that originated the query was attached to a message sent by the bot, the field message will be presented. 
+    /// This object represents an incoming callback query from a callback button in an inline keyboard.
+    /// If the button that originated the query was attached to a message sent by the bot, the field message will be presented.
     /// If the button was attached to a message sent via the bot (in inline mode), the field inline_message_id will be presented.
     /// </summary>
     public class CallbackQuery
@@ -20,7 +18,7 @@ namespace NetTelegramBotApi.Types
         public User From { get; set; }
 
         /// <summary>
-        /// Optional. Message with the callback button that originated the query. 
+        /// Optional. Message with the callback button that originated the query.
         /// Note that message content and message date will not be available if the message is too old
         /// </summary>
         public Message Message { get; set; }

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Text.Json;
 
 namespace NetTelegramBotApi.Util
 {

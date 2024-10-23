@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     public enum ChatType : byte
     {

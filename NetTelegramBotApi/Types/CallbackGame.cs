@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
     /// A placeholder, currently holds no information. Use BotFather to set up your game.

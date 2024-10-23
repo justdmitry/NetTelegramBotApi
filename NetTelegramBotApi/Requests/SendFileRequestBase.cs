@@ -90,7 +90,7 @@ namespace NetTelegramBotApi.Requests
                     string.Concat(Encoding.UTF8.GetBytes(File.NewFileName).Select(x => (char)x).Where(x => x != '"'))
                     );
                 var fileContent = new StreamContent(File.NewFileContent);
-                fileContent.Headers.Add("Content-Disposition",contentDispositionValue);
+                fileContent.Headers.Add("Content-Disposition", contentDispositionValue);
                 content.Add(fileContent);
 
                 return content;

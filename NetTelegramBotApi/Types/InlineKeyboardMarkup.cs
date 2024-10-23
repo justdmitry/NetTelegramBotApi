@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
     /// This object represents an inline keyboard that appears right next to the message it belongs to.

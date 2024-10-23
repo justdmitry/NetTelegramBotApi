@@ -4,12 +4,12 @@ using NetTelegramBotApi.Types;
 namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to send general files. On success, the sent Message is returned. 
+    /// Use this method to send general files. On success, the sent Message is returned.
     /// Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
     /// </summary>
     public class SendDocument : SendFileRequestBase<Message>
     {
-        public SendDocument(long chatId, FileToSend document) 
+        public SendDocument(long chatId, FileToSend document)
             : base(chatId, "sendDocument", "document")
         {
             this.File = document;

@@ -8,7 +8,7 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class SendPhoto : SendFileRequestBase<Message>
     {
-        public SendPhoto(long chatId, FileToSend photo) 
+        public SendPhoto(long chatId, FileToSend photo)
             : base(chatId, "sendPhoto", "photo")
         {
             this.File = photo;

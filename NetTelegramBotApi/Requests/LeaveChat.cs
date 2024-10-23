@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
-using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi.Requests
 {

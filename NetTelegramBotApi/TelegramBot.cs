@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using NetTelegramBotApi.Requests;
-using NetTelegramBotApi.Util;
 using NetTelegramBotApi.Types;
-using System.Text.Json;
+using NetTelegramBotApi.Util;
 
 namespace NetTelegramBotApi
 {

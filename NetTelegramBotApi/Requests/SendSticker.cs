@@ -8,7 +8,7 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public class SendSticker : SendFileRequestBase<Message>
     {
-        public SendSticker(long chatId, FileToSend sticker) 
+        public SendSticker(long chatId, FileToSend sticker)
             : base(chatId, "sendSticker", "sticker")
         {
             this.File = sticker;
@@ -18,7 +18,7 @@ namespace NetTelegramBotApi.Requests
         {
             this.File = sticker;
         }
-        
+
         protected override void AppendParameters(Action<string, string> appendCallback)
         {
             base.AppendParameters(appendCallback);

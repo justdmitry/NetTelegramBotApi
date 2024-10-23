@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NetTelegramBotApi
+﻿namespace NetTelegramBotApi
 {
     /// <summary>
     /// Implemented by Types, which require additional post-processing after receiving from server

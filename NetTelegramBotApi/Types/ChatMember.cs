@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
     /// This object contains information about one member of the chat.
@@ -19,7 +17,7 @@ namespace NetTelegramBotApi.Types
 
         public ChatMemberStatus GetStatus()
         {
-            switch(Status)
+            switch (Status)
             {
                 case "creator":
                     return ChatMemberStatus.Creator;

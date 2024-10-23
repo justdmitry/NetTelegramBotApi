@@ -1,14 +1,12 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// This object represents a file ready to be downloaded. 
-    /// The file can be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>. 
-    /// It is guaranteed that the link will be valid for at least 1 hour. 
+    /// This object represents a file ready to be downloaded.
+    /// The file can be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>.
+    /// It is guaranteed that the link will be valid for at least 1 hour.
     /// When the link expires, a new one can be requested by calling <see cref="NetTelegramBotApi.Requests.GetFile">getFile</see>.
     /// </summary>
-    public class File: IPostProcessingRequired
+    public class File : IPostProcessingRequired
     {
         /// <summary>
         /// Unique identifier for this file

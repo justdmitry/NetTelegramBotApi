@@ -1,10 +1,9 @@
 ﻿namespace NetTelegramBotApi
 {
-    using System;
     using System.Net;
     using System.Threading.Tasks;
-    using NetTelegramBotApi.Types;
     using NetTelegramBotApi.Requests;
+    using NetTelegramBotApi.Types;
     using Xunit;
 
     public class InlineKeyboardButtonTest

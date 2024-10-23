@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// This object represents an incoming inline query. 
+    /// This object represents an incoming inline query.
     /// When the user sends an empty query, your bot could return some default or trending results.
     /// </summary>
     public class InlineQuery

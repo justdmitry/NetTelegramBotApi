@@ -7,7 +7,7 @@ using NetTelegramBotApi.Types;
 namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to get up to date information about the chat 
+    /// Use this method to get up to date information about the chat
     /// (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.).
     /// </summary>
     public class GetChat : RequestBase<Chat>
@@ -24,7 +24,7 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Unique identifier for the target chat 
+        /// Unique identifier for the target chat
         /// </summary>
         public long? ChatId { get; protected set; }
 

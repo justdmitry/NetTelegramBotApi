@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// Represents a result of an inline query that was chosen by the user and sent to their chat partner. 
+    /// Represents a result of an inline query that was chosen by the user and sent to their chat partner.
     /// </summary>
     public class ChosenInlineResult
     {
@@ -23,8 +21,8 @@ namespace NetTelegramBotApi.Types
         public Location Location { get; set; }
 
         /// <summary>
-        /// Optional. Identifier of the sent inline message. 
-        /// Available only if there is an inline keyboard attached to the message. 
+        /// Optional. Identifier of the sent inline message.
+        /// Available only if there is an inline keyboard attached to the message.
         /// Will be also received in callback queries and can be used to edit the message.
         /// </summary>
         public string InlineMessageId { get; set; }

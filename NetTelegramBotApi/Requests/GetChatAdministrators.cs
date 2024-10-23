@@ -7,8 +7,8 @@ using NetTelegramBotApi.Types;
 namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to get a list of administrators in a chat. 
-    /// On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. 
+    /// Use this method to get a list of administrators in a chat.
+    /// On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots.
     /// If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
     /// </summary>
     public class GetChatAdministrators : RequestBase<ChatMember[]>
@@ -25,7 +25,7 @@ namespace NetTelegramBotApi.Requests
         }
 
         /// <summary>
-        /// Unique identifier for the target chat 
+        /// Unique identifier for the target chat
         /// </summary>
         public long? ChatId { get; protected set; }
 

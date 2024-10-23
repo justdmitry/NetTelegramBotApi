@@ -1,5 +1,4 @@
-﻿using System;
-using NetTelegramBotApi.Types;
+﻿using NetTelegramBotApi.Types;
 
 namespace NetTelegramBotApi
 {

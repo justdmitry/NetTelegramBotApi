@@ -1,6 +1,5 @@
 ﻿namespace NetTelegramBotApi.Requests
 {
-    using System;
     using System.Net.Http;
 
     public class DeleteWebhook : RequestBase<bool>
