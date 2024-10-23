@@ -31,7 +31,7 @@ namespace NetTelegramBotApi.Requests
         public EditMessageCaption(long inlineMessageId, string caption)
             : base("editMessageCaption")
         {
-            this.InlineMessageId = InlineMessageId;
+            this.InlineMessageId = inlineMessageId;
             this.Caption = caption;
         }
 

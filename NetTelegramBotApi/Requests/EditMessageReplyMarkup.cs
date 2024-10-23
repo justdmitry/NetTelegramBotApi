@@ -31,7 +31,7 @@ namespace NetTelegramBotApi.Requests
         public EditMessageReplyMarkup(long inlineMessageId, InlineKeyboardMarkup replyMarkup)
             : base("editMessageReplyMarkup")
         {
-            this.InlineMessageId = InlineMessageId;
+            this.InlineMessageId = inlineMessageId;
             this.ReplyMarkup = replyMarkup;
         }
 

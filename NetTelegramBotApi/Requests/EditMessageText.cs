@@ -31,7 +31,7 @@ namespace NetTelegramBotApi.Requests
         public EditMessageText(long inlineMessageId, string text)
             : base("editMessageText")
         {
-            this.InlineMessageId = InlineMessageId;
+            this.InlineMessageId = inlineMessageId;
             this.Text = text;
         }
 
