@@ -69,7 +69,7 @@ namespace NetTelegramBotApi.Requests
         {
             if (ChatId.HasValue && !string.IsNullOrEmpty(ChannelName))
             {
-                throw new Exception("Use ChatId or ChannelName, not both.");
+                throw new InvalidOperationException("Use ChatId or ChannelName, not both.");
             }
 
             var dic = new Dictionary<string, string>();
