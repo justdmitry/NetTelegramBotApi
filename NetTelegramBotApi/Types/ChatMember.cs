@@ -22,6 +22,7 @@
                 "creator" => ChatMemberStatus.Creator,
                 "administrator" => ChatMemberStatus.Administrator,
                 "member" => ChatMemberStatus.Member,
+                "restricted" => ChatMemberStatus.Restricted,
                 "left" => ChatMemberStatus.Left,
                 "kicked" => ChatMemberStatus.Kicked,
                 _ => ChatMemberStatus.Unknown,

@@ -6,6 +6,7 @@
         Creator,
         Administrator,
         Member,
+        Restricted,
         Left,
         Kicked,
     }
