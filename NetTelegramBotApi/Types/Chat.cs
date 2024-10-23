@@ -18,21 +18,6 @@ namespace NetTelegramBotApi.Types
         public string Type { get; set; }
 
         /// <summary>
-        /// Returns one of 'ChatType' members, based on chat 'Type' value.
-        /// </summary>
-        public ChatType GetChatType()
-        {
-            return Type switch
-            {
-                "private" => ChatType.Private,
-                "group" => ChatType.Group,
-                "supergroup" => ChatType.Supergroup,
-                "channel" => ChatType.Channel,
-                _ => ChatType.Unknown,
-            };
-        }
-
-        /// <summary>
         /// Optional. Title, for supergroups, channels and group chats.
         /// </summary>
         public string Title { get; set; }
@@ -163,9 +148,18 @@ namespace NetTelegramBotApi.Types
         public object Location { get; set; }
 
         /// <summary>
-        /// Optional. True if a group has ‘All Members Are Admins’ enabled.
+        /// Returns one of 'ChatType' members, based on chat 'Type' value.
         /// </summary>
-        [Obsolete("Removed from Telegram API")]
-        public bool AllMembersAreAdministrators { get; set; }
+        public ChatType GetChatType()
+        {
+            return Type switch
+            {
+                "private" => ChatType.Private,
+                "group" => ChatType.Group,
+                "supergroup" => ChatType.Supergroup,
+                "channel" => ChatType.Channel,
+                _ => ChatType.Unknown,
+            };
+        }
     }
 }

@@ -64,7 +64,7 @@ namespace NetTelegramBotApi.Requests
         /// Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or
         /// inline URLs in your bot's message.
         /// </summary>
-        public SendMessage.ParseModeEnum ParseMode { get; set; }
+        public SendMessage.ParseModes ParseMode { get; set; }
 
         /// <summary>
         /// Optional. Disables link previews for links in this message.
@@ -107,12 +107,12 @@ namespace NetTelegramBotApi.Requests
 
             dic.Add("text", Text);
 
-            if (ParseMode == SendMessage.ParseModeEnum.Markdown)
+            if (ParseMode == SendMessage.ParseModes.Markdown)
             {
                 dic.Add("parse_mode", "Markdown");
             }
 
-            if (ParseMode == SendMessage.ParseModeEnum.HTML)
+            if (ParseMode == SendMessage.ParseModes.HTML)
             {
                 dic.Add("parse_mode", "HTML");
             }

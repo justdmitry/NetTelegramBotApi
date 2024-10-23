@@ -16,7 +16,7 @@
         {
             var keyb = new InlineKeyboardMarkup()
             {
-                InlineKeyboard = new[] { new[] { new InlineKeyboardButton { Text = "test", CallbackData = "123" } } },
+                InlineKeyboard = [[new InlineKeyboardButton { Text = "test", CallbackData = "123" }]],
             };
             var reqAction = new SendMessage(123, "Hello") { ReplyMarkup = keyb };
 

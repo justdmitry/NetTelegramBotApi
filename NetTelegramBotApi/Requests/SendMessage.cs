@@ -25,6 +25,14 @@ namespace NetTelegramBotApi.Requests
             this.Text = text;
         }
 
+        public enum ParseModes
+        {
+            None,
+            Markdown,
+            MarkdownV2,
+            HTML,
+        }
+
         /// <summary>
         /// Unique identifier for the message recipient — User or GroupChat id.
         /// </summary>
@@ -52,7 +60,7 @@ namespace NetTelegramBotApi.Requests
         /// Send "Markdown", if you want Telegram apps to show bold, italic and inline URLs in your bot's message.
         /// For the moment, only Telegram for Android supports this.
         /// </summary>
-        public ParseModeEnum ParseMode { get; set; }
+        public ParseModes ParseMode { get; set; }
 
         /// <summary>
         /// Optional. Disables link previews for links in this message.
@@ -101,15 +109,15 @@ namespace NetTelegramBotApi.Requests
             }
 
             dic.Add("text", Text);
-            if (ParseMode == ParseModeEnum.Markdown)
+            if (ParseMode == ParseModes.Markdown)
             {
                 dic.Add("parse_mode", "Markdown");
             }
-            else if (ParseMode == ParseModeEnum.MarkdownV2)
+            else if (ParseMode == ParseModes.MarkdownV2)
             {
                 dic.Add("parse_mode", "MarkdownV2");
             }
-            else if (ParseMode == ParseModeEnum.HTML)
+            else if (ParseMode == ParseModes.HTML)
             {
                 dic.Add("parse_mode", "HTML");
             }
@@ -135,14 +143,6 @@ namespace NetTelegramBotApi.Requests
             }
 
             return new FormUrlEncodedContent(dic);
-        }
-
-        public enum ParseModeEnum
-        {
-            None,
-            Markdown,
-            MarkdownV2,
-            HTML,
         }
     }
 }

@@ -10,9 +10,9 @@ namespace NetTelegramBotApi
 {
     public class TelegramBot : ITelegramBot
     {
-        public static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions
+        public static readonly JsonSerializerOptions JsonOptions = new()
         {
-            PropertyNamingPolicy = new JsonLowerCaseUnderscoreNamingPolicy(),
+            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
             DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         };
 
@@ -38,7 +38,7 @@ namespace NetTelegramBotApi
         /// <exception cref="BotRequestException">When non-Ok response returned from server.</exception>
         public async Task<T> MakeRequestAsync<T>(RequestBase<T> request)
         {
-            var uri = new Uri("https://api.telegram.org/bot" + accessToken + "/" + request.MethodName);
+            var uri = new Uri($"https://api.telegram.org/bot{accessToken}/{request.MethodName}");
             using var httpMessage = new HttpRequestMessage(HttpMethod.Get, uri);
             using var postContent = request.CreateHttpContent();
             if (postContent != null)
@@ -81,8 +81,8 @@ namespace NetTelegramBotApi
         /// <summary>
         /// Use this method to deserialize <see cref="Update">Update</see> object, sent to <see cref="SetWebhook">your webhook</see> by Telegram server.
         /// </summary>
-        /// <param name="json">Json-string with Update (body of HTTP POST to your webhook)</param>
-        /// <returns>Deserialized <see cref="Update"/> message</returns>
+        /// <param name="json">Json-string with Update (body of HTTP POST to your webhook).</param>
+        /// <returns>Deserialized <see cref="Update"/> message.</returns>
         public Update DeserializeUpdate(string json)
         {
             return DeserializeMessage<Update>(json);

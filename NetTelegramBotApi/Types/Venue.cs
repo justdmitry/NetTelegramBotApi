@@ -23,6 +23,6 @@
         /// <summary>
         /// Optional. Foursquare identifier of the venue.
         /// </summary>
-        public string foursquareId { get; set; }
+        public string FoursquareId { get; set; }
     }
 }

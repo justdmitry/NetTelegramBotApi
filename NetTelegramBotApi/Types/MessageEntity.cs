@@ -14,44 +14,6 @@ namespace NetTelegramBotApi.Types
         public string Type { get; set; }
 
         /// <summary>
-        /// Returns one of <see cref="MessageEntityType"/> members, based on chat <see cref="Type"/> value.
-        /// </summary>
-        public MessageEntityType GetMessageEntityType()
-        {
-            // special case: mention(@username)
-            if (Type.StartsWith("mention", StringComparison.OrdinalIgnoreCase))
-            {
-                return MessageEntityType.Mention;
-            }
-
-            switch (Type.ToLowerInvariant())
-            {
-                case "hashtag":
-                    return MessageEntityType.Hashtag;
-                case "bot_command":
-                    return MessageEntityType.BotCommand;
-                case "url":
-                    return MessageEntityType.Url;
-                case "email":
-                    return MessageEntityType.Email;
-                case "bold":
-                    return MessageEntityType.Bold;
-                case "italic":
-                    return MessageEntityType.Italic;
-                case "code":
-                    return MessageEntityType.Code;
-                case "pre":
-                    return MessageEntityType.Pre;
-                case "text_link":
-                    return MessageEntityType.TextLink;
-                case "text_mention":
-                    return MessageEntityType.TextMention;
-                default:
-                    return MessageEntityType.Unknown;
-            }
-        }
-
-        /// <summary>
         /// Offset in UTF-16 code units to the start of the entity.
         /// </summary>
         public int Offset { get; set; }
@@ -70,5 +32,32 @@ namespace NetTelegramBotApi.Types
         /// Optional. For “text_mention” only, the mentioned user.
         /// </summary>
         public User User { get; set; }
+
+        /// <summary>
+        /// Returns one of <see cref="MessageEntityType"/> members, based on chat <see cref="Type"/> value.
+        /// </summary>
+        public MessageEntityType GetMessageEntityType()
+        {
+            // special case: mention(@username)
+            if (Type.StartsWith("mention", StringComparison.OrdinalIgnoreCase))
+            {
+                return MessageEntityType.Mention;
+            }
+
+            return Type.ToLowerInvariant() switch
+            {
+                "hashtag" => MessageEntityType.Hashtag,
+                "bot_command" => MessageEntityType.BotCommand,
+                "url" => MessageEntityType.Url,
+                "email" => MessageEntityType.Email,
+                "bold" => MessageEntityType.Bold,
+                "italic" => MessageEntityType.Italic,
+                "code" => MessageEntityType.Code,
+                "pre" => MessageEntityType.Pre,
+                "text_link" => MessageEntityType.TextLink,
+                "text_mention" => MessageEntityType.TextMention,
+                _ => MessageEntityType.Unknown,
+            };
+        }
     }
 }

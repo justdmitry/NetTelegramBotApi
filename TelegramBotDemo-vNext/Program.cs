@@ -195,7 +195,7 @@ namespace TelegramBotDemo_vNext
                                 update.Message.Chat.Id,
                                 "You wrote: \r\n" + update.Message.Text.MarkdownEncode())
                             {
-                                ParseMode = SendMessage.ParseModeEnum.Markdown
+                                ParseMode = SendMessage.ParseModes.Markdown
                             }).Wait();
                         }
                         else

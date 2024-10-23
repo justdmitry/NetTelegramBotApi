@@ -28,16 +28,31 @@ namespace NetTelegramBotApi.Requests
             this.Action = action;
         }
 
-        public SendChatAction(long chatId, ChatActionEnum action)
+        public SendChatAction(long chatId, ChatActions action)
             : this(chatId, ConvertChatAction(action))
         {
             // Nothing
         }
 
-        public SendChatAction(string channelName, ChatActionEnum action)
+        public SendChatAction(string channelName, ChatActions action)
             : this(channelName, ConvertChatAction(action))
         {
             // Nothing
+        }
+
+        public enum ChatActions
+        {
+            Typing,
+            UploadPhoto,
+            RecordVideo,
+            UploadVideo,
+            RecordVoice,
+            UploadVoice,
+            UploadDocument,
+            ChooseSticker,
+            FindLocation,
+            RecordVideoNote,
+            UploadVideoNote,
         }
 
         /// <summary>
@@ -96,38 +111,23 @@ namespace NetTelegramBotApi.Requests
             return new FormUrlEncodedContent(dic);
         }
 
-        protected static string ConvertChatAction(ChatActionEnum action)
+        protected static string ConvertChatAction(ChatActions action)
         {
             return action switch
             {
-                ChatActionEnum.Typing => "typing",
-                ChatActionEnum.UploadPhoto => "upload_photo",
-                ChatActionEnum.RecordVideo => "record_video",
-                ChatActionEnum.UploadVideo => "upload_video",
-                ChatActionEnum.RecordVoice => "record_voice",
-                ChatActionEnum.UploadVoice => "upload_voice",
-                ChatActionEnum.UploadDocument => "upload_document",
-                ChatActionEnum.ChooseSticker => "choose_sticker",
-                ChatActionEnum.FindLocation => "find_location",
-                ChatActionEnum.RecordVideoNote => "record_video_note",
-                ChatActionEnum.UploadVideoNote => "upload_video_note",
+                ChatActions.Typing => "typing",
+                ChatActions.UploadPhoto => "upload_photo",
+                ChatActions.RecordVideo => "record_video",
+                ChatActions.UploadVideo => "upload_video",
+                ChatActions.RecordVoice => "record_voice",
+                ChatActions.UploadVoice => "upload_voice",
+                ChatActions.UploadDocument => "upload_document",
+                ChatActions.ChooseSticker => "choose_sticker",
+                ChatActions.FindLocation => "find_location",
+                ChatActions.RecordVideoNote => "record_video_note",
+                ChatActions.UploadVideoNote => "upload_video_note",
                 _ => string.Empty,
             };
-        }
-
-        public enum ChatActionEnum
-        {
-            Typing,
-            UploadPhoto,
-            RecordVideo,
-            UploadVideo,
-            RecordVoice,
-            UploadVoice,
-            UploadDocument,
-            ChooseSticker,
-            FindLocation,
-            RecordVideoNote,
-            UploadVideoNote,
         }
     }
 }

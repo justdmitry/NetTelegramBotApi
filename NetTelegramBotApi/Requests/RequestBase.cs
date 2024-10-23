@@ -5,7 +5,7 @@ namespace NetTelegramBotApi.Requests
 {
     public abstract class RequestBase<T>
     {
-        public RequestBase(string methodName)
+        protected RequestBase(string methodName)
         {
             this.MethodName = methodName;
         }
@@ -14,7 +14,7 @@ namespace NetTelegramBotApi.Requests
 
         public abstract HttpContent CreateHttpContent();
 
-        protected string JsonSerialize(object value)
+        protected static string JsonSerialize(object value)
         {
             return JsonSerializer.Serialize(value, TelegramBot.JsonOptions);
         }

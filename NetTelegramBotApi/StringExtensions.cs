@@ -4,7 +4,7 @@
 
     public static class StringExtensions
     {
-        private static readonly Regex WrongChars = new Regex(@"([\*_`\[\]\(\)])");
+        private static readonly Regex WrongChars = new(@"([\*_`\[\]\(\)])");
 
         public static string MarkdownEncode(this string value)
         {

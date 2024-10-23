@@ -13,14 +13,14 @@ namespace NetTelegramBotApi.Requests
     /// </summary>
     public abstract class SendFileRequestBase<T> : RequestBase<T>
     {
-        public SendFileRequestBase(long chatId, string methodName, string fileParameterName)
+        protected SendFileRequestBase(long chatId, string methodName, string fileParameterName)
             : base(methodName)
         {
             this.ChatId = chatId;
             this.FileParameterName = fileParameterName;
         }
 
-        public SendFileRequestBase(string channelName, string methodName, string fileParameterName)
+        protected SendFileRequestBase(string channelName, string methodName, string fileParameterName)
             : base(methodName)
         {
             this.ChannelName = channelName;
