@@ -83,5 +83,25 @@
         {
             return bot.Execute(request, cancellationToken);
         }
+
+        public static Task<ChatFullInfo> GetChat(this ITelegramBot bot, GetChat request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<ChatMember[]> GetChatAdministrators(this ITelegramBot bot, GetChatAdministrators request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<ChatMember> GetChatMember(this ITelegramBot bot, GetChatMember request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<int> GetChatMemberCount(this ITelegramBot bot, GetChatMemberCount request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
     }
 }
