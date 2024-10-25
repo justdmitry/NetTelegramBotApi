@@ -13,5 +13,20 @@
         {
             return bot.Execute(request, cancellationToken);
         }
+
+        public static Task<Message> SendMessage(this ITelegramBot bot, SendMessage request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<Message> ForwardMessage(this ITelegramBot bot, ForwardMessage request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<MessageId[]> ForwardMessages(this ITelegramBot bot, ForwardMessages request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
     }
 }

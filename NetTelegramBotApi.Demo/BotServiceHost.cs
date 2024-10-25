@@ -29,7 +29,14 @@
                     var msg = update.Message;
                     if (msg != null)
                     {
-                        await ProcessMessage(msg);
+                        try
+                        {
+                            await ProcessMessage(msg);
+                        }
+                        catch (RequestFailedException ex)
+                        {
+                            logger.LogError(ex, "Ooops");
+                        }
                     }
                 }
             }
@@ -37,7 +44,55 @@
 
         protected async Task ProcessMessage(Message msg)
         {
-            logger.LogInformation("New msg received");
+            logger.LogInformation(
+                "Msg from {Name} ({Username}) at {Date}: {Text}",
+                msg.From?.FirstName,
+                msg.From?.Username,
+                msg.Date,
+                msg.Text);
+
+            if (string.IsNullOrEmpty(msg.Text))
+            {
+                return;
+            }
+            else if (msg.Text == "/help")
+            {
+                var keyb = new ReplyKeyboardMarkup()
+                {
+                    Keyboard =
+                    [
+                        [new() { Text = "/photo" }, new() { Text = "/doc" }, new() { Text = "/longmsg" }, new() { Text = "/docutf8" }],
+                        [new() { Text = "/contact", RequestContact = true }, new() { Text = "/location", RequestLocation = true }],
+                        [new() { Text = "/help" }],
+                    ],
+                    OneTimeKeyboard = true,
+                    ResizeKeyboard = true,
+                };
+                await bot.SendMessage(new() { ChatId = msg.Chat.Id, Text = "Here is all my commands", ReplyMarkup = keyb });
+            }
+            else if (msg.Text == "/longmsg")
+            {
+                var text = new string('X', 4096 + 1);
+                await bot.SendMessage(new() { ChatId = msg.Chat.Id, Text = text });
+            }
+            else if (msg.Text.Length % 2 == 0)
+            {
+                await bot.SendMessage(new()
+                {
+                    ChatId = msg.Chat.Id,
+                    Text = "You wrote: \r\n" + msg.Text.EscapeMarkdownV2(),
+                    ParseMode = ParseMode.MarkdownV2,
+                });
+            }
+            else
+            {
+                await bot.ForwardMessage(new()
+                {
+                    ChatId = msg.Chat.Id,
+                    FromChatId = msg.Chat.Id,
+                    MessageId = msg.MessageId,
+                });
+            }
         }
     }
 }
