@@ -8,6 +8,16 @@
     /// </remarks>
     public class Document
     {
-        // TODO: Add fields
+        public string FileId { get; set; } = string.Empty;
+
+        public string FileUniqueId { get; set; } = string.Empty;
+
+        public PhotoSize? Thumbnail { get; set; }
+
+        public string? FileName { get; set; }
+
+        public string? MimeType { get; set; }
+
+        public long? FileSize { get; set; }
     }
 }

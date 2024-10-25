@@ -8,6 +8,22 @@
     /// </remarks>
     public class Audio
     {
-        // TODO: Add fields
+        public string FileId { get; set; } = string.Empty;
+
+        public string FileUniqueId { get; set; } = string.Empty;
+
+        public int Duration { get; set; }
+
+        public string? Performer { get; set; }
+
+        public string? Title { get; set; }
+
+        public string? FileName { get; set; }
+
+        public string? MimeType { get; set; }
+
+        public long? FileSize { get; set; }
+
+        public PhotoSize? Thumbnail { get; set; }
     }
 }

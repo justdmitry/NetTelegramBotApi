@@ -8,11 +8,11 @@
     /// </remarks>
     public class MessageEntity
     {
-        public MessageEntityType Type { get; set; }
+        public required MessageEntityType Type { get; set; }
 
-        public int Offset { get; set; }
+        public required int Offset { get; set; }
 
-        public int Length { get; set; }
+        public required int Length { get; set; }
 
         public string? Url { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿namespace NetTelegramBotApi.Demo
 {
+    using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
@@ -9,6 +10,9 @@
     public class BotServiceHost(ITelegramBot bot, ILogger<BotServiceHost> logger)
         : BackgroundService
     {
+        private string uploadedPhotoId = string.Empty;
+        private string uploadedDocumentId = string.Empty;
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var me = await bot.GetMe(stoppingToken);
@@ -54,6 +58,46 @@
             if (string.IsNullOrEmpty(msg.Text))
             {
                 return;
+            }
+            else if (msg.Text == "/photo")
+            {
+                if (string.IsNullOrEmpty(uploadedPhotoId))
+                {
+                    await bot.SendChatAction(new() { ChatId = msg.Chat.Id, Action = ChatAction.UploadPhoto });
+                    await Task.Delay(500);
+
+                    using var photoData = typeof(Program).Assembly.GetManifestResourceStream("NetTelegramBotApi.Demo.t_logo.png");
+                    var resp = await bot.SendPhoto(new() { ChatId = msg.Chat.Id, Photo = (photoData, "Telegram_logo.png"), Caption = "Telegram logo" });
+                    uploadedPhotoId = resp.Photo.Last().FileId;
+                }
+                else
+                {
+                    await bot.SendPhoto(new() { ChatId = msg.Chat.Id, Photo = uploadedPhotoId, Caption = "Resending photo id=" + uploadedPhotoId });
+                }
+            }
+            else if (msg.Text == "/doc")
+            {
+                if (string.IsNullOrEmpty(uploadedDocumentId))
+                {
+                    await bot.SendChatAction(new() { ChatId = msg.Chat.Id, Action = ChatAction.UploadDocument });
+                    await Task.Delay(500);
+
+                    using var docData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("NetTelegramBotApi.Demo.Telegram_Bot_API.htm");
+                    var resp = await bot.SendDocument(new() { ChatId = msg.Chat.Id, Document = (docData, "Telegram_Bot_API.htm"), Caption = "Here is your file" });
+                    uploadedDocumentId = resp.Document.FileId;
+                }
+                else
+                {
+                    await bot.SendDocument(new() { ChatId = msg.Chat.Id, Document = uploadedDocumentId, Caption = "Resending doc id=" + uploadedDocumentId });
+                }
+            }
+            else if (msg.Text == "/docutf8")
+            {
+                await bot.SendChatAction(new() { ChatId = msg.Chat.Id, Action = ChatAction.UploadDocument });
+                await Task.Delay(500);
+
+                using var docData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("NetTelegramBotApi.Demo.Пример_UTF8_filename.txt");
+                await bot.SendDocument(new() { ChatId = msg.Chat.Id, Document = (docData, "Пример_UTF8_filename.txt"), Caption = "Here is your file with UTF8" });
             }
             else if (msg.Text == "/help")
             {

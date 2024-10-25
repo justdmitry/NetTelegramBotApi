@@ -106,7 +106,7 @@
 
         public string? NewChatTitle { get; set; }
 
-        public PhotoSize[]? NewChatPhoto {  get; set; }
+        public PhotoSize[]? NewChatPhoto { get; set; }
 
         public bool? DeleteChatPhoto { get; set; }
 

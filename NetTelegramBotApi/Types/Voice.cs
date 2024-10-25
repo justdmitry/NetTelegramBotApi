@@ -8,6 +8,14 @@
     /// </remarks>
     public class Voice
     {
-        // TODO: Add fields
+        public string FileId { get; set; } = string.Empty;
+
+        public string FileUniqueId { get; set; } = string.Empty;
+
+        public int Duration { get; set; }
+
+        public string? MimeType { get; set; }
+
+        public long? FileSize { get; set; }
     }
 }
