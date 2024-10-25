@@ -68,5 +68,20 @@
         {
             return bot.Execute(request, cancellationToken);
         }
+
+        public static Task<bool> PinChatMessage(this ITelegramBot bot, PinChatMessage request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<bool> UnpinChatMessage(this ITelegramBot bot, UnpinChatMessage request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<bool> UnpinAllChatMessages(this ITelegramBot bot, UnpinAllChatMessages request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
     }
 }
