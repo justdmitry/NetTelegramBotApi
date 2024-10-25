@@ -13,6 +13,7 @@
                 new UnixDateTimeConverter(),
                 new IntegerOrStringConverter(),
                 new InputFileOrStringConverter(),
+                new ChatMemberConverter(),
             },
         };
 

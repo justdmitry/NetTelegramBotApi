@@ -59,6 +59,11 @@
             {
                 return;
             }
+            else if (msg.Text == "/gcm")
+            {
+                var cm = await bot.GetChatMember(new() { ChatId = msg.Chat.Id, UserId = msg.From!.Id });
+                await bot.SendMessage(new() { ChatId = msg.Chat.Id, Text = $"User is {cm.Status}" });
+            }
             else if (msg.Text == "/photo")
             {
                 if (string.IsNullOrEmpty(uploadedPhotoId))

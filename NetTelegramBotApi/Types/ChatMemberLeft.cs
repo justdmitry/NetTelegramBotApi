@@ -8,6 +8,6 @@
     /// </remarks>
     public class ChatMemberLeft : ChatMember
     {
-        public User User { get; set; } = default!;
+        // Nothing.
     }
 }

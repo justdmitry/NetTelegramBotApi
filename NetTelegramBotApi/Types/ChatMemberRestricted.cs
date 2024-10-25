@@ -8,8 +8,6 @@
     /// </remarks>
     public class ChatMemberRestricted : ChatMember
     {
-        public User User { get; set; } = default!;
-
         public bool IsMember { get; set; }
 
         public bool CanSendMessages { get; set; }

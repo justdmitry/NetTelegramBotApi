@@ -8,8 +8,6 @@
     /// </remarks>
     public class ChatMemberOwner : ChatMember
     {
-        public User User { get; set; } = default!;
-
         public bool IsAnonymous { get; set; }
 
         public string? CustomTitle { get; set; }

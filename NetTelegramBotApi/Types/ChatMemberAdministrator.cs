@@ -8,8 +8,6 @@
     /// </remarks>
     public class ChatMemberAdministrator : ChatMember
     {
-        public User User { get; set; } = default!;
-
         public bool IsAnonymous { get; set; }
 
         public bool CanBeEdited { get; set; }

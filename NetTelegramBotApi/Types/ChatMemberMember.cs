@@ -8,8 +8,6 @@
     /// </remarks>
     public class ChatMemberMember : ChatMember
     {
-        public User User { get; set; } = default!;
-
         public bool IsAnonymous { get; set; }
 
         public DateTimeOffset? UntilDate { get; set; }

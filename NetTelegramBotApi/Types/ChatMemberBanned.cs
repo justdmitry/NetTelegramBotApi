@@ -8,8 +8,6 @@
     /// </remarks>
     public class ChatMemberBanned : ChatMember
     {
-        public User User { get; set; } = default!;
-
         public DateTimeOffset UntilDate { get; set; }
     }
 }
