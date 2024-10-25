@@ -1,8 +1,4 @@
-﻿using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace NetTelegramBotApi.Util
+﻿namespace NetTelegramBotApi.Util
 {
     public class UnixDateTimeConverter : JsonConverter<DateTimeOffset>
     {
@@ -14,12 +10,13 @@ namespace NetTelegramBotApi.Util
         public override DateTimeOffset Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var t = reader.GetInt64();
-            return DateTimeOffset.UnixEpoch.AddSeconds(t).ToLocalTime();
+            return DateTimeOffset.FromUnixTimeSeconds(t);
         }
 
         public override void Write(Utf8JsonWriter writer, DateTimeOffset value, JsonSerializerOptions options)
         {
-            throw new NotImplementedException();
+            var t = value.ToUnixTimeSeconds();
+            writer.WriteNumberValue(t);
         }
     }
 }

@@ -3,48 +3,57 @@
     /// <summary>
     /// This object represents an incoming update.
     /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#update"/>
+    /// </remarks>
     public class Update
     {
-        /// <summary>
-        /// The update‘s unique identifier. Update identifiers start from a certain positive number and increase sequentially.
-        /// This ID becomes especially handy if you’re using Webhooks, since it allows you to ignore repeated updates
-        ///   or to restore the correct update sequence, should they get out of order.
-        /// </summary>
         public long UpdateId { get; set; }
 
-        /// <summary>
-        /// Optional. New incoming message of any kind — text, photo, sticker, etc.
-        /// </summary>
-        public Message Message { get; set; }
+        public Message? Message { get; set; }
 
-        /// <summary>
-        /// Optional. New version of a message that is known to the bot and was edited.
-        /// </summary>
-        public Message EditedMessage { get; set; }
+        public Message? EditedMessage { get; set; }
 
-        /// <summary>
-        /// Optional. New incoming channel post of any kind — text, photo, sticker, etc.
-        /// </summary>
-        public Message ChannelPost { get; set; }
+        public Message? ChannelPost { get; set; }
 
-        /// <summary>
-        /// Optional. New version of a channel post that is known to the bot and was edited.
-        /// </summary>
-        public Message EditedChannelPost { get; set; }
+        public Message? EditedChannelPost { get; set; }
 
-        /// <summary>
-        /// Optional. New incoming inline query.
-        /// </summary>
-        public InlineQuery InlineQuery { get; set; }
+        public BusinessConnection? BusinessConnection { get; set; }
 
-        /// <summary>
-        /// Optional. The result of an inline query that was chosen by a user and sent to their chat partner.
-        /// </summary>
-        public ChosenInlineResult ChosenInlineResult { get; set; }
+        public Message? BusinessMessage { get; set; }
 
-        /// <summary>
-        /// Optional. New incoming callback query.
-        /// </summary>
-        public CallbackQuery CallbackQuery { get; set; }
+        public Message? EditedBusinessMessage { get; set; }
+
+        public BusinessMessagesDeleted? DeletedBusinessMessages { get; set; }
+
+        public MessageReactionUpdated? MessageReaction { get; set; }
+
+        public MessageReactionCountUpdated? MessageReactionCount { get; set; }
+
+        public InlineQuery? InlineQuery { get; set; }
+
+        public ChosenInlineResult? ChosenInlineResult { get; set; }
+
+        public CallbackQuery? CallbackQuery { get; set; }
+
+        public ShippingQuery? ShippingQuery { get; set; }
+
+        public PreCheckoutQuery? PreCheckoutQuery { get; set; }
+
+        public PaidMediaPurchased? PurchasedPaidMedia { get; set; }
+
+        public Poll? Poll { get; set; }
+
+        public PollAnswer? PollAnswer { get; set; }
+
+        public ChatMemberUpdated? MyChatMember { get; set; }
+
+        public ChatMemberUpdated? ChatMember { get; set; }
+
+        public ChatJoinRequest? ChatJoinRequest { get; set; }
+
+        public ChatBoostUpdated? ChatBoost { get; set; }
+
+        public ChatBoostRemoved? RemovedChatBoost { get; set; }
     }
 }

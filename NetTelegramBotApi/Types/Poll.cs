@@ -1,12 +1,12 @@
 ﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// This object represents a message.
+    /// This object contains information about a poll.
     /// </summary>
     /// <remarks>
-    /// <seealso href="https://core.telegram.org/bots/api#message"/>
+    /// <seealso href="https://core.telegram.org/bots/api#poll"/>
     /// </remarks>
-    public class Message
+    public class Poll
     {
         // TODO: Add fields
     }

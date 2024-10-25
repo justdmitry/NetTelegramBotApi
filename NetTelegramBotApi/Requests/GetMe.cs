@@ -1,23 +1,14 @@
-﻿using System.Net.Http;
-using NetTelegramBotApi.Types;
-
-namespace NetTelegramBotApi.Requests
+﻿namespace NetTelegramBotApi.Requests
 {
     /// <summary>
     /// A simple method for testing your bot's auth token. Requires no parameters.
-    /// Returns basic information about the bot in form of a User object.
+    /// Returns basic information about the bot in form of a <see cref="User"/> object.
     /// </summary>
-    public class GetMe : RequestBase<User>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#getme"/>
+    /// </remarks>
+    public class GetMe() : RequestBase<User>("getMe")
     {
-        public GetMe()
-            : base("getMe")
-        {
-            // Nothing
-        }
-
-        public override HttpContent CreateHttpContent()
-        {
-            return null;
-        }
+        // Nothing.
     }
 }
