@@ -1,52 +1,37 @@
-﻿using System;
-using System.Globalization;
-using NetTelegramBotApi.Types;
-
-namespace NetTelegramBotApi.Requests
+﻿namespace NetTelegramBotApi.Requests
 {
     /// <summary>
     /// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
-    /// For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Audio or Document).
-    /// On success, the sent Message is returned.
-    /// Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
     /// </summary>
-    public class SendVoice : SendFileRequestBase<Message>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#sendvoice"/>
+    /// </remarks>
+    public class SendVoice() : RequestBase<Message>("sendVoice", true)
     {
-        public SendVoice(long chatId, FileToSend voice)
-            : base(chatId, "sendVoice", "voice")
-        {
-            this.File = voice;
-        }
+        public string? BusinessConnectionId { get; set; }
 
-        public SendVoice(string channelName, FileToSend voice)
-            : base(channelName, "sendVoice", "voice")
-        {
-            this.File = voice;
-        }
+        public required IntegerOrString ChatId { get; set; }
 
-        /// <summary>
-        /// Voice message caption, 0-200 characters.
-        /// </summary>
-        public string Caption { get; set; }
+        public long? MessageThreadId { get; set; }
 
-        /// <summary>
-        /// Duration of sent audio in seconds.
-        /// </summary>
+        public required InputFileOrString Voice { get; set; }
+
+        public string? Caption { get; set; }
+
+        public ParseMode? ParseMode { get; set; }
+
+        public MessageEntity[]? CaptionEntities { get; set; }
+
         public int? Duration { get; set; }
 
-        protected override void AppendParameters(Action<string, string> appendCallback)
-        {
-            if (!string.IsNullOrEmpty(Caption))
-            {
-                appendCallback("caption", Caption);
-            }
+        public bool? DisableNotification { get; set; }
 
-            if (Duration.HasValue)
-            {
-                appendCallback("duration", Duration.Value.ToString(CultureInfo.InvariantCulture));
-            }
+        public bool? ProtectContent { get; set; }
 
-            base.AppendParameters(appendCallback);
-        }
+        public string? MessageEffectId { get; set; }
+
+        public ReplyParameters? ReplyParameters { get; set; }
+
+        public ReplyMarkupBase? ReplyMarkup { get; set; }
     }
 }

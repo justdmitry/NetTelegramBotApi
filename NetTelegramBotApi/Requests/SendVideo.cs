@@ -1,71 +1,49 @@
-﻿using System;
-using System.Globalization;
-using NetTelegramBotApi.Types;
-
-namespace NetTelegramBotApi.Requests
+﻿namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
-    /// On success, the sent Message is returned.
-    /// Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
+    /// Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document).
     /// </summary>
-    public class SendVideo : SendFileRequestBase<Message>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#sendvideo"/>
+    /// </remarks>
+    public class SendVideo() : RequestBase<Message>("sendVideo", true)
     {
-        public SendVideo(long chatId, FileToSend video)
-            : base(chatId, "sendVideo", "video")
-        {
-            this.File = video;
-        }
+        public string? BusinessConnectionId { get; set; }
 
-        public SendVideo(string channelName, FileToSend video)
-            : base(channelName, "sendVideo", "video")
-        {
-            this.File = video;
-        }
+        public required IntegerOrString ChatId { get; set; }
 
-        /// <summary>
-        /// Duration of sent video in seconds
-        /// </summary>
+        public long? MessageThreadId { get; set; }
+
+        public required InputFileOrString Video { get; set; }
+
         public int? Duration { get; set; }
 
-        /// <summary>
-        /// Video width
-        /// </summary>
         public int? Width { get; set; }
 
-        /// <summary>
-        /// Video height
-        /// </summary>
         public int? Height { get; set; }
 
-        /// <summary>
-        /// Video caption (may also be used when resending videos by file_id), 0-200 characters
-        /// </summary>
-        public string Caption { get; set; }
+        public InputFileOrString? Thumbnail { get; set; }
 
-        protected override void AppendParameters(Action<string, string> appendCallback)
-        {
-            if (Duration.HasValue)
-            {
-                appendCallback("duration", Duration.Value.ToString(CultureInfo.InvariantCulture));
-            }
+        public string? Caption { get; set; }
 
-            if (Width.HasValue)
-            {
-                appendCallback("width", Width.Value.ToString(CultureInfo.InvariantCulture));
-            }
+        public ParseMode? ParseMode { get; set; }
 
-            if (Height.HasValue)
-            {
-                appendCallback("height", Height.Value.ToString(CultureInfo.InvariantCulture));
-            }
+        public MessageEntity[]? CaptionEntities { get; set; }
 
-            if (!string.IsNullOrEmpty(Caption))
-            {
-                appendCallback("caption", Caption);
-            }
+        public bool? ShowCaptionAboveMedia { get; set; }
 
-            base.AppendParameters(appendCallback);
-        }
+        public bool? HasSpoiler { get; set; }
+
+        public bool? SupportsStreaming { get; set; }
+
+        public bool? DisableNotification { get; set; }
+
+        public bool? ProtectContent { get; set; }
+
+        public string? MessageEffectId { get; set; }
+
+        public ReplyParameters? ReplyParameters { get; set; }
+
+        public ReplyMarkupBase? ReplyMarkup { get; set; }
     }
 }

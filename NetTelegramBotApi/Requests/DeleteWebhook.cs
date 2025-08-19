@@ -1,18 +1,13 @@
 ﻿namespace NetTelegramBotApi.Requests
 {
-    using System.Net.Http;
-
-    public class DeleteWebhook : RequestBase<bool>
+    /// <summary>
+    /// Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
+    /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#deletewebhook"/>
+    /// </remarks>
+    public class DeleteWebhook() : RequestBase<bool>("deleteWebhook")
     {
-        public DeleteWebhook()
-            : base("deleteWebhook")
-        {
-            // Nothing
-        }
-
-        public override HttpContent CreateHttpContent()
-        {
-            return null;
-        }
+        public bool? DropPendingUpdates { get; set; }
     }
 }

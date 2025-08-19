@@ -1,72 +1,43 @@
-﻿using System;
-using System.Globalization;
-using NetTelegramBotApi.Types;
-
-namespace NetTelegramBotApi.Requests
+﻿namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
-    /// For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
-    /// On success, the sent Message is returned.
-    /// Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
+    /// Use this method to send audio files, if you want Telegram clients to display them in the music player.
     /// </summary>
-    public class SendAudio : SendFileRequestBase<Message>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#sendaudio"/>
+    /// </remarks>
+    public class SendAudio() : RequestBase<Message>("sendAudio", true)
     {
-        public SendAudio(long chatId, FileToSend audio)
-            : base(chatId, "sendAudio", "audio")
-        {
-            this.File = audio;
-        }
+        public string? BusinessConnectionId { get; set; }
 
-        public SendAudio(string channelName, FileToSend audio)
-            : base(channelName, "sendAudio", "audio")
-        {
-            this.File = audio;
-        }
+        public required IntegerOrString ChatId { get; set; }
 
-        /// <summary>
-        /// Audio caption, 0-200 characters.
-        /// </summary>
-        public string Caption { get; set; }
+        public long? MessageThreadId { get; set; }
 
-        /// <summary>
-        /// Duration of sent audio in seconds.
-        /// </summary>
+        public required InputFileOrString Audio { get; set; }
+
+        public string? Caption { get; set; }
+
+        public ParseMode? ParseMode { get; set; }
+
+        public MessageEntity[]? CaptionEntities { get; set; }
+
         public int? Duration { get; set; }
 
-        /// <summary>
-        /// Performer of sent audio.
-        /// </summary>
-        public string Performer { get; set; }
+        public string? Performer { get; set; }
 
-        /// <summary>
-        /// Title of sent audio.
-        /// </summary>
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
-        protected override void AppendParameters(Action<string, string> appendCallback)
-        {
-            if (!string.IsNullOrEmpty(Caption))
-            {
-                appendCallback("caption", Caption);
-            }
+        public InputFileOrString? Thumbnail { get; set; }
 
-            if (Duration.HasValue)
-            {
-                appendCallback("duration", Duration.Value.ToString(CultureInfo.InvariantCulture));
-            }
+        public bool? DisableNotification { get; set; }
 
-            if (!string.IsNullOrEmpty(Performer))
-            {
-                appendCallback("performer", Performer);
-            }
+        public bool? ProtectContent { get; set; }
 
-            if (!string.IsNullOrEmpty(Title))
-            {
-                appendCallback("title", Title);
-            }
+        public string? MessageEffectId { get; set; }
 
-            base.AppendParameters(appendCallback);
-        }
+        public ReplyParameters? ReplyParameters { get; set; }
+
+        public ReplyMarkupBase? ReplyMarkup { get; set; }
     }
 }

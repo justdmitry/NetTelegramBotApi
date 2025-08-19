@@ -3,26 +3,19 @@
     /// <summary>
     /// This object represents one size of a photo or a file / sticker thumbnail.
     /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#photosize"/>
+    /// </remarks>
     public class PhotoSize
     {
-        /// <summary>
-        /// Unique identifier for this file.
-        /// </summary>
-        public string FileId { get; set; }
+        public string FileId { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Photo width.
-        /// </summary>
-        public long Width { get; set; }
+        public string FileUniqueId { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Photo height.
-        /// </summary>
-        public long Height { get; set; }
+        public int Width { get; set; }
 
-        /// <summary>
-        /// Optional. File size.
-        /// </summary>
-        public long? FileSize { get; set; }
+        public int Height { get; set; }
+
+        public int? FileSize { get; set; }
     }
 }

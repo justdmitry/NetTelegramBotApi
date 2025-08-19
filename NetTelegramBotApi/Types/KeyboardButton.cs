@@ -1,28 +1,28 @@
 ﻿namespace NetTelegramBotApi.Types
 {
+    /// <summary>
+    /// This object represents one button of the reply keyboard. At most one of the optional fields must be used to specify type of the button.
+    /// For simple text buttons, String can be used instead of this object to specify the button text.
+    /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#keyboardbutton"/>
+    /// </remarks>
     public class KeyboardButton
     {
-        public KeyboardButton(string text)
-        {
-            this.Text = text;
-        }
+        public required string Text { get; set; }
 
-        /// <summary>
-        /// Text of the button.
-        /// If none of the optional fields are used, it will be sent to the bot as a message when the button is pressed.
-        /// </summary>
-        public string Text { get; set; }
+        public KeyboardButtonRequestUsers? RequestUsers { get; set; }
 
-        /// <summary>
-        /// Optional. If True, the user's phone number will be sent as a contact when the button is pressed.
-        /// Available in private chats only.
-        /// </summary>
-        public bool RequestContact { get; set; }
+        // TODO: Implement
+        public object? RequestChat { get; set; }
 
-        /// <summary>
-        /// Optional. If True, the user's current location will be sent when the button is pressed.
-        /// Available in private chats only.
-        /// </summary>
-        public bool RequestLocation { get; set; }
+        public bool? RequestContact { get; set; }
+
+        public bool? RequestLocation { get; set; }
+
+        // TODO: Implement
+        public object? RequestPoll { get; set; }
+
+        public WebAppInfo? WebApp { get; set; }
     }
 }

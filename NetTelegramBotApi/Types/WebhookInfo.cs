@@ -1,35 +1,29 @@
-﻿using System;
-
-namespace NetTelegramBotApi.Types
+﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// Contains information about the current status of a webhook.
+    /// Describes the current status of a webhook.
     /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#webhookinfo"/>
+    /// </remarks>
     public class WebhookInfo
     {
-        /// <summary>
-        /// Webhook URL, may be empty if webhook is not set up.
-        /// </summary>
-        public string Url { get; set; }
+        public string? Url { get; set; }
 
-        /// <summary>
-        /// True, if a custom certificate was provided for webhook certificate checks.
-        /// </summary>
         public bool HasCustomCertificate { get; set; }
 
-        /// <summary>
-        /// Number of updates awaiting delivery.
-        /// </summary>
-        public long PendingUpdateCount { get; set; }
+        public int PendingUpdateCount { get; set; }
 
-        /// <summary>
-        /// Optional. Unix time for the most recent error that happened when trying to deliver an update via webhook.
-        /// </summary>
+        public string? IpAddress { get; set; }
+
         public DateTimeOffset? LastErrorDate { get; set; }
 
-        /// <summary>
-        /// Optional. Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook.
-        /// </summary>
-        public string LastErrorMessage { get; set; }
+        public string? LastErrorMessage { get; set; }
+
+        public DateTimeOffset? LastSynchronizationErrorDate { get; set; }
+
+        public int? MaxConnections { get; set; }
+
+        public string[]? AllowedUpdates { get; set; }
     }
 }

@@ -1,11 +1,18 @@
 ﻿namespace NetTelegramBotApi.Types
 {
-    public enum ChatType : byte
+    /// <summary>
+    /// Type of the chat.
+    /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#chat"/>
+    /// </remarks>
+    [JsonConverter(typeof(JsonStringEnumConverterSnakeCaseLower))]
+    public enum ChatType
     {
-        Unknown = 0,
-        Private = 1,
-        Group = 2,
-        Supergroup = 3,
-        Channel = 4,
+        Unknown,
+        Private,
+        Group,
+        Supergroup,
+        Channel,
     }
 }

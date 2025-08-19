@@ -1,96 +1,79 @@
-﻿using System;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
-using NetTelegramBotApi.Requests;
-using NetTelegramBotApi.Types;
-using NetTelegramBotApi.Util;
-
-namespace NetTelegramBotApi
+﻿namespace NetTelegramBotApi
 {
+    using NetTelegramBotApi.Util;
+
     public class TelegramBot : ITelegramBot
     {
         public static readonly JsonSerializerOptions JsonOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
-            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            Converters =
+            {
+                new UnixDateTimeConverter(),
+                new IntegerOrStringConverter(),
+                new InputFileOrStringConverter(),
+                new ChatMemberConverter(),
+            },
         };
 
         private readonly string accessToken;
         private readonly HttpClient httpClient;
 
-        static TelegramBot()
-        {
-            JsonOptions.Converters.Add(new UnixDateTimeConverter());
-        }
-
         public TelegramBot(string accessToken, HttpClient httpClient)
         {
-            if (string.IsNullOrWhiteSpace(accessToken))
-            {
-                throw new ArgumentNullException(nameof(accessToken));
-            }
+            ArgumentException.ThrowIfNullOrWhiteSpace(accessToken);
+            ArgumentNullException.ThrowIfNull(httpClient);
 
             this.accessToken = accessToken;
-            this.httpClient = httpClient ?? new HttpClient();
+            this.httpClient = httpClient;
         }
 
-        /// <exception cref="BotRequestException">When non-Ok response returned from server.</exception>
-        public async Task<T> MakeRequestAsync<T>(RequestBase<T> request)
+        /// <inheritdoc/>
+        /// <exception cref="RequestFailedException">When non-Ok response returned from server.</exception>
+        public async Task<TResponse> Execute<TResponse>(RequestBase<TResponse> request, CancellationToken cancellationToken = default)
         {
-            var uri = new Uri($"https://api.telegram.org/bot{accessToken}/{request.MethodName}");
-            using var httpMessage = new HttpRequestMessage(HttpMethod.Get, uri);
-            using var postContent = request.CreateHttpContent();
-            if (postContent != null)
+            (var methodName, var content) = request.CreateHttpContent();
+            using (content)
             {
-                httpMessage.Method = HttpMethod.Post;
-                httpMessage.Content = postContent;
-            }
+                var uri = new Uri($"https://api.telegram.org/bot{this.accessToken}/{methodName}");
+                using var response = await this.httpClient.PostAsync(uri, content, cancellationToken).ConfigureAwait(false);
 
-            using var response = await httpClient.SendAsync(httpMessage).ConfigureAwait(false);
-            if ((int)response.StatusCode >= 500)
-            {
-                // Let's throw exception. It's server fault
-                response.EnsureSuccessStatusCode();
-            }
-
-            var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var result = DeserializeMessage<BotResponse<T>>(responseText);
-            if (!result.Ok || !response.IsSuccessStatusCode)
-            {
-                var exceptionMessage = $"Request failed (status code {(int)response.StatusCode}): {result.Description}";
-                throw new BotRequestException(exceptionMessage)
+                if ((int)response.StatusCode >= 500)
                 {
-                    StatusCode = response.StatusCode,
-                    ResponseBody = responseText,
-                    Description = result.Description,
-                    ErrorCode = result.ErrorCode,
-                    Parameters = result.Parameters,
-                };
-            }
+                    // It's server fault. Throw default exception.
+                    response.EnsureSuccessStatusCode();
+                }
 
-            var retVal = result.Result;
-            if (retVal is IPostProcessingRequired forPostProcessing)
-            {
-                forPostProcessing.PostProcess(accessToken);
-            }
+                var responseText = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                var result = DeserializeMessage<ResponseBase<TResponse>>(responseText);
+                if (!response.IsSuccessStatusCode || result == null || !result.Ok || result.Result is null)
+                {
+                    var exceptionMessage = $"Request failed ({response.StatusCode}): {responseText}";
+                    throw new RequestFailedException(exceptionMessage)
+                    {
+                        StatusCode = response.StatusCode,
+                        ResponseBody = responseText,
+                        Description = result?.Description,
+                        ErrorCode = result?.ErrorCode,
+                        Parameters = result?.Parameters,
+                    };
+                }
 
-            return retVal;
+                return result.Result;
+            }
         }
 
-        /// <summary>
-        /// Use this method to deserialize <see cref="Update">Update</see> object, sent to <see cref="SetWebhook">your webhook</see> by Telegram server.
-        /// </summary>
-        /// <param name="json">Json-string with Update (body of HTTP POST to your webhook).</param>
-        /// <returns>Deserialized <see cref="Update"/> message.</returns>
-        public Update DeserializeUpdate(string json)
+        /// <inheritdoc/>
+        public Update? DeserializeUpdate(string json)
         {
             return DeserializeMessage<Update>(json);
         }
 
-        protected static T DeserializeMessage<T>(string json)
+        protected static TResult? DeserializeMessage<TResult>(string json)
+            where TResult : class
         {
-            return JsonSerializer.Deserialize<T>(json, JsonOptions);
+            return JsonSerializer.Deserialize<TResult>(json, JsonOptions);
         }
     }
 }

@@ -1,19 +1,21 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31313.79
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABC2A4CB-9443-434E-B2EA-E739D288F330}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
+		NetTelegramBotApi\GlobalSuppressions.cs = NetTelegramBotApi\GlobalSuppressions.cs
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTelegramBotApi", "NetTelegramBotApi\NetTelegramBotApi.csproj", "{0CA802AD-0F85-4314-8D70-2C5F182C9F42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramBotDemo-vNext", "TelegramBotDemo-vNext\TelegramBotDemo-vNext.csproj", "{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTelegramBotApi.Tests", "NetTelegramBotApi.Tests\NetTelegramBotApi.Tests.csproj", "{82AAECA1-D92F-4C7D-9CA8-B9EBACCCCCAF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTelegramBotApi.Demo", "NetTelegramBotApi.Demo\NetTelegramBotApi.Demo.csproj", "{5A74984E-48DE-4373-8738-A722D817C9C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,18 +39,6 @@ Global
 		{0CA802AD-0F85-4314-8D70-2C5F182C9F42}.Release|x64.Build.0 = Release|Any CPU
 		{0CA802AD-0F85-4314-8D70-2C5F182C9F42}.Release|x86.ActiveCfg = Release|Any CPU
 		{0CA802AD-0F85-4314-8D70-2C5F182C9F42}.Release|x86.Build.0 = Release|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Debug|x64.Build.0 = Debug|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Debug|x86.Build.0 = Debug|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Release|x64.ActiveCfg = Release|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Release|x64.Build.0 = Release|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Release|x86.ActiveCfg = Release|Any CPU
-		{0A5DF37F-F6E0-412E-8B84-AE7120B4D8C5}.Release|x86.Build.0 = Release|Any CPU
 		{82AAECA1-D92F-4C7D-9CA8-B9EBACCCCCAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82AAECA1-D92F-4C7D-9CA8-B9EBACCCCCAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82AAECA1-D92F-4C7D-9CA8-B9EBACCCCCAF}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -61,6 +51,18 @@ Global
 		{82AAECA1-D92F-4C7D-9CA8-B9EBACCCCCAF}.Release|x64.Build.0 = Release|Any CPU
 		{82AAECA1-D92F-4C7D-9CA8-B9EBACCCCCAF}.Release|x86.ActiveCfg = Release|Any CPU
 		{82AAECA1-D92F-4C7D-9CA8-B9EBACCCCCAF}.Release|x86.Build.0 = Release|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Debug|x64.Build.0 = Debug|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Debug|x86.Build.0 = Debug|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Release|x64.ActiveCfg = Release|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Release|x64.Build.0 = Release|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A74984E-48DE-4373-8738-A722D817C9C8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

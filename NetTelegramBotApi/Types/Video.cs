@@ -3,41 +3,27 @@
     /// <summary>
     /// This object represents a video file.
     /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#video"/>
+    /// </remarks>
     public class Video
     {
-        /// <summary>
-        /// Unique identifier for this file
-        /// </summary>
-        public string FileId { get; set; }
+        public string FileId { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Video width as defined by sender
-        /// </summary>
-        public long Width { get; set; }
+        public string FileUniqueId { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Video height as defined by sender
-        /// </summary>
-        public long Height { get; set; }
+        public int Width { get; set; }
 
-        /// <summary>
-        /// Duration of the video in seconds as defined by sender
-        /// </summary>
-        public long Duration { get; set; }
+        public int Height { get; set; }
 
-        /// <summary>
-        /// Video thumbnail
-        /// </summary>
-        public PhotoSize Thumb { get; set; }
+        public int Duration { get; set; }
 
-        /// <summary>
-        /// Optional. Mime type of a file as defined by sender
-        /// </summary>
-        public string MimeType { get; set; }
+        public PhotoSize? Thumbnail { get; set; }
 
-        /// <summary>
-        /// Optional. File size
-        /// </summary>
+        public string? FileName { get; set; }
+
+        public string? MimeType { get; set; }
+
         public long? FileSize { get; set; }
     }
 }

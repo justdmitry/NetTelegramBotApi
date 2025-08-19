@@ -1,38 +1,39 @@
-﻿using System;
-using NetTelegramBotApi.Types;
-
-namespace NetTelegramBotApi.Requests
+﻿namespace NetTelegramBotApi.Requests
 {
     /// <summary>
     /// Use this method to send photos. On success, the sent Message is returned.
     /// </summary>
-    public class SendPhoto : SendFileRequestBase<Message>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#sendphoto"/>
+    /// </remarks>
+    public class SendPhoto() : RequestBase<Message>("sendPhoto", true)
     {
-        public SendPhoto(long chatId, FileToSend photo)
-            : base(chatId, "sendPhoto", "photo")
-        {
-            this.File = photo;
-        }
+        public string? BusinessConnectionId { get; set; }
 
-        public SendPhoto(string channelName, FileToSend photo)
-            : base(channelName, "sendPhoto", "photo")
-        {
-            this.File = photo;
-        }
+        public required IntegerOrString ChatId { get; set; }
 
-        /// <summary>
-        /// Photo caption (may also be used when resending photos by file_id).
-        /// </summary>
-        public string Caption { get; set; }
+        public long? MessageThreadId { get; set; }
 
-        protected override void AppendParameters(Action<string, string> appendCallback)
-        {
-            if (!string.IsNullOrEmpty(Caption))
-            {
-                appendCallback("caption", Caption);
-            }
+        public required InputFileOrString Photo { get; set; }
 
-            base.AppendParameters(appendCallback);
-        }
+        public string? Caption { get; set; }
+
+        public ParseMode? ParseMode { get; set; }
+
+        public MessageEntity[]? CaptionEntities { get; set; }
+
+        public bool? ShowCaptionAboveMedia { get; set; }
+
+        public bool? HasSpoiler { get; set; }
+
+        public bool? DisableNotification { get; set; }
+
+        public bool? ProtectContent { get; set; }
+
+        public string? MessageEffectId { get; set; }
+
+        public ReplyParameters? ReplyParameters { get; set; }
+
+        public ReplyMarkupBase? ReplyMarkup { get; set; }
     }
 }

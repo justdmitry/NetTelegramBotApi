@@ -1,10 +1,13 @@
 ﻿namespace NetTelegramBotApi.Types
 {
+    /// <summary>
+    /// Describes a Web App.
+    /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#webappinfo"/>
+    /// </remarks>
     public class WebAppInfo
     {
-        /// <summary>
-        /// An HTTPS URL of a Web App to be opened with additional data as specified in Initializing Web Apps.
-        /// </summary>
-        public string Url { get; set; }
+        public required string Url { get; set; }
     }
 }

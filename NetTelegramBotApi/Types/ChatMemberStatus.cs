@@ -1,6 +1,7 @@
 ﻿namespace NetTelegramBotApi.Types
 {
-    public enum ChatMemberStatus : byte
+    [JsonConverter(typeof(JsonStringEnumConverterSnakeCaseLower))]
+    public enum ChatMemberStatus
     {
         Unknown,
         Creator,

@@ -1,32 +1,15 @@
 ﻿namespace NetTelegramBotApi.Types
 {
     /// <summary>
-    /// This object contains information about one member of the chat.
+    /// This object contains information about one member of a chat.
     /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#chatmember"/>
+    /// </remarks>
     public class ChatMember
     {
-        /// <summary>
-        /// Information about the user.
-        /// </summary>
-        public User User { get; set; }
+        public ChatMemberStatus Status { get; set; }
 
-        /// <summary>
-        /// The member's status in the chat. Can be “creator”, “administrator”, “member”, “left” or “kicked”.
-        /// </summary>
-        public string Status { get; set; }
-
-        public ChatMemberStatus GetStatus()
-        {
-            return Status switch
-            {
-                "creator" => ChatMemberStatus.Creator,
-                "administrator" => ChatMemberStatus.Administrator,
-                "member" => ChatMemberStatus.Member,
-                "restricted" => ChatMemberStatus.Restricted,
-                "left" => ChatMemberStatus.Left,
-                "kicked" => ChatMemberStatus.Kicked,
-                _ => ChatMemberStatus.Unknown,
-            };
-        }
+        public User User { get; set; } = default!;
     }
 }

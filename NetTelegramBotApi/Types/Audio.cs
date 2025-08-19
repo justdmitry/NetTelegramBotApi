@@ -3,36 +3,27 @@
     /// <summary>
     /// This object represents an audio file to be treated as music by the Telegram clients.
     /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#audio"/>
+    /// </remarks>
     public class Audio
     {
-        /// <summary>
-        /// Unique identifier for this file.
-        /// </summary>
-        public string FileId { get; set; }
+        public string FileId { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Duration of the audio in seconds as defined by sender.
-        /// </summary>
-        public long Duration { get; set; }
+        public string FileUniqueId { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Optional. Performer of the audio as defined by sender or by audio tags.
-        /// </summary>
-        public string Performer { get; set; }
+        public int Duration { get; set; }
 
-        /// <summary>
-        /// Optional. Title of the audio as defined by sender or by audio tags.
-        /// </summary>
-        public string Title { get; set; }
+        public string? Performer { get; set; }
 
-        /// <summary>
-        /// Optional. MIME type of the file as defined by sender.
-        /// </summary>
-        public string MimeType { get; set; }
+        public string? Title { get; set; }
 
-        /// <summary>
-        /// Optional. File size.
-        /// </summary>
+        public string? FileName { get; set; }
+
+        public string? MimeType { get; set; }
+
         public long? FileSize { get; set; }
+
+        public PhotoSize? Thumbnail { get; set; }
     }
 }

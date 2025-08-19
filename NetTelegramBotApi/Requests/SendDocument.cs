@@ -1,39 +1,39 @@
-﻿using System;
-using NetTelegramBotApi.Types;
-
-namespace NetTelegramBotApi.Requests
+﻿namespace NetTelegramBotApi.Requests
 {
     /// <summary>
-    /// Use this method to send general files. On success, the sent Message is returned.
-    /// Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
+    /// Use this method to send general files.
     /// </summary>
-    public class SendDocument : SendFileRequestBase<Message>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#senddocument"/>
+    /// </remarks>
+    public class SendDocument() : RequestBase<Message>("sendDocument", true)
     {
-        public SendDocument(long chatId, FileToSend document)
-            : base(chatId, "sendDocument", "document")
-        {
-            this.File = document;
-        }
+        public string? BusinessConnectionId { get; set; }
 
-        public SendDocument(string channelName, FileToSend document)
-            : base(channelName, "sendDocument", "document")
-        {
-            this.File = document;
-        }
+        public required IntegerOrString ChatId { get; set; }
 
-        /// <summary>
-        /// Document caption (may also be used when resending documents by file_id), 0-200 characters
-        /// </summary>
-        public string Caption { get; set; }
+        public long? MessageThreadId { get; set; }
 
-        protected override void AppendParameters(Action<string, string> appendCallback)
-        {
-            if (!string.IsNullOrEmpty(Caption))
-            {
-                appendCallback("caption", Caption);
-            }
+        public required InputFileOrString Document { get; set; }
 
-            base.AppendParameters(appendCallback);
-        }
+        public InputFileOrString? Thumbnail { get; set; }
+
+        public string? Caption { get; set; }
+
+        public ParseMode? ParseMode { get; set; }
+
+        public MessageEntity[]? CaptionEntities { get; set; }
+
+        public bool? DisableContentTypeDetection { get; set; }
+
+        public bool? DisableNotification { get; set; }
+
+        public bool? ProtectContent { get; set; }
+
+        public string? MessageEffectId { get; set; }
+
+        public ReplyParameters? ReplyParameters { get; set; }
+
+        public ReplyMarkupBase? ReplyMarkup { get; set; }
     }
 }

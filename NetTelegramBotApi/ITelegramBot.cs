@@ -1,13 +1,9 @@
-﻿using System.Threading.Tasks;
-using NetTelegramBotApi.Requests;
-using NetTelegramBotApi.Types;
-
-namespace NetTelegramBotApi
+﻿namespace NetTelegramBotApi
 {
     public interface ITelegramBot
     {
-        Task<T> MakeRequestAsync<T>(RequestBase<T> request);
+        Task<TResponse> Execute<TResponse>(RequestBase<TResponse> request, CancellationToken cancellationToken = default);
 
-        Update DeserializeUpdate(string json);
+        Update? DeserializeUpdate(string json);
     }
 }

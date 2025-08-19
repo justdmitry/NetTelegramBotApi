@@ -3,31 +3,21 @@
     /// <summary>
     /// This object represents a general file (as opposed to photos, voice messages and audio files).
     /// </summary>
+    /// <remarks>
+    /// <seealso href="https://core.telegram.org/bots/api#document"/>
+    /// </remarks>
     public class Document
     {
-        /// <summary>
-        /// Unique file identifier
-        /// </summary>
-        public string FileId { get; set; }
+        public string FileId { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Document thumbnail as defined by sender.
-        /// </summary>
-        public PhotoSize Thumb { get; set; }
+        public string FileUniqueId { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Optional. Original filename as defined by sender.
-        /// </summary>
-        public string FileName { get; set; }
+        public PhotoSize? Thumbnail { get; set; }
 
-        /// <summary>
-        /// Optional. MIME type of the file as defined by sender.
-        /// </summary>
-        public string MimeType { get; set; }
+        public string? FileName { get; set; }
 
-        /// <summary>
-        /// Optional. File size.
-        /// </summary>
+        public string? MimeType { get; set; }
+
         public long? FileSize { get; set; }
     }
 }
