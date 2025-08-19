@@ -14,6 +14,21 @@
             return bot.Execute(request, cancellationToken);
         }
 
+        public static Task<bool> SetWebhook(this ITelegramBot bot, SetWebhook request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<bool> DeleteWebhook(this ITelegramBot bot, DeleteWebhook request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<WebhookInfo> GetWebhookInfo(this ITelegramBot bot, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(new GetWebhookInfo(), cancellationToken);
+        }
+
         public static Task<Message> ForwardMessage(this ITelegramBot bot, ForwardMessage request, CancellationToken cancellationToken = default)
         {
             return bot.Execute(request, cancellationToken);
@@ -100,6 +115,36 @@
         }
 
         public static Task<int> GetChatMemberCount(this ITelegramBot bot, GetChatMemberCount request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<bool> DeleteMessage(this ITelegramBot bot, DeleteMessage request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<bool> DeleteMessages(this ITelegramBot bot, DeleteMessages request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<Message> EditMessageCaption(this ITelegramBot bot, EditMessageCaption request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<Message> EditMessageMedia(this ITelegramBot bot, EditMessageMedia request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<Message> EditMessageReplyMarkup(this ITelegramBot bot, EditMessageReplyMarkup request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<Message> EditMessageText(this ITelegramBot bot, EditMessageText request, CancellationToken cancellationToken = default)
         {
             return bot.Execute(request, cancellationToken);
         }
