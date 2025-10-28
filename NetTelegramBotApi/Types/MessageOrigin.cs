@@ -8,6 +8,8 @@
     /// </remarks>
     public class MessageOrigin
     {
-        // TODO: Add fields
+        public MessageOriginType Type { get; set; }
+
+        public DateTimeOffset Date { get; set; }
     }
 }

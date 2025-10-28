@@ -14,6 +14,7 @@
                 new IntegerOrStringConverter(),
                 new InputFileOrStringConverter(),
                 new ChatMemberConverter(),
+                new MessageOriginConverter(),
             },
         };
 
