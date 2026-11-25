@@ -6,6 +6,7 @@ Contains strongly-typed request and response classes, and transport class for se
 
 
 [![NuGet](https://img.shields.io/nuget/v/NetTelegramBotApi.svg)](https://www.nuget.org/packages/NetTelegramBotApi/)
+![.NET 10.0](https://img.shields.io/badge/.NET-10.0-512BD4)
 ![.NET 9.0](https://img.shields.io/badge/.NET-9.0-512BD4)
 ![.NET 8.0](https://img.shields.io/badge/.NET-8.0-512BD4)
 ![MIT License](https://img.shields.io/github/license/justdmitry/NetTelegramBotApi)
@@ -47,7 +48,7 @@ This works out-of-the-box:
 * snake_case property naming (`BusinessConnectionId` -> `business_connection_id`);
 * `DateTimeOffset` [de]serialization of unix-time fields;
 * use `IntegerOrString` type for number-or-string fields (like `chat_id`);
-* use `InputFile` or `InputFileOrString` types for requests with files (don't forget to pass `withFiles: true` to `RequestBase`, check [`SetWebhook`](./NetTelegramBotApi/Requests/SetWebhook.cs) for example);
+* use `InputFile` or `InputFileOrString` types for requests with files (don't forget to override `HaveFiles` and `CreateAttachments`, check [`SendDocument`](./NetTelegramBotApi/Requests/SendDocument.cs) for example);
 
 
 ## Installation
@@ -55,6 +56,6 @@ This works out-of-the-box:
 Use NuGet package [NetTelegramBotApi](https://www.nuget.org/packages/NetTelegramBotApi/).
 
 
-## Dependencies
+## 3rd-party dependencies
 
-Only `System.Text.Json`.
+None. Only standard framework assemblies used.
