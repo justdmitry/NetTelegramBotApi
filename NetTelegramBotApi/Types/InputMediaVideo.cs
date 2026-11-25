@@ -35,5 +35,23 @@
         public bool? SupportsStreaming { get; set; }
 
         public bool? HasSpoiler { get; set; }
+
+        public override bool HaveFiles()
+        {
+            return Media.InputFile != null || Cover?.InputFile != null;
+        }
+
+        public override void CreateAttachments(MultipartFormDataContent multipartFormDataContent, string? fixedId = null)
+        {
+            if (Media.InputFile != null)
+            {
+                Media = RequestBase<object>.CreateAttachment(multipartFormDataContent, Media, fixedId);
+            }
+
+            if (Cover != null && Cover.Value.InputFile != null)
+            {
+                Cover = RequestBase<object>.CreateAttachment(multipartFormDataContent, Cover.Value, fixedId);
+            }
+        }
     }
 }

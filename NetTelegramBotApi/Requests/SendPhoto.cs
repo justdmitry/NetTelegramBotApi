@@ -6,7 +6,7 @@
     /// <remarks>
     /// <seealso href="https://core.telegram.org/bots/api#sendphoto"/>
     /// </remarks>
-    public class SendPhoto() : RequestBase<Message>("sendPhoto", true)
+    public class SendPhoto() : RequestBase<Message>("sendPhoto")
     {
         public string? BusinessConnectionId { get; set; }
 
@@ -35,5 +35,18 @@
         public ReplyParameters? ReplyParameters { get; set; }
 
         public ReplyMarkupBase? ReplyMarkup { get; set; }
+
+        protected override bool HaveFiles()
+        {
+            return Photo.InputFile != null;
+        }
+
+        protected override void CreateAttachments(MultipartFormDataContent multipartFormDataContent)
+        {
+            if (Photo.InputFile != null)
+            {
+                Photo = CreateAttachment(multipartFormDataContent, Photo.InputFile.Value);
+            }
+        }
     }
 }

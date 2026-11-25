@@ -6,7 +6,7 @@
     /// <remarks>
     /// <seealso href="https://core.telegram.org/bots/api#sendvideo"/>
     /// </remarks>
-    public class SendVideo() : RequestBase<Message>("sendVideo", true)
+    public class SendVideo() : RequestBase<Message>("sendVideo")
     {
         public string? BusinessConnectionId { get; set; }
 
@@ -45,5 +45,23 @@
         public ReplyParameters? ReplyParameters { get; set; }
 
         public ReplyMarkupBase? ReplyMarkup { get; set; }
+
+        protected override bool HaveFiles()
+        {
+            return Video.InputFile != null || Thumbnail?.InputFile != null;
+        }
+
+        protected override void CreateAttachments(MultipartFormDataContent multipartFormDataContent)
+        {
+            if (Video.InputFile != null)
+            {
+                Video = CreateAttachment(multipartFormDataContent, Video.InputFile.Value);
+            }
+
+            if (Thumbnail != null && Thumbnail.Value.InputFile != null)
+            {
+                Thumbnail = CreateAttachment(multipartFormDataContent, Thumbnail.Value.InputFile.Value);
+            }
+        }
     }
 }

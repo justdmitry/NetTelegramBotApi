@@ -72,7 +72,7 @@
                     await Task.Delay(500);
 
                     using var photoData = typeof(Program).Assembly.GetManifestResourceStream("NetTelegramBotApi.Demo.t_logo.png");
-                    var resp = await bot.SendPhoto(new() { ChatId = msg.Chat.Id, Photo = (photoData, "Telegram_logo.png"), Caption = "Telegram logo" });
+                    var resp = await bot.SendPhoto(new() { ChatId = msg.Chat.Id, Photo = (photoData!, "Telegram_logo.png"), Caption = "Telegram logo" });
                     uploadedPhotoId = resp.Photo.Last().FileId;
                 }
                 else
@@ -104,7 +104,7 @@
                     await Task.Delay(500);
 
                     using var docData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("NetTelegramBotApi.Demo.Telegram_Bot_API.htm");
-                    var resp = await bot.SendDocument(new() { ChatId = msg.Chat.Id, Document = (docData, "Telegram_Bot_API.htm"), Caption = "Here is your file" });
+                    var resp = await bot.SendDocument(new() { ChatId = msg.Chat.Id, Document = (docData!, "Telegram_Bot_API.htm"), Caption = "Here is your file" });
                     uploadedDocumentId = resp.Document.FileId;
                 }
                 else
@@ -118,7 +118,7 @@
                 await Task.Delay(500);
 
                 using var docData = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("NetTelegramBotApi.Demo.Пример_UTF8_filename.txt");
-                await bot.SendDocument(new() { ChatId = msg.Chat.Id, Document = (docData, "Пример_UTF8_filename.txt"), Caption = "Here is your file with UTF8" });
+                await bot.SendDocument(new() { ChatId = msg.Chat.Id, Document = (docData!, "Пример_UTF8_filename.txt"), Caption = "Here is your file with UTF8" });
             }
             else if (msg.Text == "/help")
             {
@@ -127,6 +127,7 @@
                     Keyboard =
                     [
                         [new() { Text = "/photo" }, new() { Text = "/doc" }, new() { Text = "/longmsg" }, new() { Text = "/docutf8" }],
+                        [new() { Text = "/gcm" }, new() { Text = "/countdown" }, new() { Text = "/rich" }],
                         [new() { Text = "/contact", RequestContact = true }, new() { Text = "/location", RequestLocation = true }],
                         [new() { Text = "/help" }],
                     ],
@@ -154,6 +155,22 @@
                 await bot.EditMessageText(new() { ChatId = msg.Chat.Id, MessageId = messageId, Text = "Done. Thank you." });
                 await Task.Delay(1000);
                 await bot.DeleteMessage(new() { ChatId = msg.Chat.Id, MessageId = messageId });
+            }
+            else if (msg.Text == "/rich")
+            {
+                await bot.SendChatAction(new() { ChatId = msg.Chat.Id, Action = ChatAction.Typing });
+                await Task.Delay(500);
+
+                using var photoData = typeof(Program).Assembly.GetManifestResourceStream("NetTelegramBotApi.Demo.t_logo.png");
+                var richMessage = new InputRichMessage()
+                {
+                    Html = "<img src='tg://photo?id=photo01' /><h1>Hello Rich Message</h1><p>This is a rich message with a photo.</p><table><tr><th>Col 1</th><th>Col 2</th><th>Col 3</th></tr><tr><th>Value 1</th><td>Value 2</td><td>Value 2</td></tr></table><a href='https://github.com/justdmitry/NetTelegramBotApi'>Star this library on GitHub!</a>",
+                    Media = [
+                        new() { Id = "photo01", Media = new InputMediaPhoto() { Media = (photoData!, "Telegram_logo.png") } },
+                    ],
+                };
+
+                await bot.SendRichMessage(new() { ChatId = msg.Chat.Id, RichMessage = richMessage });
             }
             else if (msg.Text.Length % 2 == 0)
             {

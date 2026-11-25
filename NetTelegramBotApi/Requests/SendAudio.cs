@@ -6,7 +6,7 @@
     /// <remarks>
     /// <seealso href="https://core.telegram.org/bots/api#sendaudio"/>
     /// </remarks>
-    public class SendAudio() : RequestBase<Message>("sendAudio", true)
+    public class SendAudio() : RequestBase<Message>("sendAudio")
     {
         public string? BusinessConnectionId { get; set; }
 
@@ -39,5 +39,23 @@
         public ReplyParameters? ReplyParameters { get; set; }
 
         public ReplyMarkupBase? ReplyMarkup { get; set; }
+
+        protected override bool HaveFiles()
+        {
+            return Audio.InputFile != null || Thumbnail?.InputFile != null;
+        }
+
+        protected override void CreateAttachments(MultipartFormDataContent multipartFormDataContent)
+        {
+            if (Audio.InputFile != null)
+            {
+                Audio = CreateAttachment(multipartFormDataContent, Audio.InputFile.Value);
+            }
+
+            if (Thumbnail != null && Thumbnail.Value.InputFile != null)
+            {
+                Thumbnail = CreateAttachment(multipartFormDataContent, Thumbnail.Value.InputFile.Value);
+            }
+        }
     }
 }

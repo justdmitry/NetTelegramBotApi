@@ -3,9 +3,10 @@
     /// <summary>
     /// Use this method to delete multiple messages simultaneously.
     /// If some of the specified messages can't be found, they are skipped.
+    /// Returns True on success.
     /// </summary>
     /// <remarks>
-    /// There are some limitations, see <see href="https://core.telegram.org/bots/api#deletemessages"/>.
+    /// <seealso href="https://core.telegram.org/bots/api#deletemessages"/>.
     /// </remarks>
     public class DeleteMessages() : RequestBase<bool>("deleteMessages")
     {

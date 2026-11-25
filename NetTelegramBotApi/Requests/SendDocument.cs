@@ -6,7 +6,7 @@
     /// <remarks>
     /// <seealso href="https://core.telegram.org/bots/api#senddocument"/>
     /// </remarks>
-    public class SendDocument() : RequestBase<Message>("sendDocument", true)
+    public class SendDocument() : RequestBase<Message>("sendDocument")
     {
         public string? BusinessConnectionId { get; set; }
 
@@ -35,5 +35,23 @@
         public ReplyParameters? ReplyParameters { get; set; }
 
         public ReplyMarkupBase? ReplyMarkup { get; set; }
+
+        protected override bool HaveFiles()
+        {
+            return Document.InputFile != null || Thumbnail?.InputFile != null;
+        }
+
+        protected override void CreateAttachments(MultipartFormDataContent multipartFormDataContent)
+        {
+            if (Document.InputFile != null)
+            {
+                Document = CreateAttachment(multipartFormDataContent, Document.InputFile.Value);
+            }
+
+            if (Thumbnail != null && Thumbnail.Value.InputFile != null)
+            {
+                Thumbnail = CreateAttachment(multipartFormDataContent, Thumbnail.Value.InputFile.Value);
+            }
+        }
     }
 }

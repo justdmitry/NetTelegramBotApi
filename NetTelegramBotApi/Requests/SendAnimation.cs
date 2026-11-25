@@ -6,7 +6,7 @@
     /// <remarks>
     /// <seealso href="https://core.telegram.org/bots/api#sendanimation"/>
     /// </remarks>
-    public class SendAnimation() : RequestBase<Message>("sendAnimation", true)
+    public class SendAnimation() : RequestBase<Message>("sendAnimation")
     {
         public string? BusinessConnectionId { get; set; }
 
@@ -43,5 +43,23 @@
         public ReplyParameters? ReplyParameters { get; set; }
 
         public ReplyMarkupBase? ReplyMarkup { get; set; }
+
+        protected override bool HaveFiles()
+        {
+            return Animation.InputFile != null || Thumbnail?.InputFile != null;
+        }
+
+        protected override void CreateAttachments(MultipartFormDataContent multipartFormDataContent)
+        {
+            if (Animation.InputFile != null)
+            {
+                Animation = CreateAttachment(multipartFormDataContent, Animation.InputFile.Value);
+            }
+
+            if (Thumbnail != null && Thumbnail.Value.InputFile != null)
+            {
+                Thumbnail = CreateAttachment(multipartFormDataContent, Thumbnail.Value.InputFile.Value);
+            }
+        }
     }
 }

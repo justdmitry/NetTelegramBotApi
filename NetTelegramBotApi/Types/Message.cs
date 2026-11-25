@@ -20,7 +20,15 @@
 
         public User? SenderBusinessBot { get; set; }
 
+        public string? SenderTag { get; set; }
+
+        public User? ReceiverUser { get; set; }
+
+        public string? EphemeralMessageId { get; set; }
+
         public DateTimeOffset Date { get; set; }
+
+        public string? GuestQueryId { get; set; }
 
         public string? BusinessConnectionId { get; set; }
 
@@ -40,13 +48,23 @@
 
         public Story? ReplyToStory { get; set; }
 
+        public long? ReplyToChecklistTaskId { get; set; }
+
+        public string? ReplyToPollOptionId { get; set; }
+
         public User? ViaBot { get; set; }
+
+        public User? GuestBotCallerUser { get; set; }
+
+        public Chat? GuestBotCallerChat { get; set; }
 
         public DateTimeOffset? EditDate { get; set; }
 
         public bool? HasProtectedContent { get; set; }
 
         public bool? IsFromOffline { get; set; }
+
+        public bool? IsPaidPost { get; set; }
 
         public string? MediaGroupId { get; set; }
 
@@ -58,13 +76,19 @@
 
         public LinkPreviewOptions? LinkPreviewOptions { get; set; }
 
+        public SuggestedPostInfo? SuggestedPostInfo { get; set; }
+
         public string? EffectId { get; set; }
+
+        public RichMessage? RichMessage { get; set; }
 
         public Animation? Animation { get; set; }
 
         public Audio? Audio { get; set; }
 
         public Document? Document { get; set; }
+
+        public LivePhoto? LivePhoto { get; set; }
 
         public PaidMediaInfo? PaidMedia { get; set; }
 
@@ -80,6 +104,8 @@
 
         public Voice? Voice { get; set; }
 
+        public Widget? Widget { get; set; }
+
         public string? Caption { get; set; }
 
         public MessageEntity[]? CaptionEntities { get; set; }
@@ -87,6 +113,8 @@
         public bool? ShowCaptionAboveMedia { get; set; }
 
         public bool? HasMediaSpoiler { get; set; }
+
+        public Checklist? Checklist { get; set; }
 
         public Contact? Contact { get; set; }
 
@@ -103,6 +131,10 @@
         public User[]? NewChatMembers { get; set; }
 
         public User? LeftChatMember { get; set; }
+
+        public ChatOwnerLeft? ChatOwnerLeft { get; set; }
+
+        public ChatOwnerChanged? ChatOwnerChanged { get; set; }
 
         public string? NewChatTitle { get; set; }
 

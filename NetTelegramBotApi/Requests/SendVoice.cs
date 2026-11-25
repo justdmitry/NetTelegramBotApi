@@ -6,7 +6,7 @@
     /// <remarks>
     /// <seealso href="https://core.telegram.org/bots/api#sendvoice"/>
     /// </remarks>
-    public class SendVoice() : RequestBase<Message>("sendVoice", true)
+    public class SendVoice() : RequestBase<Message>("sendVoice")
     {
         public string? BusinessConnectionId { get; set; }
 
@@ -33,5 +33,18 @@
         public ReplyParameters? ReplyParameters { get; set; }
 
         public ReplyMarkupBase? ReplyMarkup { get; set; }
+
+        protected override bool HaveFiles()
+        {
+            return Voice.InputFile != null;
+        }
+
+        protected override void CreateAttachments(MultipartFormDataContent multipartFormDataContent)
+        {
+            if (Voice.InputFile != null)
+            {
+                Voice = CreateAttachment(multipartFormDataContent, Voice.InputFile.Value);
+            }
+        }
     }
 }

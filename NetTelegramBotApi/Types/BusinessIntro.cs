@@ -12,6 +12,6 @@
 
         public string? Message { get; set; }
 
-        public Sticker? Sticker{ get; set; }
+        public Sticker? Sticker { get; set; }
     }
 }

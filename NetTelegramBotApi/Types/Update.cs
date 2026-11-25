@@ -26,6 +26,8 @@
 
         public BusinessMessagesDeleted? DeletedBusinessMessages { get; set; }
 
+        public Message? GuestMessage { get; set; }
+
         public MessageReactionUpdated? MessageReaction { get; set; }
 
         public MessageReactionCountUpdated? MessageReactionCount { get; set; }
@@ -35,6 +37,10 @@
         public ChosenInlineResult? ChosenInlineResult { get; set; }
 
         public CallbackQuery? CallbackQuery { get; set; }
+
+        public WidgetQuery? WidgetQuery { get; set; }
+
+        public SharedWidgetQuery? SharedWidgetQuery { get; set; }
 
         public ShippingQuery? ShippingQuery { get; set; }
 
@@ -55,5 +61,11 @@
         public ChatBoostUpdated? ChatBoost { get; set; }
 
         public ChatBoostRemoved? RemovedChatBoost { get; set; }
+
+        public ManagedBotUpdated? ManagedBot { get; set; }
+
+        public BotSubscriptionUpdated? Subscription { get; set; }
+
+        public MessageGenerationStopped? StoppedMessageGeneration { get; set; }
     }
 }

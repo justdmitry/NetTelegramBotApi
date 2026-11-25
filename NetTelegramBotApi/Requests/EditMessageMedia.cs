@@ -7,7 +7,7 @@
     /// <remarks>
     /// <seealso href="https://core.telegram.org/bots/api#editmessagemedia"/>
     /// </remarks>
-    public class EditMessageMedia() : RequestBase<Message>("editMessageMedia", true)
+    public class EditMessageMedia() : RequestBase<Message>("editMessageMedia")
     {
         public string? BusinessConnectionId { get; set; }
 
@@ -20,5 +20,15 @@
         public required InputMedia Media { get; set; }
 
         public ReplyMarkupBase? ReplyMarkup { get; set; }
+
+        protected override bool HaveFiles()
+        {
+            return Media.HaveFiles();
+        }
+
+        protected override void CreateAttachments(MultipartFormDataContent multipartFormDataContent)
+        {
+            Media.CreateAttachments(multipartFormDataContent);
+        }
     }
 }

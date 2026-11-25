@@ -64,6 +64,16 @@
             return bot.Execute(request, cancellationToken);
         }
 
+        public static Task<Message> SendRichMessage(this ITelegramBot bot, SendRichMessage request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<Message> SendRichMessageDraft(this ITelegramBot bot, SendRichMessageDraft request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
         public static Task<Message> SendPhoto(this ITelegramBot bot, SendPhoto request, CancellationToken cancellationToken = default)
         {
             return bot.Execute(request, cancellationToken);
@@ -125,6 +135,21 @@
         }
 
         public static Task<bool> DeleteMessages(this ITelegramBot bot, DeleteMessages request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<bool> DeleteAllMessageReactions(this ITelegramBot bot, DeleteAllMessageReactions request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<bool> DeleteMessageReaction(this ITelegramBot bot, DeleteMessageReaction request, CancellationToken cancellationToken = default)
+        {
+            return bot.Execute(request, cancellationToken);
+        }
+
+        public static Task<bool> DeleteEphemeralMessage(this ITelegramBot bot, DeleteEphemeralMessage request, CancellationToken cancellationToken = default)
         {
             return bot.Execute(request, cancellationToken);
         }

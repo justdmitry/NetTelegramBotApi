@@ -6,7 +6,7 @@
     /// <remarks>
     /// <seealso href="https://core.telegram.org/bots/api#sendvideonote"/>
     /// </remarks>
-    public class SendVideoNote() : RequestBase<Message>("sendVideoNote", true)
+    public class SendVideoNote() : RequestBase<Message>("sendVideoNote")
     {
         public string? BusinessConnectionId { get; set; }
 
@@ -31,5 +31,23 @@
         public ReplyParameters? ReplyParameters { get; set; }
 
         public ReplyMarkupBase? ReplyMarkup { get; set; }
+
+        protected override bool HaveFiles()
+        {
+            return VideoNote.InputFile != null || Thumbnail?.InputFile != null;
+        }
+
+        protected override void CreateAttachments(MultipartFormDataContent multipartFormDataContent)
+        {
+            if (VideoNote.InputFile != null)
+            {
+                VideoNote = CreateAttachment(multipartFormDataContent, VideoNote.InputFile.Value);
+            }
+
+            if (Thumbnail != null && Thumbnail.Value.InputFile != null)
+            {
+                Thumbnail = CreateAttachment(multipartFormDataContent, Thumbnail.Value.InputFile.Value);
+            }
+        }
     }
 }

@@ -25,5 +25,23 @@
         public string? Performer { get; set; }
 
         public string? Title { get; set; }
+
+        public override bool HaveFiles()
+        {
+            return Media.InputFile != null || Thumbnail?.InputFile != null;
+        }
+
+        public override void CreateAttachments(MultipartFormDataContent multipartFormDataContent, string? fixedId = null)
+        {
+            if (Media.InputFile != null)
+            {
+                Media = RequestBase<object>.CreateAttachment(multipartFormDataContent, Media, fixedId);
+            }
+
+            if (Thumbnail != null && Thumbnail.Value.InputFile != null)
+            {
+                Thumbnail = RequestBase<object>.CreateAttachment(multipartFormDataContent, Thumbnail.Value, fixedId);
+            }
+        }
     }
 }

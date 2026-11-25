@@ -6,7 +6,7 @@
     /// <remarks>
     /// <seealso href="https://core.telegram.org/bots/api#setwebhook"/>
     /// </remarks>
-    public class SetWebhook() : RequestBase<bool>("setWebhook", true)
+    public class SetWebhook() : RequestBase<bool>("setWebhook")
     {
         public required string Url { get; set; }
 
@@ -21,5 +21,19 @@
         public bool? DropPendingUpdates { get; set; }
 
         public string? SecretToken { get; set; }
+
+        protected override bool HaveFiles()
+        {
+            return Certificate != null;
+        }
+
+        protected override void CreateAttachments(MultipartFormDataContent multipartFormDataContent)
+        {
+            if (Certificate != null)
+            {
+                CreateAttachment(multipartFormDataContent, Certificate.Value, nameof(Certificate));
+                Certificate = null;
+            }
+        }
     }
 }
